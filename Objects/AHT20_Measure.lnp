@@ -1,0 +1,7 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj",
+".\Objects\UART.obj",
+".\Objects\PLATFORM.obj",
+".\Objects\AHT20.obj" 
+TO ".\Objects\AHT20_Measure" 
+PRINT(".\Listings\AHT20_Measure.m51") RAMSIZE(256) 

@@ -1,0 +1,437 @@
+C51 COMPILER V9.60.7.0   UART                                                              05/15/2026 10:37:13 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN .\build\Target 1\.obj\__\project\UART.o
+COMPILER INVOKED BY: E:\51\C51\BIN\C51.exe .\..\project\UART.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;
+                    -../C51/INC) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(.\build\Target 1\.obj\__\project\UART
+                    -.lst) OBJECT(.\build\Target 1\.obj\__\project\UART.o)
+
+line level    source
+
+   1          #include "UART.h"
+   2          
+   3          static unsigned char Uart_Rx_Buffer[Uart_Rx_Buffer_Len];
+   4          static unsigned char Uart_Rx_Count= 0 ;
+   5          static bit Uart_Rx_Flag ;
+   6          
+   7          
+   8          static void UART_Send_Byte_Change(unsigned char dat)
+   9          {
+  10   1           Platform_UART_SendByte(dat);  // 只调用平台
+  11   1      }
+  12          
+  13          static void UART_Send_Str_Change(unsigned char *str)
+  14          {
+  15   1          while(*str)
+  16   1          {
+  17   2              UART_Send_Byte_Change(*str++);
+  18   2          }
+  19   1      }
+  20          
+  21          static void UART_Init_Change(void)
+  22          {
+  23   1          Platform_Uart_Init();  // 只调用平台
+  24   1      }
+  25          
+  26          UART_TypeDef Uart ={UART_Init_Change,UART_Send_Str_Change} ;
+  27          
+  28          void Uart_Init()
+  29          {
+  30   1      Uart.Init();
+  31   1      }
+  32          
+  33          
+  34          void Uart_Send_Str(unsigned char *str)
+  35          {
+  36   1      Uart.Send_Str(str);
+  37   1      }
+  38          
+  39          void Uart_Isr(void) interrupt 4
+  40          {
+  41   1          if(RI)
+  42   1          {
+  43   2              RI = 0;
+  44   2               if(Uart_Rx_Count < Uart_Rx_Buffer_Len-1)
+  45   2              {
+  46   3                  Uart_Rx_Buffer[Uart_Rx_Count++] = SBUF;
+  47   3              }
+  48   2              Uart_Rx_Flag = 1 ;
+  49   2          }
+  50   1          
+  51   1      }
+  52          
+  53          
+C51 COMPILER V9.60.7.0   UART                                                              05/15/2026 10:37:13 PAGE 2   
+
+  54          unsigned char* Uart_Receive()
+  55          {
+  56   1          if(Uart_Rx_Flag)
+  57   1          {
+  58   2              Uart_Rx_Buffer[Uart_Rx_Count] = '\0'; // '\0'=0x00 
+  59   2              return Uart_Rx_Buffer;
+  60   2          }
+  61   1          return 0;
+  62   1      }
+  63          
+  64          void Uart_Clear(void)
+  65          {
+  66   1          unsigned char i ;
+  67   1          Uart_Rx_Flag = 0;
+  68   1          Uart_Rx_Count = 0;
+  69   1            for(i=0; i<Uart_Rx_Buffer_Len; i++)
+  70   1          {
+  71   2              Uart_Rx_Buffer[i] = 0;
+  72   2          }
+  73   1      }
+C51 COMPILER V9.60.7.0   UART                                                              05/15/2026 10:37:13 PAGE 3   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION _UART_Send_Byte_Change (BEGIN)
+                                           ; SOURCE LINE # 8
+;---- Variable 'dat' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 9
+                                           ; SOURCE LINE # 10
+0000 020000      E     LJMP    _Platform_UART_SendByte
+             ; FUNCTION _UART_Send_Byte_Change (END)
+
+             ; FUNCTION _UART_Send_Str_Change (BEGIN)
+                                           ; SOURCE LINE # 13
+0000 8B00        R     MOV     str,R3
+0002 8A00        R     MOV     str+01H,R2
+0004 8900        R     MOV     str+02H,R1
+                                           ; SOURCE LINE # 14
+0006         ?C0002:
+                                           ; SOURCE LINE # 15
+0006 AB00        R     MOV     R3,str
+0008 AA00        R     MOV     R2,str+01H
+000A A900        R     MOV     R1,str+02H
+000C 120000      E     LCALL   ?C?CLDPTR
+000F 6013              JZ      ?C0004
+                                           ; SOURCE LINE # 16
+                                           ; SOURCE LINE # 17
+0011 0500        R     INC     str+02H
+0013 E500        R     MOV     A,str+02H
+0015 7002              JNZ     ?C0017
+0017 0500        R     INC     str+01H
+0019         ?C0017:
+0019 14                DEC     A
+001A F9                MOV     R1,A
+001B 120000      E     LCALL   ?C?CLDPTR
+001E FF                MOV     R7,A
+001F 120000      R     LCALL   _UART_Send_Byte_Change
+                                           ; SOURCE LINE # 18
+0022 80E2              SJMP    ?C0002
+                                           ; SOURCE LINE # 19
+0024         ?C0004:
+0024 22                RET     
+             ; FUNCTION _UART_Send_Str_Change (END)
+
+             ; FUNCTION UART_Init_Change (BEGIN)
+                                           ; SOURCE LINE # 21
+                                           ; SOURCE LINE # 22
+                                           ; SOURCE LINE # 23
+0000 020000      E     LJMP    Platform_Uart_Init
+             ; FUNCTION UART_Init_Change (END)
+
+             ; FUNCTION Uart_Init (BEGIN)
+                                           ; SOURCE LINE # 28
+                                           ; SOURCE LINE # 29
+                                           ; SOURCE LINE # 30
+0000 AA00        R     MOV     R2,Uart+01H
+0002 A900        R     MOV     R1,Uart+02H
+0004 020000      E     LJMP    ?C?ICALL
+             ; FUNCTION Uart_Init (END)
+
+             ; FUNCTION _Uart_Send_Str (BEGIN)
+                                           ; SOURCE LINE # 34
+;---- Variable 'str' assigned to Register 'R1/R2/R3' ----
+C51 COMPILER V9.60.7.0   UART                                                              05/15/2026 10:37:13 PAGE 4   
+
+                                           ; SOURCE LINE # 35
+                                           ; SOURCE LINE # 36
+0000 850082      R     MOV     DPL,Uart+05H
+0003 850083      R     MOV     DPH,Uart+04H
+0006 020000      E     LJMP    ?C?ICALL2
+             ; FUNCTION _Uart_Send_Str (END)
+
+             ; FUNCTION Uart_Isr (BEGIN)
+0000 C0E0              PUSH    ACC
+0002 C0D0              PUSH    PSW
+0004 75D000            MOV     PSW,#00H
+0007 C000              PUSH    AR0
+0009 C007              PUSH    AR7
+                                           ; SOURCE LINE # 39
+                                           ; SOURCE LINE # 41
+000B 309815            JNB     RI,?C0010
+                                           ; SOURCE LINE # 42
+                                           ; SOURCE LINE # 43
+000E C298              CLR     RI
+                                           ; SOURCE LINE # 44
+0010 E500        R     MOV     A,Uart_Rx_Count
+0012 C3                CLR     C
+0013 9403              SUBB    A,#03H
+0015 500A              JNC     ?C0009
+                                           ; SOURCE LINE # 45
+                                           ; SOURCE LINE # 46
+0017 AF00        R     MOV     R7,Uart_Rx_Count
+0019 0500        R     INC     Uart_Rx_Count
+001B 7400        R     MOV     A,#LOW Uart_Rx_Buffer
+001D 2F                ADD     A,R7
+001E F8                MOV     R0,A
+001F A699              MOV     @R0,SBUF
+                                           ; SOURCE LINE # 47
+0021         ?C0009:
+                                           ; SOURCE LINE # 48
+0021 D200        R     SETB    Uart_Rx_Flag
+                                           ; SOURCE LINE # 49
+                                           ; SOURCE LINE # 51
+0023         ?C0010:
+0023 D007              POP     AR7
+0025 D000              POP     AR0
+0027 D0D0              POP     PSW
+0029 D0E0              POP     ACC
+002B 32                RETI    
+             ; FUNCTION Uart_Isr (END)
+
+             ; FUNCTION Uart_Receive (BEGIN)
+                                           ; SOURCE LINE # 54
+                                           ; SOURCE LINE # 55
+                                           ; SOURCE LINE # 56
+0000 30000D            JNB     Uart_Rx_Flag,?C0011
+                                           ; SOURCE LINE # 57
+                                           ; SOURCE LINE # 58
+0003 7400        R     MOV     A,#LOW Uart_Rx_Buffer
+0005 2500        R     ADD     A,Uart_Rx_Count
+0007 F8                MOV     R0,A
+0008 E4                CLR     A
+0009 F6                MOV     @R0,A
+                                           ; SOURCE LINE # 59
+000A FB                MOV     R3,A
+000B 7A00        R     MOV     R2,#HIGH Uart_Rx_Buffer
+000D 7900        R     MOV     R1,#LOW Uart_Rx_Buffer
+C51 COMPILER V9.60.7.0   UART                                                              05/15/2026 10:37:13 PAGE 5   
+
+000F 22                RET     
+                                           ; SOURCE LINE # 60
+0010         ?C0011:
+                                           ; SOURCE LINE # 61
+0010 7B00              MOV     R3,#00H
+0012 7A00              MOV     R2,#00H
+0014 7900              MOV     R1,#00H
+                                           ; SOURCE LINE # 62
+0016         ?C0012:
+0016 22                RET     
+             ; FUNCTION Uart_Receive (END)
+
+             ; FUNCTION Uart_Clear (BEGIN)
+                                           ; SOURCE LINE # 64
+                                           ; SOURCE LINE # 65
+                                           ; SOURCE LINE # 67
+0000 C200        R     CLR     Uart_Rx_Flag
+                                           ; SOURCE LINE # 68
+0002 E4                CLR     A
+0003 F500        R     MOV     Uart_Rx_Count,A
+                                           ; SOURCE LINE # 69
+;---- Variable 'i' assigned to Register 'R7' ----
+0005         ?C0013:
+                                           ; SOURCE LINE # 70
+                                           ; SOURCE LINE # 71
+0005 7F04              MOV     R7,#04H
+0007 7800        R     MOV     R0,#LOW Uart_Rx_Buffer
+0009 E4                CLR     A
+000A         ?C0018:
+000A F6                MOV     @R0,A
+000B 08                INC     R0
+000C DFFC              DJNZ    R7,?C0018
+                                           ; SOURCE LINE # 72
+                                           ; SOURCE LINE # 73
+000E         ?C0016:
+000E 22                RET     
+             ; FUNCTION Uart_Clear (END)
+
+C51 COMPILER V9.60.7.0   UART                                                              05/15/2026 10:37:13 PAGE 6   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+READ_I2C_START_STEP3 . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_START_STEP4 . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+READ_I2C_START_STEP5 . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+READ_I2C_SEND_ADDRESS_STEP1. . . . . .  E_CONST  -----  U_CHAR   -----  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+READ_I2C_SEND_ADDRESS_STEP2. . . . . .  E_CONST  -----  U_CHAR   -----  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+READ_I2C_SEND_ADDRESS_STEP3. . . . . .  E_CONST  -----  U_CHAR   -----  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+READ_I2C_SEND_ADDRESS_STEP4. . . . . .  E_CONST  -----  U_CHAR   -----  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+Uart_Rx_Buffer . . . . . . . . . . . .  STATIC   DATA   ARRAY    0000H  4
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+Uart_Init. . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+READ_I2C_SEND_NACK_STEP1 . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_SEND_NACK_STEP2 . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+READ_I2C_SEND_NACK_STEP3 . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+Aht20_I2C_Read_State_Typedef . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+READ_I2C_SEND_NACK_STEP4 . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RE_RECEIVE_ACK_STEP1. . . . .  E_CONST  -----  U_CHAR   -----  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+READ_I2C_RE_RECEIVE_ACK_STEP2. . . . .  E_CONST  -----  U_CHAR   -----  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+READ_I2C_RE_RECEIVE_ACK_STEP3. . . . .  E_CONST  -----  U_CHAR   -----  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+Uart . . . . . . . . . . . . . . . . .  PUBLIC   DATA   STRUCT   0004H  6
+PIN_SDA. . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+RCAP2H . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CBH  1
+READ_I2C_RECEIVE_ACK_STEP1 . . . . . .  E_CONST  -----  U_CHAR   -----  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+READ_I2C_RECEIVE_ACK_STEP2 . . . . . .  E_CONST  -----  U_CHAR   -----  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+READ_I2C_RECEIVE_ACK_STEP3 . . . . . .  E_CONST  -----  U_CHAR   -----  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+Uart_Rx_Flag . . . . . . . . . . . . .  STATIC   DATA   BIT      0000H  1
+_Uart_Send_Str . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  str. . . . . . . . . . . . . . . . .  * REG *  DATA   PTR      0001H  3
+RCAP2L . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CAH  1
+C_T2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+PIN_SCL. . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+Pin_ID_TypeDef . . . . . . . . . . . .  TYPEDEF  -----  U_CHAR   -----  1
+RCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+Uart_Isr . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+TCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+C51 COMPILER V9.60.7.0   UART                                                              05/15/2026 10:37:13 PAGE 7   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+READ_I2C_STOP_STEP1. . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+READ_I2C_STOP_STEP2. . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+Uart_Rx_Count. . . . . . . . . . . . .  STATIC   DATA   U_CHAR   000AH  1
+READ_I2C_STOP_STEP3. . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_IDLE. . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+Platform_Uart_Init . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+CP_RL2 . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+Uart_Receive . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+READ_I2C_SEND_ACK_STEP1. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_SEND_ACK_STEP2. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+READ_I2C_SEND_ACK_STEP3. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+_UART_Send_Byte_Change . . . . . . . .  STATIC   CODE   PROC     0000H  -----
+  dat. . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+READ_I2C_SEND_ACK_STEP4. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+READ_I2C_SEND_ACK_STEP5. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+TH2. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CDH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+TL2. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CCH  1
+UART_TypeDef . . . . . . . . . . . . .  TYPEDEF  -----  STRUCT   -----  6
+  Init . . . . . . . . . . . . . . . .  MEMBER   -----  PTR      0000H  3
+  Send_Str . . . . . . . . . . . . . .  MEMBER   -----  PTR      0003H  3
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+PT2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+TR2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+C51 COMPILER V9.60.7.0   UART                                                              05/15/2026 10:37:13 PAGE 8   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+UART_Init_Change . . . . . . . . . . .  STATIC   CODE   PROC     0000H  -----
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+PIN_BEEP . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+T2CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C8H  1
+Uart_Clear . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  i. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+_Platform_UART_SendByte. . . . . . . .  EXTERN   CODE   PROC     -----  -----
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+_UART_Send_Str_Change. . . . . . . . .  STATIC   CODE   PROC     0000H  -----
+  str. . . . . . . . . . . . . . . . .  AUTO     DATA   PTR      0000H  3
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+READ_I2C_RECEIVE_STEP1 . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RECEIVE_STEP2 . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RECEIVE_STEP3 . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RE_START_STEP1. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RE_START_STEP2. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+READ_I2C_RE_START_STEP3. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RE_START_STEP4. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RE_START_STEP5. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RE_SEND_ADDRESS_STEP1 . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RE_SEND_ADDRESS_STEP2 . . . .  E_CONST  -----  U_CHAR   -----  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+READ_I2C_RE_SEND_ADDRESS_STEP3 . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RE_SEND_ADDRESS_STEP4 . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_START_STEP1 . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_RE_SEND_ADDRESS_STEP5 . . . .  E_CONST  -----  U_CHAR   -----  1
+READ_I2C_START_STEP2 . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    144    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     11       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

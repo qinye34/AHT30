@@ -1,0 +1,814 @@
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE PLATFORM
+OBJECT MODULE PLACED IN .\Objects\PLATFORM.obj
+COMPILER INVOKED BY: E:\51\C51\BIN\C51.EXE PLATFORM.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\PLATF
+                    -ORM.lst) OBJECT(.\Objects\PLATFORM.obj)
+
+line level    source
+
+   1          #include "platform.h"
+   2          
+   3          volatile unsigned long System_Tick = 0;
+   4          unsigned long now ;
+   5          
+   6          //==================== AT24C0C 设备结构体封装 ====================//
+   7          typedef struct 
+   8          {
+   9              unsigned long        IIC_Wait_Tick;
+  10              unsigned char        IIC_Rx_Buffer;   
+  11                unsigned char      *IIC_Rx_Adress;  
+  12                unsigned char      *IIC_Rx_Re_Adress;   
+  13                unsigned char       *IIC_Rx_Data  ;
+  14              unsigned char        IIC_Rx_Buffer_Long; // 读长度
+  15              unsigned char        IIC_Bit_Cnt;
+  16              unsigned char        ack;
+  17              unsigned char       IIC_Read_Complete ;
+  18              Aht20_I2C_Read_State_Typedef   Read_State;
+  19              Aht20_I2C_Read_Event_Typedef   Read_Event;
+  20          } AHT20_TypeDef;
+  21          
+  22          static AHT20_TypeDef AHT20_READ = {
+  23              0
+  24          };
+  25          
+  26          
+  27          //=================================================================
+  28          
+  29          #define IIC_DELAY_5US 5
+  30          #define IIC_DELAY_3US 3
+  31          
+  32          sbit IO_SCL = P1^0;
+  33          sbit IO_SDA = P1^1;
+  34          sbit IO_BEEP     = P1^5;
+  35          
+  36          
+  37          void GPIO_Set(Pin_ID_TypeDef pin, unsigned char state)
+  38          {
+  39   1          switch (pin)
+  40   1          {
+  41   2              case PIN_SCL:
+  42   2                  IO_SCL = state;
+  43   2                  break;
+  44   2              case PIN_SDA:
+  45   2                  IO_SDA = state;
+  46   2                  break;
+  47   2              case PIN_BEEP:
+  48   2                  IO_BEEP = state;
+  49   2                  break;
+  50   2              default:
+  51   2                  break;
+  52   2          }
+  53   1      }
+  54          
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 2   
+
+  55          unsigned char GPIO_Get(Pin_ID_TypeDef pin)
+  56          {
+  57   1          switch (pin)
+  58   1          {
+  59   2              case PIN_SDA:
+  60   2                  return IO_SDA;
+  61   2               case PIN_BEEP:
+  62   2                   return IO_BEEP;
+  63   2              case PIN_SCL:
+  64   2                  return IO_SCL;
+  65   2              default:
+  66   2                  return 0;
+  67   2          }
+  68   1      }
+  69          
+  70          void Timer0_SysTick_Init(void)
+  71          {
+  72   1          TMOD |= 0x01;   // Timer0 模式1 16位
+  73   1          // 1us 重装初值
+  74   1          TH0 = 0xFF;
+  75   1          TL0 = 0xFF;
+  76   1      
+  77   1          ET0 = 1;    // 使能定时器0中断
+  78   1          TR0 = 1;    // 启动定时器
+  79   1          EA  = 1;    // 开总中断
+  80   1      }
+  81          
+  82          void Timer0_ISR(void) interrupt 1
+  83          {
+  84   1          // 重装1us初值
+  85   1          TH0 = 0xFF;
+  86   1          TL0 = 0xFF;
+  87   1          System_Tick++;  // 全局时间+1
+  88   1      }
+  89          
+  90          unsigned long time_get_us(void)
+  91          {
+  92   1          return System_Tick;
+  93   1      }
+  94          
+  95          // 12MHz 晶振
+  96          void delay_ms(unsigned int ms)
+  97          {
+  98   1          unsigned int i, j;
+  99   1          for(i = 0; i < ms; i++)
+ 100   1              for(j = 0; j < 120; j++);
+ 101   1      }
+ 102          
+ 103          
+ 104          
+ 105          
+ 106          
+ 107          void Platform_UART_Init(void)
+ 108          {
+ 109   1          SCON = 0x50;    // 51专属
+ 110   1          TMOD |= 0x20;
+ 111   1          TH1 = 0xFD;
+ 112   1          TL1 = 0xFD;
+ 113   1              
+ 114   1              TR1 = 1;
+ 115   1                      
+ 116   1          ES = 1;
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 3   
+
+ 117   1          EA = 1;
+ 118   1      }
+ 119          
+ 120          void Platform_UART_Send_Str(unsigned char *str, unsigned char len)
+ 121          {
+ 122   1           while (len--) 
+ 123   1           {
+ 124   2              SBUF = *str++;
+ 125   2              while (!TI);
+ 126   2              TI = 0;
+ 127   2          }
+ 128   1      }
+ 129          
+ 130          void Platform_Aht20_Standard_IIC_Read_Address(unsigned char *adress,unsigned char *re_adress,unsigned char
+             - *dat)
+ 131          {
+ 132   1          AHT20_READ.IIC_Rx_Adress = adress;
+ 133   1          AHT20_READ.IIC_Rx_Re_Adress = re_adress;
+ 134   1          AHT20_READ.IIC_Rx_Data = dat;
+ 135   1          AHT20_READ.Read_Event = READ_I2C_EVENT_START; // 进入起始条件阶段
+ 136   1          AHT20_READ.Read_State = READ_I2C_START_STEP1; // 起始条件的第一步
+ 137   1          AHT20_READ.IIC_Read_Complete = 0; 
+ 138   1          AHT20_READ.IIC_Bit_Cnt = 0;
+ 139   1          AHT20_READ.IIC_Rx_Buffer_Long = 0;
+ 140   1      }
+ 141          
+ 142          
+ 143          
+ 144          
+ 145          void Platform_Aht20_Standard_IIC_Read_Start(void)
+ 146          {
+ 147   1          now = time_get_us();
+ 148   1          switch(AHT20_READ.Read_State)
+ 149   1          {
+ 150   2              // 起始条件：SCL和SDA都为高电平
+ 151   2             case READ_I2C_START_STEP1 :
+ 152   2          GPIO_Set(PIN_SDA, 1);
+ 153   2          GPIO_Set(PIN_SCL, 1);
+ 154   2           AHT20_READ.IIC_Wait_Tick =now ;
+ 155   2           AHT20_READ.Read_State = READ_I2C_START_STEP2;
+ 156   2          break;
+ 157   2              // 起始条件：等待5us，SDA在SCL高电平期间由高变低
+ 158   2            case READ_I2C_START_STEP2 :
+ 159   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 160   2          {
+ 161   3              GPIO_Set(PIN_SDA, 0);
+ 162   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 163   3              AHT20_READ.Read_State = READ_I2C_START_STEP3;
+ 164   3          }
+ 165   2          break;
+ 166   2         // 起始条件：直接把scl为1
+ 167   2            case READ_I2C_START_STEP3 :
+ 168   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 169   2          {
+ 170   3              GPIO_Set(PIN_SCL, 0);
+ 171   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 172   3              AHT20_READ.Read_Event = READ_I2C_EVENT_ADDRESS; // 进入发送地址阶段
+ 173   3              AHT20_READ.Read_State = READ_I2C_SEND_ADDRESS_STEP1;
+ 174   3          }
+ 175   2          break;
+ 176   2      }
+ 177   1      }
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 4   
+
+ 178          
+ 179          void Platform_Aht20_Standard_IIC_Read_Devidce_And_Word_Address(void)
+ 180          {   
+ 181   1          now = time_get_us();
+ 182   1          switch(AHT20_READ.Read_State)
+ 183   1          {
+ 184   2              //等待3us，改变sda
+ 185   2          case READ_I2C_SEND_ADDRESS_STEP1 :
+ 186   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 187   2          {
+ 188   3              AHT20_READ.IIC_Rx_Buffer = *(AHT20_READ.IIC_Rx_Adress); 
+ 189   3              AHT20_READ.IIC_Rx_Buffer <<= AHT20_READ.IIC_Bit_Cnt; 
+ 190   3              GPIO_Set(PIN_SDA, ((AHT20_READ.IIC_Rx_Buffer) & 0x80)); 
+ 191   3              now = time_get_us();
+ 192   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 193   3              AHT20_READ.Read_State = READ_I2C_SEND_ADDRESS_STEP2;
+ 194   3          }
+ 195   2          break;
+ 196   2              //等待3us，改变scl
+ 197   2          case READ_I2C_SEND_ADDRESS_STEP2 :
+ 198   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 199   2          {
+ 200   3              GPIO_Set(PIN_SCL, 1);
+ 201   3              now = time_get_us();
+ 202   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 203   3              AHT20_READ.Read_State = READ_I2C_SEND_ADDRESS_STEP3;
+ 204   3          }
+ 205   2          break;
+ 206   2              //保持scl高电平5us
+ 207   2          case READ_I2C_SEND_ADDRESS_STEP3 :
+ 208   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 209   2          {
+ 210   3              GPIO_Set(PIN_SCL, 0);
+ 211   3              AHT20_READ.Read_State = READ_I2C_SEND_ADDRESS_STEP4;
+ 212   3          }
+ 213   2          break;
+ 214   2             
+ 215   2          case READ_I2C_SEND_ADDRESS_STEP4 :
+ 216   2          AHT20_READ.IIC_Bit_Cnt++;
+ 217   2          if(AHT20_READ.IIC_Bit_Cnt == 8)
+ 218   2          {
+ 219   3              AHT20_READ.IIC_Bit_Cnt = 0;
+ 220   3              now = time_get_us();
+ 221   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 222   3              AHT20_READ.Read_Event = READ_I2C_EVENT_RECEIVE_ACK; // 进入接收ACK阶段
+ 223   3              AHT20_READ.Read_State = READ_I2C_RECEIVE_ACK_STEP1;
+ 224   3          }
+ 225   2          else
+ 226   2          {
+ 227   3              now = time_get_us();
+ 228   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 229   3              AHT20_READ.Read_State = READ_I2C_SEND_ADDRESS_STEP1; // 回到改变SCL的步骤，继续发送下
+             -一位
+ 230   3          }
+ 231   2          break;
+ 232   2      }
+ 233   1      }
+ 234          
+ 235          void Platform_Aht20_Standard_IIC_Read_Receive_Ack(void)
+ 236          {
+ 237   1          now = time_get_us();
+ 238   1          switch(AHT20_READ.Read_State)
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 5   
+
+ 239   1          {
+ 240   2              //等待3us，释放sda（输入）
+ 241   2          case READ_I2C_RECEIVE_ACK_STEP1 :
+ 242   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 243   2          {
+ 244   3              GPIO_Set(PIN_SDA, 1); // 释放SDA线，准备接收ACK
+ 245   3              now = time_get_us();
+ 246   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 247   3              AHT20_READ.Read_State = READ_I2C_RECEIVE_ACK_STEP2;
+ 248   3          }
+ 249   2          break;
+ 250   2              //等待3us，scl拉高
+ 251   2          case READ_I2C_RECEIVE_ACK_STEP2 :
+ 252   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 253   2          {
+ 254   3              GPIO_Set(PIN_SCL, 1); // 拉高SCL线，准备读取ACK位
+ 255   3              now = time_get_us();
+ 256   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 257   3              AHT20_READ.Read_State = READ_I2C_RECEIVE_ACK_STEP3;
+ 258   3          }
+ 259   2          break;
+ 260   2              //保持scl高电平5us，读取ack
+ 261   2          case READ_I2C_RECEIVE_ACK_STEP3 :
+ 262   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 263   2          {
+ 264   3              AHT20_READ.IIC_Rx_Buffer_Long++;
+ 265   3              AHT20_READ.IIC_Bit_Cnt = 0; 
+ 266   3              AHT20_READ.ack = GPIO_Get(PIN_SDA); // 读取ACK位
+ 267   3      
+ 268   3              GPIO_Set(PIN_SCL, 0); // 拉低SCL线，结束ACK位的时钟周期
+ 269   3              now = time_get_us();
+ 270   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 271   3      
+ 272   3              if(AHT20_READ.ack == 0)
+ 273   3              {
+ 274   4                  if (AHT20_READ.IIC_Rx_Buffer_Long < 4) //注意这个pre是4
+ 275   4                  {
+ 276   5                      AHT20_READ.IIC_Rx_Adress++; // 移动到下一个地址
+ 277   5                      AHT20_READ.Read_Event = READ_I2C_EVENT_ADDRESS; // 进入重复起始条件阶段
+ 278   5                      AHT20_READ.Read_State = READ_I2C_SEND_ADDRESS_STEP1; // 重复起始条件的第一步
+ 279   5                  }
+ 280   4                  else
+ 281   4                  {
+ 282   5                      AHT20_READ.IIC_Rx_Buffer_Long = 0;
+ 283   5                  AHT20_READ.Read_Event = READ_I2C_EVENT_STOP; // 停止通信
+ 284   5                  AHT20_READ.Read_State = READ_I2C_STOP_STEP1; // 进入停止条件的第一步
+ 285   5                  }
+ 286   4      
+ 287   4              }
+ 288   3              else
+ 289   3              {
+ 290   4                  // ACK接收失败，可以选择重试或停止通信
+ 291   4                  AHT20_READ.Read_Event = READ_I2C_EVENT_RE_STOP; // 停止通信
+ 292   4                  AHT20_READ.Read_State = READ_I2C_RE_STOP_STEP1; // 进入停止条件的第一
+ 293   4              }
+ 294   3          }
+ 295   2          break;
+ 296   2      }
+ 297   1      }
+ 298          
+ 299          void Platform_Aht20_Standard_IIC_Read_Stop(void)
+ 300          {
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 6   
+
+ 301   1          now = time_get_us();
+ 302   1          switch(AHT20_READ.Read_State)
+ 303   1          {
+ 304   2              //停止条件：SCL为低电平，SDA由低变高
+ 305   2          case READ_I2C_STOP_STEP1 :
+ 306   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 307   2          {
+ 308   3              GPIO_Set(PIN_SDA, 0); // 确保SDA线为低电平
+ 309   3              GPIO_Set(PIN_SCL, 1); // 拉高SCL线，准备发送停止条件
+ 310   3              now = time_get_us();
+ 311   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 312   3              AHT20_READ.Read_State = READ_I2C_STOP_STEP2;
+ 313   3          }
+ 314   2          break;
+ 315   2              //等待3us，改变sda
+ 316   2          case READ_I2C_STOP_STEP2 :
+ 317   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 318   2          {
+ 319   3              GPIO_Set(PIN_SDA, 1); // 在SCL高电平期间将SDA线拉高，发送停止条件
+ 320   3              now = time_get_us();
+ 321   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 322   3              AHT20_READ.Read_State = READ_I2C_STOP_STEP3;
+ 323   3          }
+ 324   2          break;
+ 325   2              //等待5us，完成停止条件
+ 326   2          case READ_I2C_STOP_STEP3 :
+ 327   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 328   2          {
+ 329   3               now = time_get_us();
+ 330   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 331   3              AHT20_READ.Read_Event = READ_I2C_EVENT_WAIT; // 返回空闲状态
+ 332   3              AHT20_READ.Read_State = READ_I2C_WAIT_STEP1; // 准备下一次通信的起始条件
+ 333   3          }
+ 334   2          break;
+ 335   2      }
+ 336   1      }
+ 337          
+ 338          void Platform_Aht20_Standard_IIC_Read_Wait(void)
+ 339          {
+ 340   1          now = time_get_us();
+ 341   1          switch(AHT20_READ.Read_State)
+ 342   1          {
+ 343   2          case READ_I2C_WAIT_STEP1 :
+ 344   2          if((now - AHT20_READ.IIC_Wait_Tick) >=80000) // 80ms，确保AHT20有足够时间完成测量并准备
+             -好数据
+ 345   2          {
+ 346   3              AHT20_READ.Read_Event = READ_I2C_EVENT_RE_START; // 返回空闲状态
+ 347   3              AHT20_READ.Read_State = READ_I2C_RE_START_STEP1; // 等待下一次通信的触发
+ 348   3          }
+ 349   2          break;
+ 350   2      }
+ 351   1      }
+ 352          
+ 353          void Platform_Aht20_Standard_IIC_Read_Re_Start(void)
+ 354          {
+ 355   1          now = time_get_us();
+ 356   1          switch(AHT20_READ.Read_State)
+ 357   1          {
+ 358   2              //重复起始条件：SCL和SDA都为高电平
+ 359   2             case READ_I2C_RE_START_STEP1 :
+ 360   2          GPIO_Set(PIN_SDA, 1);
+ 361   2          GPIO_Set(PIN_SCL, 1);
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 7   
+
+ 362   2           AHT20_READ.IIC_Wait_Tick =now ;
+ 363   2           AHT20_READ.Read_State = READ_I2C_RE_START_STEP2;
+ 364   2          break;
+ 365   2              //重复起始条件：等待5us，SDA在SCL高电平期间由高变低
+ 366   2            case READ_I2C_RE_START_STEP2 :
+ 367   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 368   2          {
+ 369   3              GPIO_Set(PIN_SDA, 0);
+ 370   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 371   3              AHT20_READ.Read_State = READ_I2C_RE_START_STEP3;
+ 372   3          }
+ 373   2          break;
+ 374   2         //重复起始条件：直接把scl为0
+ 375   2            case READ_I2C_RE_START_STEP3 :
+ 376   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 377   2          {
+ 378   3              GPIO_Set(PIN_SCL, 0);
+ 379   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 380   3              AHT20_READ.Read_Event = READ_I2C_EVENT_RE_ADDRESS; // 进入发送地址阶段
+ 381   3              AHT20_READ.Read_State = READ_I2C_RE_SEND_ADDRESS_STEP1;
+ 382   3          }
+ 383   2          break;
+ 384   2      }
+ 385   1      }
+ 386          
+ 387          void Platform_Aht20_Standard_IIC_Read_Re_Send_Address(void)
+ 388          {
+ 389   1          now = time_get_us();
+ 390   1          switch(AHT20_READ.Read_State)
+ 391   1          {
+ 392   2              //等待3us，改变sda
+ 393   2          case READ_I2C_RE_SEND_ADDRESS_STEP1 :
+ 394   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 395   2          {
+ 396   3              AHT20_READ.IIC_Rx_Buffer = *(AHT20_READ.IIC_Rx_Re_Adress); 
+ 397   3              AHT20_READ.IIC_Rx_Buffer <<= AHT20_READ.IIC_Bit_Cnt; 
+ 398   3              GPIO_Set(PIN_SDA, ((AHT20_READ.IIC_Rx_Buffer) & 0x80)); 
+ 399   3              now = time_get_us();
+ 400   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 401   3              AHT20_READ.Read_State = READ_I2C_RE_SEND_ADDRESS_STEP2;
+ 402   3          }
+ 403   2          break;
+ 404   2              //等待3us，改变scl
+ 405   2          case READ_I2C_RE_SEND_ADDRESS_STEP2 :
+ 406   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 407   2          {
+ 408   3              GPIO_Set(PIN_SCL, 1);
+ 409   3              now = time_get_us();
+ 410   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 411   3              AHT20_READ.Read_State = READ_I2C_RE_SEND_ADDRESS_STEP3;
+ 412   3          }
+ 413   2          break;
+ 414   2              //保持scl高电平5us
+ 415   2          case READ_I2C_RE_SEND_ADDRESS_STEP3 :
+ 416   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 417   2          {
+ 418   3              GPIO_Set(PIN_SCL, 0);
+ 419   3              AHT20_READ.Read_State = READ_I2C_RE_SEND_ADDRESS_STEP4;
+ 420   3          }
+ 421   2          break;
+ 422   2              
+ 423   2          case READ_I2C_RE_SEND_ADDRESS_STEP4 :
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 8   
+
+ 424   2          AHT20_READ.IIC_Bit_Cnt++;
+ 425   2          if(AHT20_READ.IIC_Bit_Cnt == 8)
+ 426   2          {
+ 427   3              AHT20_READ.IIC_Bit_Cnt = 0;
+ 428   3              now = time_get_us();
+ 429   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 430   3              AHT20_READ.Read_Event = READ_I2C_EVENT_RE_RECEIVE_ACK; // 进入接收ACK阶段
+ 431   3              AHT20_READ.Read_State = READ_I2C_RE_RECEIVE_ACK_STEP1;
+ 432   3          }
+ 433   2          else
+ 434   2          {
+ 435   3              now = time_get_us();
+ 436   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 437   3              AHT20_READ.Read_State = READ_I2C_RE_SEND_ADDRESS_STEP1; // 回到改变SCL的步骤，继续发送
+             -下一位
+ 438   3          }
+ 439   2          break;
+ 440   2      }
+ 441   1      }
+ 442          
+ 443          void Platform_Aht20_Standard_IIC_Read_Re_Receive_Ack(void)
+ 444          {
+ 445   1          now = time_get_us();
+ 446   1          switch(AHT20_READ.Read_State)
+ 447   1          {
+ 448   2              //等待3us，释放sda（输入）
+ 449   2          case READ_I2C_RE_RECEIVE_ACK_STEP1 :
+ 450   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 451   2          {
+ 452   3              GPIO_Set(PIN_SDA, 1); // 释放SDA线，准备接收ACK
+ 453   3              now = time_get_us();
+ 454   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 455   3              AHT20_READ.Read_State = READ_I2C_RE_RECEIVE_ACK_STEP2;
+ 456   3          }
+ 457   2          break;
+ 458   2              //等待3us，scl拉高
+ 459   2          case READ_I2C_RE_RECEIVE_ACK_STEP2 :
+ 460   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 461   2          {
+ 462   3              GPIO_Set(PIN_SCL, 1); // 拉高SCL线，准备读取ACK位
+ 463   3              now = time_get_us();
+ 464   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 465   3              AHT20_READ.Read_State = READ_I2C_RE_RECEIVE_ACK_STEP3;
+ 466   3          }
+ 467   2          break;
+ 468   2              //保持scl高电平5us，读取ack
+ 469   2          case READ_I2C_RE_RECEIVE_ACK_STEP3 :
+ 470   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 471   2          {
+ 472   3              AHT20_READ.ack = GPIO_Get(PIN_SDA); // 读取ACK位
+ 473   3              AHT20_READ.IIC_Bit_Cnt = 0;
+ 474   3              GPIO_Set(PIN_SCL, 0); // 拉低SCL线，结束ACK位的时钟周期
+ 475   3              now = time_get_us();
+ 476   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 477   3              if(AHT20_READ.ack == 0)
+ 478   3              {
+ 479   4                  AHT20_READ.Read_Event = READ_I2C_EVENT_RECEIVE_DATA; // 进入接收数据阶段
+ 480   4                  AHT20_READ.Read_State = READ_I2C_RECEIVE_DATA_STEP0; // 接收数据的第一步
+ 481   4              }
+ 482   3              else
+ 483   3              {
+ 484   4                  // ACK接收失败，可以选择重试或停止通信
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 9   
+
+ 485   4                  AHT20_READ.Read_Event = READ_I2C_EVENT_RE_STOP; // 停止通信
+ 486   4                  AHT20_READ.Read_State = READ_I2C_RE_STOP_STEP1; //
+ 487   4              }
+ 488   3          }
+ 489   2          break;
+ 490   2      }
+ 491   1      }
+ 492          
+ 493          
+ 494           void Platform_Aht20_Standard_IIC_Read_Receive_Data(void)
+ 495           {
+ 496   1          now = time_get_us();
+ 497   1          switch(AHT20_READ.Read_State)
+ 498   1          {
+ 499   2              //等待3us，准备接收数据
+ 500   2              case READ_I2C_RECEIVE_DATA_STEP0 :
+ 501   2              AHT20_READ.IIC_Rx_Buffer =0 ;
+ 502   2              AHT20_READ.IIC_Bit_Cnt = 0 ;
+ 503   2              AHT20_READ.Read_State = READ_I2C_RECEIVE_DATA_STEP1;
+ 504   2              break;
+ 505   2      
+ 506   2          case READ_I2C_RECEIVE_DATA_STEP1 :
+ 507   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 508   2          {
+ 509   3              GPIO_Set(PIN_SDA, 1); // 释放SDA线，准备接收数据
+ 510   3              now = time_get_us();
+ 511   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 512   3              AHT20_READ.Read_State = READ_I2C_RECEIVE_DATA_STEP2;
+ 513   3          }
+ 514   2          break;
+ 515   2              //等待3us，scl拉高
+ 516   2          case READ_I2C_RECEIVE_DATA_STEP2 :
+ 517   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 518   2          {
+ 519   3              GPIO_Set(PIN_SCL, 1); // 拉高SCL线，准备读取数据位
+ 520   3              AHT20_READ.IIC_Rx_Buffer <<= 1; // 根据当前位数调整数据位置
+ 521   3              AHT20_READ.IIC_Rx_Buffer |= GPIO_Get(PIN_SDA); // 将接收到的数据写入缓冲区
+ 522   3              AHT20_READ.IIC_Bit_Cnt++;
+ 523   3              now = time_get_us();
+ 524   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 525   3              AHT20_READ.Read_State = READ_I2C_RECEIVE_DATA_STEP3;
+ 526   3          }
+ 527   2          break;
+ 528   2              //保持scl高电平5us
+ 529   2          case READ_I2C_RECEIVE_DATA_STEP3 :
+ 530   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 531   2          {
+ 532   3              GPIO_Set(PIN_SCL, 0); // 拉低SCL线，结束当前数据位的时钟周期
+ 533   3              now = time_get_us();
+ 534   3              AHT20_READ.IIC_Wait_Tick =now ;       
+ 535   3              if(AHT20_READ.IIC_Bit_Cnt == 8) // 已接收8位数据
+ 536   3              {
+ 537   4                  AHT20_READ.Read_Event = READ_I2C_EVENT_SEND_ACK; // 进入发送ACK阶段
+ 538   4                  AHT20_READ.Read_State = READ_I2C_SEND_ACK_STEP0; // 发送ACK的第一步
+ 539   4                  *(AHT20_READ.IIC_Rx_Data) = AHT20_READ.IIC_Rx_Buffer; // 将接收到的数据存储到指定�
+             -��址
+ 540   4              }
+ 541   3              else
+ 542   3              {
+ 543   4                  AHT20_READ.Read_State = READ_I2C_RECEIVE_DATA_STEP1; // 继续接收下一位数据
+ 544   4              }
+ 545   3              break;
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 10  
+
+ 546   3       }
+ 547   2      }
+ 548   1       }
+ 549          
+ 550            void Platform_Aht20_Standard_IIC_Read_Send_Ack(void)
+ 551          {
+ 552   1          now = time_get_us();
+ 553   1          switch(AHT20_READ.Read_State)
+ 554   1          {
+ 555   2              //等待3us，发送ACK
+ 556   2              case READ_I2C_SEND_ACK_STEP0 :
+ 557   2              now = time_get_us();
+ 558   2              AHT20_READ.IIC_Wait_Tick =now ;   
+ 559   2              AHT20_READ.IIC_Rx_Buffer_Long++;
+ 560   2              if(AHT20_READ.IIC_Rx_Buffer_Long == 7)
+ 561   2              {
+ 562   3                  AHT20_READ.Read_Event = READ_I2C_EVENT_SEND_NACK_STEP; // 进入停止条件阶段
+ 563   3                  AHT20_READ.Read_State = READ_I2C_SEND_NACK_STEP1; // 停止条件的第一步
+ 564   3              }
+ 565   2              else
+ 566   2              {
+ 567   3                  AHT20_READ.Read_State = READ_I2C_SEND_ACK_STEP1; // 接收数据的第一步
+ 568   3              }
+ 569   2              break;
+ 570   2      
+ 571   2          case READ_I2C_SEND_ACK_STEP1 :
+ 572   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 573   2          {
+ 574   3              GPIO_Set(PIN_SDA, 0); // 拉低SDA线，发送ACK
+ 575   3              now = time_get_us();
+ 576   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 577   3              AHT20_READ.Read_State = READ_I2C_SEND_ACK_STEP2;
+ 578   3          }
+ 579   2          break;
+ 580   2              //等待3us，scl拉高
+ 581   2          case READ_I2C_SEND_ACK_STEP2 :
+ 582   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 583   2          {
+ 584   3              GPIO_Set(PIN_SCL, 1); // 拉高SCL线，完成ACK位的时钟周期
+ 585   3              now = time_get_us();
+ 586   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 587   3              AHT20_READ.Read_State = READ_I2C_SEND_ACK_STEP3;
+ 588   3          }
+ 589   2          break;
+ 590   2              //保持scl高电平5us
+ 591   2          case READ_I2C_SEND_ACK_STEP3 :
+ 592   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 593   2          {
+ 594   3              GPIO_Set(PIN_SCL, 0); // 拉低SCL线，结束ACK位的时钟周期
+ 595   3              now = time_get_us();
+ 596   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 597   3              if (AHT20_READ.IIC_Rx_Buffer_Long < 7 ) 
+ 598   3              {
+ 599   4                  AHT20_READ.Read_Event = READ_I2C_EVENT_RECEIVE_DATA; 
+ 600   4                  AHT20_READ.Read_State = READ_I2C_RECEIVE_DATA_STEP0; 
+ 601   4                  AHT20_READ.IIC_Rx_Data++;  
+ 602   4              }
+ 603   3          }
+ 604   2      }
+ 605   1      }
+ 606          
+ 607          void Platform_Aht20_Standard_IIC_Read_Send_Nack(void)
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 11  
+
+ 608          {
+ 609   1          now = time_get_us();
+ 610   1          switch(AHT20_READ.Read_State)
+ 611   1          {
+ 612   2              //等待3us，发送NACK
+ 613   2          case READ_I2C_SEND_NACK_STEP1 :
+ 614   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 615   2          {
+ 616   3              GPIO_Set(PIN_SDA, 1); // 拉高SDA线，发送NACK
+ 617   3              now = time_get_us();
+ 618   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 619   3              AHT20_READ.Read_State = READ_I2C_SEND_NACK_STEP2;
+ 620   3          }
+ 621   2          break;
+ 622   2              //等待3us，scl拉高
+ 623   2          case READ_I2C_SEND_NACK_STEP2 :
+ 624   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 625   2          {
+ 626   3              GPIO_Set(PIN_SCL, 1); // 拉高SCL线，完成NACK位的时钟周期
+ 627   3              now = time_get_us();
+ 628   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 629   3              AHT20_READ.Read_State = READ_I2C_SEND_NACK_STEP3;
+ 630   3          }
+ 631   2          break;
+ 632   2              //保持scl高电平5us
+ 633   2          case READ_I2C_SEND_NACK_STEP3 :
+ 634   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 635   2          {
+ 636   3              GPIO_Set(PIN_SCL, 0); // 拉低SCL线，结束NACK位的时钟周期
+ 637   3              now = time_get_us();
+ 638   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 639   3              AHT20_READ.Read_Event = READ_I2C_EVENT_RE_STOP; // 进入停止条件阶段
+ 640   3              AHT20_READ.Read_State = READ_I2C_RE_STOP_STEP1; // 停止条件的第一步
+ 641   3          }
+ 642   2          break;
+ 643   2      }
+ 644   1      }
+ 645          
+ 646          void Platform_Aht20_Standard_IIC_Read_Re_Stop(void)
+ 647          {
+ 648   1          now = time_get_us();
+ 649   1          switch(AHT20_READ.Read_State)
+ 650   1          {
+ 651   2            
+ 652   2          case READ_I2C_RE_STOP_STEP1 :
+ 653   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 654   2          {
+ 655   3              GPIO_Set(PIN_SDA, 0); // 确保SDA线为低电平
+ 656   3              GPIO_Set(PIN_SCL, 1); // 拉高SCL线，准备发送停止条件
+ 657   3              now = time_get_us();
+ 658   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 659   3              AHT20_READ.Read_State = READ_I2C_RE_STOP_STEP2;
+ 660   3          }
+ 661   2          break;
+ 662   2              //等待3us，改变sda
+ 663   2          case READ_I2C_RE_STOP_STEP2 :
+ 664   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_3US)
+ 665   2          {
+ 666   3              GPIO_Set(PIN_SDA, 1); // 在SCL高电平期间将SDA线拉高，发送停止条件
+ 667   3              now = time_get_us();
+ 668   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 669   3              AHT20_READ.Read_State = READ_I2C_RE_STOP_STEP3;
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 12  
+
+ 670   3          }
+ 671   2          break;
+ 672   2              //等待5us，完成停止条件
+ 673   2          case READ_I2C_RE_STOP_STEP3 :
+ 674   2          if((now - AHT20_READ.IIC_Wait_Tick) >= IIC_DELAY_5US)
+ 675   2          {
+ 676   3               now = time_get_us();
+ 677   3              AHT20_READ.IIC_Wait_Tick =now ;
+ 678   3              AHT20_READ.IIC_Rx_Buffer_Long = 0;
+ 679   3              AHT20_READ.IIC_Bit_Cnt = 0;
+ 680   3              AHT20_READ.Read_Event = READ_I2C_EVENT_IDLE; // 返回空闲状态
+ 681   3              AHT20_READ.Read_State = READ_I2C_START_STEP1; // 准备下一次通信的起始条件
+ 682   3               AHT20_READ.IIC_Read_Complete = 1; // 标记读操作完成
+ 683   3          }
+ 684   2          break;
+ 685   2      }
+ 686   1      }
+ 687          
+ 688          
+ 689          
+ 690          
+ 691          void Platform_Aht20_Standard_IIC_Read_Task(void) 
+ 692          {
+ 693   1          switch(AHT20_READ.Read_Event)
+ 694   1          {
+ 695   2              case  READ_I2C_EVENT_IDLE :   
+ 696   2                return ;
+ 697   2              break;
+ 698   2      
+ 699   2              case READ_I2C_EVENT_START:
+ 700   2              Platform_Aht20_Standard_IIC_Read_Start();
+ 701   2              break;
+ 702   2      
+ 703   2              case READ_I2C_EVENT_ADDRESS:
+ 704   2              Platform_Aht20_Standard_IIC_Read_Devidce_And_Word_Address();
+ 705   2              break;
+ 706   2      
+ 707   2               case READ_I2C_EVENT_RECEIVE_ACK:
+ 708   2              Platform_Aht20_Standard_IIC_Read_Receive_Ack();
+ 709   2              break;
+ 710   2      
+ 711   2              case READ_I2C_EVENT_STOP:
+ 712   2               Platform_Aht20_Standard_IIC_Read_Stop();
+ 713   2              break;
+ 714   2      
+ 715   2             case READ_I2C_EVENT_WAIT:
+ 716   2               Platform_Aht20_Standard_IIC_Read_Wait();
+ 717   2              break;
+ 718   2      
+ 719   2              case READ_I2C_EVENT_RE_START:
+ 720   2              Platform_Aht20_Standard_IIC_Read_Re_Start();
+ 721   2              break;
+ 722   2      
+ 723   2              case READ_I2C_EVENT_RE_ADDRESS:
+ 724   2              Platform_Aht20_Standard_IIC_Read_Re_Send_Address();
+ 725   2              break;
+ 726   2      
+ 727   2              case READ_I2C_EVENT_RE_RECEIVE_ACK:
+ 728   2              Platform_Aht20_Standard_IIC_Read_Re_Receive_Ack();
+ 729   2              break;
+ 730   2      
+ 731   2              case READ_I2C_EVENT_RECEIVE_DATA:
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 13  
+
+ 732   2               Platform_Aht20_Standard_IIC_Read_Receive_Data();
+ 733   2              break;
+ 734   2      
+ 735   2              case READ_I2C_EVENT_SEND_ACK:
+ 736   2              Platform_Aht20_Standard_IIC_Read_Send_Ack();
+ 737   2              break;
+ 738   2      
+ 739   2              case READ_I2C_EVENT_SEND_NACK_STEP:
+ 740   2              Platform_Aht20_Standard_IIC_Read_Send_Nack();
+ 741   2              break;
+ 742   2      
+ 743   2              case READ_I2C_EVENT_RE_STOP:
+ 744   2              Platform_Aht20_Standard_IIC_Read_Re_Stop();
+ 745   2              break;
+ 746   2              
+ 747   2      
+ 748   2      
+ 749   2          }
+ 750   1      }
+ 751          
+ 752          unsigned char Platform_Aht20_Standard_IIC_Read_Complete_Flag(void) 
+ 753          {
+ 754   1          return AHT20_READ.IIC_Read_Complete;
+ 755   1      }
+ 756          
+ 757          unsigned char Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear(void) 
+ 758          {
+ 759   1          AHT20_READ.IIC_Read_Complete = 0;
+ 760   1          return AHT20_READ.IIC_Read_Complete;
+ 761   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   3036    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     28      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

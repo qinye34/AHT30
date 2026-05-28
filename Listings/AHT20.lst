@@ -1,0 +1,50 @@
+C51 COMPILER V9.60.7.0   AHT20                                                             05/26/2026 10:56:25 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE AHT20
+OBJECT MODULE PLACED IN .\Objects\AHT20.obj
+COMPILER INVOKED BY: E:\51\C51\BIN\C51.EXE AHT20.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\AHT20.ls
+                    -t) OBJECT(.\Objects\AHT20.obj)
+
+line level    source
+
+   1          #include "AHT20.h"
+   2          
+   3          void DRIVE_Aht20_Standard_IIC_Read_Address_Change(unsigned char *adress,unsigned char *re_adress,unsigned 
+             -char *dat)reentrant
+   4          {
+   5   1          Platform_Aht20_Standard_IIC_Read_Address(adress,re_adress,dat);
+   6   1      }
+   7          
+   8          void DRIVE_Aht20_Standard_IIC_Read_Task_Change(void)
+   9          {
+  10   1          Platform_Aht20_Standard_IIC_Read_Task();
+  11   1      }
+  12          
+  13          AHT20_TypeDef Aht20 = {DRIVE_Aht20_Standard_IIC_Read_Address_Change,DRIVE_Aht20_Standard_IIC_Read_Task_Cha
+             -nge} ;
+  14          
+  15          void APPLICATION_Aht20_Standard_IIC_Read_Address(unsigned char *adress,unsigned char *re_adress,unsigned c
+             -har *dat)
+  16          {
+  17   1          Aht20.DRIVE_Aht20_Standard_IIC_Read_Address(adress,re_adress,dat);
+  18   1      }
+  19          
+  20          void APPLICATION_Aht20_Standard_IIC_Read_Task(void)
+  21          {
+  22   1          Aht20.DRIVE_Aht20_Standard_IIC_Read_Task();
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    151    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

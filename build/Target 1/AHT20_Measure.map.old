@@ -1,0 +1,552 @@
+LX51 LINKER/LOCATER V4.66.100.0                                                         05/26/2026  10:45:50  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.100.0, INVOKED BY:
+E:\51\C51\BIN\LX51.EXE .\build\Target 1\.obj\AHT20.o, .\build\Target 1\.obj\PLATFORM.o, .\build\Target 1\.obj\STARTUP.o,
+>>  .\build\Target 1\.obj\UART.o, .\build\Target 1\.obj\main.o TO .\build\Target 1\AHT20_Measure PRINT (.\build\Target 1
+>> \AHT20_Measure.map) REMOVEUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\build\Target 1\.obj\AHT20.o (AHT20)
+         COMMENT TYPE 0: C51 V9.60.7.0
+  .\build\Target 1\.obj\PLATFORM.o (PLATFORM)
+         COMMENT TYPE 0: C51 V9.60.7.0
+  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  .\build\Target 1\.obj\UART.o (UART)
+         COMMENT TYPE 0: C51 V9.60.7.0
+  .\build\Target 1\.obj\main.o (MAIN)
+         COMMENT TYPE 0: C51 V9.60.7.0
+  E:\51\C51\LIB\C51S.LIB (?C_INIT)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  E:\51\C51\LIB\C51S.LIB (?C?CLDPTR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  E:\51\C51\LIB\C51S.LIB (?C?CSTPTR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  E:\51\C51\LIB\C51S.LIB (?C?ULCMP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  E:\51\C51\LIB\C51S.LIB (?C?ICALL)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  E:\51\C51\LIB\C51S.LIB (?C_IBP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\build\Target 1\AHT20_Measure (AHT20)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   000E41H   CODE
+I:000000H   I:000000H   I:00007FH   00004FH   DATA
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+I:000020H.0 I:000020H.0 I:00002FH.7 000000H.1 BIT
+
+
+MEMORY MAP OF MODULE:  .\build\Target 1\AHT20_Measure (AHT20)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000017H   000010H   BYTE   UNIT     DATA           ?DT?MAIN
+000018H   00001DH   000006H   BYTE   UNIT     DATA           ?DT?AHT20
+00001EH   00001EH   000001H   BYTE   UNIT     DATA           ?C?LIB_DATA
+00001FH.0 00001FH.7 000001H.0 ---    ---      **GAP**
+000020H.0 000020H.0 000000H.1 BIT    UNIT     BIT            ?BI?UART
+000020H.1 000020H   000000H.7 ---    ---      **GAP**
+000021H   00003CH   00001CH   BYTE   UNIT     DATA           ?DT?PLATFORM
+00003DH   000047H   00000BH   BYTE   UNIT     DATA           ?DT?UART
+000048H   000050H   000009H   BYTE   UNIT     DATA           _DATA_GROUP_
+000051H   000051H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+LX51 LINKER/LOCATER V4.66.100.0                                                       05/26/2026  10:45:50  PAGE 2
+
+
+000003H   000009H   000007H   BYTE   UNIT     CODE           ?PR?APPLICATION_AHT20_STANDARD_IIC_READ_TASK?AHT20
+00000AH   00000AH   000001H   ---    ---      **GAP**
+00000BH   00000DH   000003H   BYTE   OFFS..   CODE           ?PLATFORM?0000B
+00000EH   000020H   000013H   BYTE   UNIT     CODE           ?PR?PLATFORM_UART_INIT?PLATFORM
+000021H   000022H   000002H   ---    ---      **GAP**
+000023H   000025H   000003H   BYTE   OFFS..   CODE           ?UART?00023
+000026H   000143H   00011EH   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_DEVIDCE_AND_WORD_ADDR
+                                                             -ESS?PLATFORM
+000144H   000261H   00011EH   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_SEND_ADDRESS?PLATF
+                                                             -ORM
+000262H   000372H   000111H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_SEND_ACK?PLATFORM
+000373H   00047DH   00010BH   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_ACK?PLATFORM
+00047EH   00057FH   000102H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_DATA?PLATFORM
+000580H   000668H   0000E9H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_RECEIVE_ACK?PLATFO
+                                                             -RM
+000669H   000747H   0000DFH   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_STOP?PLATFORM
+000748H   00081FH   0000D8H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_STOP?PLATFORM
+000820H   0008F4H   0000D5H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_SEND_NACK?PLATFORM
+0008F5H   00099CH   0000A8H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_START?PLATFORM
+00099DH   000A44H   0000A8H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_START?PLATFORM
+000A45H   000AD1H   00008DH   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+000AD2H   000B5DH   00008CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+000B5EH   000BBFH   000062H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_TASK?PLATFORM
+000BC0H   000C0FH   000050H   BYTE   UNIT     CODE           ?PR?_?DRIVE_AHT20_STANDARD_IIC_READ_ADDRESS_CHANGE?AHT20
+000C10H   000C57H   000048H   BYTE   UNIT     CODE           ?C_INITSEG
+000C58H   000C99H   000042H   BYTE   UNIT     CODE           ?C?LIB_CODE
+000C9AH   000CD6H   00003DH   BYTE   UNIT     CODE           ?PR?_APPLICATION_AHT20_STANDARD_IIC_READ_ADDRESS?AHT20
+000CD7H   000D11H   00003BH   BYTE   UNIT     CODE           ?PR?TIMER0_ISR?PLATFORM
+000D12H   000D4CH   00003BH   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_WAIT?PLATFORM
+000D4DH   000D78H   00002CH   BYTE   UNIT     CODE           ?PR?UART_ISR?UART
+000D79H   000D9FH   000027H   BYTE   UNIT     CODE           ?PR?_PLATFORM_UART_SEND_STR?PLATFORM
+000DA0H   000DC5H   000026H   BYTE   UNIT     CODE           ?PR?_PLATFORM_AHT20_STANDARD_IIC_READ_ADDRESS?PLATFORM
+000DC6H   000DE6H   000021H   BYTE   UNIT     CODE           ?PR?_GPIO_SET?PLATFORM
+000DE7H   000E01H   00001BH   BYTE   UNIT     CODE           ?PR?_GPIO_GET?PLATFORM
+000E02H   000E11H   000010H   BYTE   UNIT     CODE           ?PR?TIMER0_SYSTICK_INIT?PLATFORM
+000E12H   000E21H   000010H   BYTE   UNIT     CODE           ?PR?TIME_GET_US?PLATFORM
+000E22H   000E2AH   000009H   BYTE   UNIT     CODE           ?PR?_UART_SEND_STR?UART
+000E2BH   000E31H   000007H   BYTE   UNIT     CODE           ?PR?UART_INIT?UART
+000E32H   000E37H   000006H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG_CLEAR?P
+                                                             -LATFORM
+000E38H   000E3AH   000003H   BYTE   UNIT     CODE           ?PR?DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANGE?AHT20
+000E3BH   000E3DH   000003H   BYTE   UNIT     CODE           ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG?PLATFOR
+                                                             -M
+000E3EH   000E40H   000003H   BYTE   UNIT     CODE           ?PR?_UART_SEND_STR_CHANGE?UART
+000E41H   000E43H   000003H   BYTE   UNIT     CODE           ?PR?UART_INIT_CHANGE?UART
+
+* * * * * * * * *   R E M O V E D     S E G M E N T S   * * * * * * * *
+   *DEL*:           000020H   BYTE   UNIT     CODE           ?PR?_DELAY_MS?PLATFORM
+   *DEL*:           000017H   BYTE   UNIT     CODE           ?PR?UART_RECEIVE?UART
+   *DEL*:           00000FH   BYTE   UNIT     CODE           ?PR?UART_CLEAR?UART
+
+
+
+OVERLAY MAP OF MODULE:   .\build\Target 1\AHT20_Measure (AHT20)
+
+
+FUNCTION/MODULE                                BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE                    START  STOP  START  STOP
+======================================================================
+TIMER0_ISR/PLATFORM                           ----- -----  ----- -----
+
+*** NEW ROOT ********************************
+
+?C_C51STARTUP                                 ----- -----  ----- -----
+  +--> MAIN/MAIN
+LX51 LINKER/LOCATER V4.66.100.0                                                       05/26/2026  10:45:50  PAGE 3
+
+
+  +--> ?C_INITSEG
+
+MAIN/MAIN                                     ----- -----  ----- -----
+  +--> UART_INIT/UART
+  +--> TIMER0_SYSTICK_INIT/PLATFORM
+  +--> _APPLICATION_AHT20_STANDARD_IIC_READ_ADDRESS/AHT20
+  +--> APPLICATION_AHT20_STANDARD_IIC_READ_TASK/AHT20
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG/PLATFORM
+  +--> _UART_SEND_STR/UART
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG_CLEAR/PLATFORM
+  +--> TIME_GET_US/PLATFORM
+
+UART_INIT/UART                                ----- -----  ----- -----
+
+TIMER0_SYSTICK_INIT/PLATFORM                  ----- -----  ----- -----
+
+_APPLICATION_AHT20_STANDARD_IIC_READ_ADD+     ----- -----  0048H 0050H
+... RESS/AHT20
+
+APPLICATION_AHT20_STANDARD_IIC_READ_TASK+     ----- -----  ----- -----
+... /AHT20
+
+PLATFORM_AHT20_STANDARD_IIC_READ_COMPLET+     ----- -----  ----- -----
+... E_FLAG/PLATFORM
+
+_UART_SEND_STR/UART                           ----- -----  ----- -----
+
+PLATFORM_AHT20_STANDARD_IIC_READ_COMPLET+     ----- -----  ----- -----
+... E_FLAG_CLEAR/PLATFORM
+
+TIME_GET_US/PLATFORM                          ----- -----  ----- -----
+  +--> _GPIO_SET/PLATFORM
+
+_GPIO_SET/PLATFORM                            ----- -----  ----- -----
+
+?C_INITSEG                                    ----- -----  ----- -----
+  +--> _?DRIVE_AHT20_STANDARD_IIC_READ_ADDRESS_CHANGE/AHT20
+  +--> DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANGE/AHT20
+  +--> UART_INIT_CHANGE/UART
+  +--> _UART_SEND_STR_CHANGE/UART
+
+_?DRIVE_AHT20_STANDARD_IIC_READ_ADDRESS_+     ----- -----  ----- -----
+... CHANGE/AHT20
+  +--> _PLATFORM_AHT20_STANDARD_IIC_READ_ADDRESS/PLATFORM
+
+_PLATFORM_AHT20_STANDARD_IIC_READ_ADDRES+     ----- -----  0048H 0050H
+... S/PLATFORM
+
+DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANG+     ----- -----  ----- -----
+... E/AHT20
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_TASK/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_TASK/PL+     ----- -----  ----- -----
+... ATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_START/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_DEVIDCE_AND_WORD_ADDRESS/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_ACK/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_STOP/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_WAIT/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_RE_START/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_RE_SEND_ADDRESS/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_RE_RECEIVE_ACK/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_DATA/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_SEND_ACK/PLATFORM
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_SEND_NACK/PLATFORM
+LX51 LINKER/LOCATER V4.66.100.0                                                       05/26/2026  10:45:50  PAGE 4
+
+
+  +--> PLATFORM_AHT20_STANDARD_IIC_READ_RE_STOP/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_START/P+     ----- -----  ----- -----
+... LATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_DEVIDCE+     ----- -----  ----- -----
+... _AND_WORD_ADDRESS/PLATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE+     ----- -----  ----- -----
+... _ACK/PLATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+  +--> _GPIO_GET/PLATFORM
+
+_GPIO_GET/PLATFORM                            ----- -----  ----- -----
+
+PLATFORM_AHT20_STANDARD_IIC_READ_STOP/PL+     ----- -----  ----- -----
+... ATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_WAIT/PL+     ----- -----  ----- -----
+... ATFORM
+  +--> TIME_GET_US/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_RE_STAR+     ----- -----  ----- -----
+... T/PLATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_RE_SEND+     ----- -----  ----- -----
+... _ADDRESS/PLATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_RE_RECE+     ----- -----  ----- -----
+... IVE_ACK/PLATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+  +--> _GPIO_GET/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE+     ----- -----  ----- -----
+... _DATA/PLATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+  +--> _GPIO_GET/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_SEND_AC+     ----- -----  ----- -----
+... K/PLATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_SEND_NA+     ----- -----  ----- -----
+... CK/PLATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+
+PLATFORM_AHT20_STANDARD_IIC_READ_RE_STOP+     ----- -----  ----- -----
+... /PLATFORM
+  +--> TIME_GET_US/PLATFORM
+  +--> _GPIO_SET/PLATFORM
+LX51 LINKER/LOCATER V4.66.100.0                                                       05/26/2026  10:45:50  PAGE 5
+
+
+
+UART_INIT_CHANGE/UART                         ----- -----  ----- -----
+  +--> PLATFORM_UART_INIT/PLATFORM
+
+PLATFORM_UART_INIT/PLATFORM                   ----- -----  ----- -----
+
+_UART_SEND_STR_CHANGE/UART                    ----- -----  ----- -----
+  +--> _PLATFORM_UART_SEND_STR/PLATFORM
+
+_PLATFORM_UART_SEND_STR/PLATFORM              ----- -----  0048H 004AH
+
+*** NEW ROOT ********************************
+
+UART_ISR/UART                                 ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\build\Target 1\AHT20_Measure (AHT20)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      00000048H   DATA     BYTE      ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+      00000048H   DATA     BYTE      ?_Platform_Aht20_Standard_IIC_Read_Address?BYTE
+      01000C58H   CODE     ---       ?C?CLDPTR
+      00000000H   NUMBER   ---       ?C?CODESEG
+      01000C71H   CODE     ---       ?C?CSTPTR
+      01000C94H   CODE     ---       ?C?ICALL
+      01000C98H   CODE     ---       ?C?ICALL2
+      01000C83H   CODE     ---       ?C?ULCMP
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      0000001EH   DATA     ---       ?C_IBP
+      01000B19H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000BC0H   CODE     ---       _?DRIVE_Aht20_Standard_IIC_Read_Address_Change
+      01000C9AH   CODE     ---       _APPLICATION_Aht20_Standard_IIC_Read_Address
+*DEL*:00000000H   CODE     ---       _delay_ms
+      01000DE7H   CODE     ---       _GPIO_Get
+      01000DCAH   CODE     ---       _GPIO_Set
+      01000DA0H   CODE     ---       _Platform_Aht20_Standard_IIC_Read_Address
+      01000D79H   CODE     ---       _Platform_UART_Send_Str
+      01000E22H   CODE     ---       _UART_Send_Str
+      00000008H   DATA     ---       adress
+      00000018H   DATA     ---       Aht20
+      01000003H   CODE     ---       APPLICATION_Aht20_Standard_IIC_Read_Task
+      0000000CH   DATA     ---       dat
+      01000E38H   CODE     ---       DRIVE_Aht20_Standard_IIC_Read_Task_Change
+      00000014H   DATA     DWORD     last_time
+      01000A45H   CODE     ---       main
+      00000035H   DATA     DWORD     now
+      01000E3BH   CODE     ---       Platform_Aht20_Standard_IIC_Read_Complete_Flag
+      01000E32H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear
+      01000026H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Devidce_And_Word_Address
+      01000580H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Re_Receive_Ack
+      01000144H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Re_Send_Address
+      0100099DH   CODE     ---       Platform_Aht20_Standard_IIC_Read_Re_Start
+      01000669H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Re_Stop
+      01000373H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Receive_Ack
+      0100047EH   CODE     ---       Platform_Aht20_Standard_IIC_Read_Receive_Data
+      01000262H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Send_Ack
+      01000820H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Send_Nack
+      010008F5H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Start
+      01000748H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Stop
+      01000B5EH   CODE     ---       Platform_Aht20_Standard_IIC_Read_Task
+      01000D12H   CODE     ---       Platform_Aht20_Standard_IIC_Read_Wait
+LX51 LINKER/LOCATER V4.66.100.0                                                       05/26/2026  10:45:50  PAGE 6
+
+
+      0100000EH   CODE     ---       Platform_UART_Init
+      00000013H   DATA     ---       re_adress
+      00000039H   DATA     DWORD     System_Tick
+      01000E19H   CODE     ---       time_get_us
+      01000CD7H   CODE     ---       Timer0_ISR
+      01000E02H   CODE     ---       Timer0_SysTick_Init
+      00000041H   DATA     ---       Uart
+*DEL*:00000000H   CODE     ---       UART_Clear
+      01000E2BH   CODE     ---       UART_Init
+      01000D4DH   CODE     ---       UART_Isr
+*DEL*:00000000H   CODE     ---       UART_Receive
+
+
+
+SYMBOL TABLE OF MODULE:  .\build\Target 1\AHT20_Measure (AHT20)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       AHT20
+      00000018H   PUBLIC    DATA     ---       Aht20
+      01000003H   PUBLIC    CODE     ---       APPLICATION_Aht20_Standard_IIC_Read_Task
+      00000048H   PUBLIC    DATA     BYTE      ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+      01000C9AH   PUBLIC    CODE     ---       _APPLICATION_Aht20_Standard_IIC_Read_Address
+      01000E38H   PUBLIC    CODE     ---       DRIVE_Aht20_Standard_IIC_Read_Task_Change
+      01000BC0H   PUBLIC    CODE     ---       _?DRIVE_Aht20_Standard_IIC_Read_Address_Change
+
+      01000BC0H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000E38H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000C9AH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000003H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       PLATFORM
+      00000039H   PUBLIC    DATA     DWORD     System_Tick
+      00000035H   PUBLIC    DATA     DWORD     now
+      01000E32H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear
+      01000E3BH   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Complete_Flag
+      01000B5EH   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Task
+      01000669H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Re_Stop
+      01000820H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Send_Nack
+      01000262H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Send_Ack
+      0100047EH   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Receive_Data
+      01000580H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Re_Receive_Ack
+      01000144H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Re_Send_Address
+      0100099DH   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Re_Start
+      01000D12H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Wait
+      01000748H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Stop
+      01000373H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Receive_Ack
+      01000026H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Devidce_And_Word_Address
+      010008F5H   PUBLIC    CODE     ---       Platform_Aht20_Standard_IIC_Read_Start
+      00000048H   PUBLIC    DATA     BYTE      ?_Platform_Aht20_Standard_IIC_Read_Address?BYTE
+      01000DA0H   PUBLIC    CODE     ---       _Platform_Aht20_Standard_IIC_Read_Address
+      01000D79H   PUBLIC    CODE     ---       _Platform_UART_Send_Str
+      0100000EH   PUBLIC    CODE     ---       Platform_UART_Init
+      01000E19H   PUBLIC    CODE     ---       time_get_us
+      01000CD7H   PUBLIC    CODE     ---       Timer0_ISR
+      01000E02H   PUBLIC    CODE     ---       Timer0_SysTick_Init
+      01000DE7H   PUBLIC    CODE     ---       _GPIO_Get
+      01000DCAH   PUBLIC    CODE     ---       _GPIO_Set
+LX51 LINKER/LOCATER V4.66.100.0                                                       05/26/2026  10:45:50  PAGE 7
+
+
+
+      01000DC6H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000DCAH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000DE7H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000E02H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000CD7H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000E12H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000E19H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+      00000004H   SYMBOL    DATA     VOID      i
+      00000002H   SYMBOL    DATA     VOID      j
+
+      0100000EH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000D79H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000DA0H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010008F5H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000026H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000373H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000748H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000D12H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100099DH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000144H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000580H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100047EH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000262H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000820H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+LX51 LINKER/LOCATER V4.66.100.0                                                       05/26/2026  10:45:50  PAGE 8
+
+
+
+      01000669H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000B5EH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000E3BH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000E32H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+      ---         MODULE    ---      ---       UART
+      00000041H   PUBLIC    DATA     ---       Uart
+      01000D4DH   PUBLIC    CODE     ---       UART_Isr
+      01000E22H   PUBLIC    CODE     ---       _UART_Send_Str
+      01000E2BH   PUBLIC    CODE     ---       UART_Init
+
+      01000E3EH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000E41H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000E2BH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000E22H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000D4DH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+      00000007H   SYMBOL    DATA     VOID      i
+
+      ---         MODULE    ---      ---       MAIN
+      00000014H   PUBLIC    DATA     DWORD     last_time
+      00000013H   PUBLIC    DATA     ---       re_adress
+      0000000CH   PUBLIC    DATA     ---       dat
+      00000008H   PUBLIC    DATA     ---       adress
+      01000A45H   PUBLIC    CODE     ---       main
+
+      01000A45H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_INIT
+      01000B19H   PUBLIC    CODE     ---       ?C_START
+
+      ---         MODULE    ---      ---       ?C?CLDPTR
+      01000C58H   PUBLIC    CODE     ---       ?C?CLDPTR
+
+      ---         MODULE    ---      ---       ?C?CSTPTR
+      01000C71H   PUBLIC    CODE     ---       ?C?CSTPTR
+
+      ---         MODULE    ---      ---       ?C?ULCMP
+      01000C83H   PUBLIC    CODE     ---       ?C?ULCMP
+
+      ---         MODULE    ---      ---       ?C?ICALL
+      01000C94H   PUBLIC    CODE     ---       ?C?ICALL
+      01000C98H   PUBLIC    CODE     ---       ?C?ICALL2
+
+      ---         MODULE    ---      ---       ?C_IBP
+LX51 LINKER/LOCATER V4.66.100.0                                                       05/26/2026  10:45:50  PAGE 9
+
+
+      0000001EH   PUBLIC    DATA     ---       ?C_IBP
+
+Program Size: data=80.1 xdata=0 const=0 code=3649
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

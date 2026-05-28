@@ -1,0 +1,76 @@
+{
+    "name": "AHT20_Measure",
+    "target": "Target 1",
+    "toolchain": "Keil_C51",
+    "toolchainLocation": "E:\\51\\C51",
+    "toolchainCfgFile": "c:\\Users\\qinye\\.vscode\\extensions\\cl.eide-3.26.9\\res\\data\\models/8051.keil.model.json",
+    "buildMode": "normal|multhread",
+    "showRepathOnLog": true,
+    "threadNum": 16,
+    "rootDir": "e:\\51\\AHT20",
+    "dumpPath": "build\\Target 1",
+    "outDir": "build\\Target 1",
+    "incDirs": [
+        "../C51/INC/Atmel",
+        "../C51/INC"
+    ],
+    "libDirs": [],
+    "defines": [
+        "__UVISION_VERSION=526"
+    ],
+    "sourceList": [
+        "AHT20.c",
+        "BEEP.c",
+        "PLATFORM.c",
+        "STARTUP.A51",
+        "UART.c",
+        "main.c"
+    ],
+    "alwaysInBuildSources": [],
+    "sourceParams": {},
+    "options": {
+        "version": 2,
+        "afterBuildTasks": [],
+        "asm-compiler": {},
+        "beforeBuildTasks": [],
+        "c/cpp-compiler": {
+            "optimization-level": "level-8",
+            "optimization-type": "SPEED",
+            "optimization": "8,SPEED"
+        },
+        "global": {
+            "ram-mode": "SMALL",
+            "rom-mode": "LARGE"
+        },
+        "linker": {
+            "misc-controls": "",
+            "output-format": "elf",
+            "remove-unused": true
+        }
+    },
+    "env": {
+        "workspaceFolder": "e:\\51\\AHT20",
+        "workspaceFolderBasename": "AHT20",
+        "OutDir": "e:\\51\\AHT20\\build\\Target 1",
+        "OutDirRoot": "build",
+        "OutDirBase": "build\\Target 1",
+        "ProjectName": "AHT20_Measure",
+        "ConfigName": "Target 1",
+        "ProjectRoot": "e:\\51\\AHT20",
+        "ExecutableName": "e:\\51\\AHT20\\build\\Target 1\\AHT20_Measure",
+        "ChipPackDir": "",
+        "ChipName": "",
+        "SYS_Platform": "win32",
+        "SYS_DirSep": "\\",
+        "SYS_DirSeparator": "\\",
+        "SYS_PathSep": ";",
+        "SYS_PathSeparator": ";",
+        "SYS_EOL": "\r\n",
+        "EIDE_BUILDER_DIR": "c:\\Users\\qinye\\.vscode\\extensions\\cl.eide-3.26.9\\res\\tools\\win32\\unify_builder",
+        "EIDE_BINARIES_VER": "12.1.1",
+        "EIDE_MSYS": "C:\\Users\\qinye\\.eide\\bin\\builder\\msys\\bin",
+        "EIDE_PY3_CMD": "C:\\Users\\qinye\\.eide\\bin\\python36\\python3.exe",
+        "ToolchainRoot": "E:\\51\\C51"
+    },
+    "sysPaths": []
+}

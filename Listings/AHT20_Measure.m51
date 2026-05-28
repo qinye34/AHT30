@@ -1,0 +1,1248 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    05/26/2026  10:56:25  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+E:\51\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj, .\Objects\UART.obj, .\Objects\PLATFORM.obj, .\Objects\
+>> AHT20.obj TO .\Objects\AHT20_Measure PRINT (.\Listings\AHT20_Measure.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\main.obj (MAIN)
+  .\Objects\UART.obj (UART)
+  .\Objects\PLATFORM.obj (PLATFORM)
+  .\Objects\AHT20.obj (AHT20)
+  E:\51\C51\LIB\C51S.LIB (?C_INIT)
+  E:\51\C51\LIB\C51S.LIB (?C?CLDPTR)
+  E:\51\C51\LIB\C51S.LIB (?C?CSTPTR)
+  E:\51\C51\LIB\C51S.LIB (?C?ULCMP)
+  E:\51\C51\LIB\C51S.LIB (?C?ICALL)
+  E:\51\C51\LIB\C51S.LIB (?C_IBP)
+
+
+LINK MAP OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0010H     UNIT         ?DT?MAIN
+            DATA    0018H     0006H     UNIT         ?DT?AHT20
+            DATA    001EH     0001H     UNIT         ?C?LIB_DATA
+                    001FH     0001H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?UART
+                    0020H.1   0000H.7                *** GAP ***
+            DATA    0021H     001CH     UNIT         ?DT?PLATFORM
+            DATA    003DH     000BH     UNIT         ?DT?UART
+            DATA    0048H     0009H     UNIT         _DATA_GROUP_
+            IDATA   0051H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0007H     UNIT         ?PR?UART_INIT?UART
+                    000AH     0001H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     0013H     UNIT         ?PR?PLATFORM_UART_INIT?PLATFORM
+                    0021H     0002H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     011EH     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_DEVIDCE_AND_WORD_ADDRESS?PLATF
+>> ORM
+            CODE    0144H     011EH     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_SEND_ADDRESS?PLATFORM
+            CODE    0262H     0111H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_SEND_ACK?PLATFORM
+            CODE    0373H     010BH     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_ACK?PLATFORM
+            CODE    047EH     0102H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_DATA?PLATFORM
+            CODE    0580H     00E9H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_RECEIVE_ACK?PLATFORM
+            CODE    0669H     00DFH     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_STOP?PLATFORM
+            CODE    0748H     00D8H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_STOP?PLATFORM
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 2
+
+
+            CODE    0820H     00D5H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_SEND_NACK?PLATFORM
+            CODE    08F5H     00A8H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_START?PLATFORM
+            CODE    099DH     00A8H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_START?PLATFORM
+            CODE    0A45H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0AD1H     0082H     UNIT         ?PR?MAIN?MAIN
+            CODE    0B53H     0062H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_TASK?PLATFORM
+            CODE    0BB5H     0050H     UNIT         ?PR?_?DRIVE_AHT20_STANDARD_IIC_READ_ADDRESS_CHANGE?AHT20
+            CODE    0C05H     0048H     UNIT         ?C_INITSEG
+            CODE    0C4DH     0042H     UNIT         ?C?LIB_CODE
+            CODE    0C8FH     003DH     UNIT         ?PR?_APPLICATION_AHT20_STANDARD_IIC_READ_ADDRESS?AHT20
+            CODE    0CCCH     003BH     UNIT         ?PR?TIMER0_ISR?PLATFORM
+            CODE    0D07H     003BH     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_WAIT?PLATFORM
+            CODE    0D42H     002CH     UNIT         ?PR?UART_ISR?UART
+            CODE    0D6EH     0027H     UNIT         ?PR?_PLATFORM_UART_SEND_STR?PLATFORM
+            CODE    0D95H     0026H     UNIT         ?PR?_PLATFORM_AHT20_STANDARD_IIC_READ_ADDRESS?PLATFORM
+            CODE    0DBBH     0021H     UNIT         ?PR?_GPIO_SET?PLATFORM
+            CODE    0DDCH     0020H     UNIT         ?PR?_DELAY_MS?PLATFORM
+            CODE    0DFCH     001BH     UNIT         ?PR?_GPIO_GET?PLATFORM
+            CODE    0E17H     0017H     UNIT         ?PR?UART_RECEIVE?UART
+            CODE    0E2EH     0010H     UNIT         ?PR?TIMER0_SYSTICK_INIT?PLATFORM
+            CODE    0E3EH     0010H     UNIT         ?PR?TIME_GET_US?PLATFORM
+            CODE    0E4EH     000FH     UNIT         ?PR?UART_CLEAR?UART
+            CODE    0E5DH     0009H     UNIT         ?PR?_UART_SEND_STR?UART
+            CODE    0E66H     0007H     UNIT         ?PR?APPLICATION_AHT20_STANDARD_IIC_READ_TASK?AHT20
+            CODE    0E6DH     0006H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG_CLEAR?PLATFORM
+            CODE    0E73H     0003H     UNIT         ?PR?_UART_SEND_STR_CHANGE?UART
+            CODE    0E76H     0003H     UNIT         ?PR?UART_INIT_CHANGE?UART
+            CODE    0E79H     0003H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG?PLATFORM
+            CODE    0E7CH     0003H     UNIT         ?PR?DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANGE?AHT20
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\AHT20_Measure (?C_STARTUP)
+
+
+SEGMENT                                            DATA_GROUP 
+  +--> CALLED SEGMENT                            START    LENGTH
+----------------------------------------------------------------
+?C_C51STARTUP                                    -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                                    -----    -----
+  +--> ?PR?UART_INIT?UART
+  +--> ?PR?TIMER0_SYSTICK_INIT?PLATFORM
+  +--> ?PR?_APPLICATION_AHT20_STANDARD_IIC_R...
+  +--> ?PR?APPLICATION_AHT20_STANDARD_IIC_RE...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?_UART_SEND_STR?UART
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?TIME_GET_US?PLATFORM
+
+?PR?_APPLICATION_AHT20_STANDARD_IIC_R...         0048H    0009H
+
+?PR?TIME_GET_US?PLATFORM                         -----    -----
+  +--> ?PR?_GPIO_SET?PLATFORM
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 3
+
+
+?C_INITSEG                                       -----    -----
+  +--> ?PR?UART_INIT_CHANGE?UART
+  +--> ?PR?_UART_SEND_STR_CHANGE?UART
+  +--> ?PR?_?DRIVE_AHT20_STANDARD_IIC_READ_A...
+  +--> ?PR?DRIVE_AHT20_STANDARD_IIC_READ_TAS...
+
+?PR?UART_INIT_CHANGE?UART                        -----    -----
+  +--> ?PR?PLATFORM_UART_INIT?PLATFORM
+
+?PR?_UART_SEND_STR_CHANGE?UART                   -----    -----
+  +--> ?PR?_PLATFORM_UART_SEND_STR?PLATFORM
+
+?PR?_PLATFORM_UART_SEND_STR?PLATFORM             0048H    0003H
+
+?PR?_?DRIVE_AHT20_STANDARD_IIC_READ_A...         -----    -----
+  +--> ?PR?_PLATFORM_AHT20_STANDARD_IIC_READ...
+
+?PR?_PLATFORM_AHT20_STANDARD_IIC_READ...         0048H    0009H
+
+?PR?DRIVE_AHT20_STANDARD_IIC_READ_TAS...         -----    -----
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+  +--> ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+  +--> ?PR?_GPIO_GET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 4
+
+
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+  +--> ?PR?_GPIO_GET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+  +--> ?PR?_GPIO_GET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+
+?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
+  +--> ?PR?TIME_GET_US?PLATFORM
+  +--> ?PR?_GPIO_SET?PLATFORM
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0A45H         SEGMENT       ?C_C51STARTUP
+  I:0051H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0A48H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0A45H         SYMBOL        STARTUP1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 5
+
+
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0A45H         LINE#         133
+  C:0A47H         LINE#         134
+  C:0A48H         LINE#         135
+  C:0A49H         LINE#         136
+  C:0A4BH         LINE#         185
+  C:0A4EH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:0008H         PUBLIC        adress
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0AD1H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:000CH         PUBLIC        dat
+  D:0013H         PUBLIC        re_adress
+  D:0014H         PUBLIC        last_time
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:0AD1H         LINE#         9
+  C:0AD1H         LINE#         10
+  C:0AD1H         LINE#         12
+  C:0AD4H         LINE#         13
+  C:0AD7H         LINE#         14
+  C:0AF2H         LINE#         15
+  C:0AF2H         LINE#         16
+  C:0AF2H         LINE#         17
+  C:0AF5H         LINE#         18
+  C:0AFBH         LINE#         19
+  C:0AFBH         LINE#         20
+  C:0B06H         LINE#         21
+  C:0B09H         LINE#         22
+  C:0B09H         LINE#         23
+  C:0B2BH         LINE#         24
+  C:0B2BH         LINE#         25
+  C:0B46H         LINE#         26
+  C:0B51H         LINE#         27
+  C:0B51H         LINE#         29
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        UART
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:003DH         SYMBOL        Uart_Rx_Buffer
+  C:0E4EH         PUBLIC        UART_Clear
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 6
+
+
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  D:0041H         PUBLIC        Uart
+  B:0020H.0       SYMBOL        Uart_Rx_Flag
+  D:0099H         PUBLIC        SBUF
+  C:0003H         PUBLIC        UART_Init
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:0047H         SYMBOL        Uart_Rx_Count
+  C:0E5DH         PUBLIC        _UART_Send_Str
+  C:0D42H         PUBLIC        UART_Isr
+  C:0E76H         SYMBOL        UART_Init_Change
+  C:0E17H         PUBLIC        UART_Receive
+  D:00C8H         PUBLIC        T2CON
+  C:0E73H         SYMBOL        _UART_Send_Str_Change
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _UART_SEND_STR_CHANGE
+  D:0001H         SYMBOL        str
+  D:0005H         SYMBOL        len
+  C:0E73H         LINE#         8
+  C:0E73H         LINE#         9
+  C:0E73H         LINE#         10
+  -------         ENDPROC       _UART_SEND_STR_CHANGE
+  -------         PROC          UART_INIT_CHANGE
+  C:0E76H         LINE#         13
+  C:0E76H         LINE#         14
+  C:0E76H         LINE#         15
+  -------         ENDPROC       UART_INIT_CHANGE
+  -------         PROC          UART_INIT
+  C:0003H         LINE#         20
+  C:0003H         LINE#         21
+  C:0003H         LINE#         22
+  -------         ENDPROC       UART_INIT
+  -------         PROC          _UART_SEND_STR
+  D:0001H         SYMBOL        str
+  D:0005H         SYMBOL        len
+  C:0E5DH         LINE#         26
+  C:0E5DH         LINE#         27
+  C:0E5DH         LINE#         28
+  -------         ENDPROC       _UART_SEND_STR
+  -------         PROC          UART_ISR
+  C:0D42H         LINE#         31
+  C:0D4DH         LINE#         33
+  C:0D50H         LINE#         34
+  C:0D50H         LINE#         35
+  C:0D52H         LINE#         36
+  C:0D59H         LINE#         37
+  C:0D59H         LINE#         38
+  C:0D63H         LINE#         39
+  C:0D63H         LINE#         40
+  C:0D65H         LINE#         41
+  C:0D65H         LINE#         43
+  -------         ENDPROC       UART_ISR
+  -------         PROC          UART_RECEIVE
+  C:0E17H         LINE#         46
+  C:0E17H         LINE#         47
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 7
+
+
+  C:0E17H         LINE#         48
+  C:0E1AH         LINE#         49
+  C:0E1AH         LINE#         50
+  C:0E21H         LINE#         51
+  C:0E27H         LINE#         52
+  C:0E27H         LINE#         53
+  C:0E2DH         LINE#         54
+  -------         ENDPROC       UART_RECEIVE
+  -------         PROC          UART_CLEAR
+  -------         DO            
+  D:0007H         SYMBOL        i
+  -------         ENDDO         
+  C:0E4EH         LINE#         56
+  C:0E4EH         LINE#         57
+  C:0E4EH         LINE#         59
+  C:0E50H         LINE#         60
+  C:0E53H         LINE#         61
+  C:0E53H         LINE#         62
+  C:0E53H         LINE#         63
+  C:0E5CH         LINE#         64
+  C:0E5CH         LINE#         65
+  -------         ENDPROC       UART_CLEAR
+  -------         ENDMOD        UART
+
+  -------         MODULE        PLATFORM
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:0CCCH         PUBLIC        Timer0_ISR
+  C:0D95H         PUBLIC        _Platform_Aht20_Standard_IIC_Read_Address
+  B:00A8H.7       PUBLIC        EA
+  C:0144H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Re_Send_Address
+  C:0580H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Re_Receive_Ack
+  D:00A8H         PUBLIC        IE
+  C:0026H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Devidce_And_Word_Address
+  B:0090H.5       PUBLIC        IO_BEEP
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  C:0E45H         PUBLIC        time_get_us
+  B:0098H.1       PUBLIC        TI
+  C:0E6DH         PUBLIC        Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear
+  C:0820H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Send_Nack
+  D:0099H         PUBLIC        SBUF
+  C:0DFCH         PUBLIC        _GPIO_Get
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  C:0262H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Send_Ack
+  D:0021H         SYMBOL        AHT20_READ
+  C:0DBFH         PUBLIC        _GPIO_Set
+  B:00A8H.1       PUBLIC        ET0
+  C:08F5H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Start
+  D:008CH         PUBLIC        TH0
+  D:008DH         PUBLIC        TH1
+  C:0B53H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Task
+  C:0D07H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Wait
+  D:008AH         PUBLIC        TL0
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 8
+
+
+  B:0090H.1       PUBLIC        IO_SDA
+  D:008BH         PUBLIC        TL1
+  C:0DDCH         PUBLIC        _delay_ms
+  C:0E79H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Complete_Flag
+  D:0035H         PUBLIC        now
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  C:0E2EH         PUBLIC        Timer0_SysTick_Init
+  B:0090H.0       PUBLIC        IO_SCL
+  C:047EH         PUBLIC        Platform_Aht20_Standard_IIC_Read_Receive_Data
+  C:000EH         PUBLIC        Platform_UART_Init
+  C:0748H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Stop
+  C:099DH         PUBLIC        Platform_Aht20_Standard_IIC_Read_Re_Start
+  D:00C8H         PUBLIC        T2CON
+  C:0D6EH         PUBLIC        _Platform_UART_Send_Str
+  C:0373H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Receive_Ack
+  D:0039H         PUBLIC        System_Tick
+  C:0669H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Re_Stop
+  D:00D0H         PUBLIC        PSW
+  C:0DBBH         SYMBOL        L?0172
+  -------         PROC          L?0171
+  -------         ENDPROC       L?0171
+  C:0DBBH         SYMBOL        L?0172
+  -------         PROC          _GPIO_SET
+  D:0007H         SYMBOL        pin
+  D:0005H         SYMBOL        state
+  C:0DBFH         LINE#         37
+  C:0DBFH         LINE#         38
+  C:0DBFH         LINE#         39
+  C:0DCAH         LINE#         40
+  C:0DCAH         LINE#         41
+  C:0DCAH         LINE#         42
+  C:0DCFH         LINE#         43
+  C:0DD0H         LINE#         44
+  C:0DD0H         LINE#         45
+  C:0DD5H         LINE#         46
+  C:0DD6H         LINE#         47
+  C:0DD6H         LINE#         48
+  C:0DDBH         LINE#         49
+  C:0DDBH         LINE#         50
+  C:0DDBH         LINE#         51
+  C:0DDBH         LINE#         52
+  C:0DDBH         LINE#         53
+  -------         ENDPROC       _GPIO_SET
+  -------         PROC          _GPIO_GET
+  D:0007H         SYMBOL        pin
+  C:0DFCH         LINE#         55
+  C:0DFCH         LINE#         56
+  C:0DFCH         LINE#         57
+  C:0E06H         LINE#         58
+  C:0E06H         LINE#         59
+  C:0E06H         LINE#         60
+  C:0E0AH         LINE#         61
+  C:0E0AH         LINE#         62
+  C:0E0EH         LINE#         63
+  C:0E0EH         LINE#         64
+  C:0E14H         LINE#         65
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 9
+
+
+  C:0E14H         LINE#         66
+  C:0E16H         LINE#         67
+  C:0E16H         LINE#         68
+  -------         ENDPROC       _GPIO_GET
+  -------         PROC          TIMER0_SYSTICK_INIT
+  C:0E2EH         LINE#         70
+  C:0E2EH         LINE#         71
+  C:0E2EH         LINE#         72
+  C:0E31H         LINE#         74
+  C:0E34H         LINE#         75
+  C:0E37H         LINE#         77
+  C:0E39H         LINE#         78
+  C:0E3BH         LINE#         79
+  C:0E3DH         LINE#         80
+  -------         ENDPROC       TIMER0_SYSTICK_INIT
+  -------         PROC          TIMER0_ISR
+  C:0CCCH         LINE#         82
+  C:0CDBH         LINE#         85
+  C:0CDEH         LINE#         86
+  C:0CE1H         LINE#         87
+  C:0CFAH         LINE#         88
+  -------         ENDPROC       TIMER0_ISR
+  C:0E3EH         SYMBOL        L?0169
+  C:0E40H         SYMBOL        L?0170
+  -------         PROC          L?0168
+  -------         ENDPROC       L?0168
+  C:0E3EH         SYMBOL        L?0169
+  C:0E40H         SYMBOL        L?0170
+  -------         PROC          TIME_GET_US
+  C:0E45H         LINE#         90
+  C:0E45H         LINE#         91
+  C:0E45H         LINE#         92
+  C:0E4DH         LINE#         93
+  -------         ENDPROC       TIME_GET_US
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0DDCH         LINE#         96
+  C:0DDCH         LINE#         97
+  C:0DDCH         LINE#         99
+  C:0DE6H         LINE#         100
+  C:0DFBH         LINE#         101
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          PLATFORM_UART_INIT
+  C:000EH         LINE#         107
+  C:000EH         LINE#         108
+  C:000EH         LINE#         109
+  C:0011H         LINE#         110
+  C:0014H         LINE#         111
+  C:0017H         LINE#         112
+  C:001AH         LINE#         114
+  C:001CH         LINE#         116
+  C:001EH         LINE#         117
+  C:0020H         LINE#         118
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 10
+
+
+  -------         ENDPROC       PLATFORM_UART_INIT
+  -------         PROC          _PLATFORM_UART_SEND_STR
+  D:0048H         SYMBOL        str
+  D:0005H         SYMBOL        len
+  C:0D6EH         LINE#         120
+  C:0D74H         LINE#         121
+  C:0D74H         LINE#         122
+  C:0D7AH         LINE#         123
+  C:0D7AH         LINE#         124
+  C:0D8DH         LINE#         125
+  C:0D90H         LINE#         126
+  C:0D92H         LINE#         127
+  C:0D94H         LINE#         128
+  -------         ENDPROC       _PLATFORM_UART_SEND_STR
+  -------         PROC          _PLATFORM_AHT20_STANDARD_IIC_READ_ADDRESS
+  D:0001H         SYMBOL        adress
+  D:004BH         SYMBOL        re_adress
+  D:004EH         SYMBOL        dat
+  C:0D95H         LINE#         130
+  C:0D95H         LINE#         131
+  C:0D95H         LINE#         132
+  C:0D9BH         LINE#         133
+  C:0DA4H         LINE#         134
+  C:0DADH         LINE#         135
+  C:0DB0H         LINE#         136
+  C:0DB3H         LINE#         137
+  C:0DB6H         LINE#         138
+  C:0DB8H         LINE#         139
+  C:0DBAH         LINE#         140
+  -------         ENDPROC       _PLATFORM_AHT20_STANDARD_IIC_READ_ADDRESS
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_START
+  C:08F5H         LINE#         145
+  C:08F5H         LINE#         146
+  C:08F5H         LINE#         147
+  C:0900H         LINE#         148
+  C:0910H         LINE#         149
+  C:0910H         LINE#         151
+  C:0910H         LINE#         152
+  C:0917H         LINE#         153
+  C:091BH         LINE#         154
+  C:0927H         LINE#         155
+  C:092AH         LINE#         156
+  C:092BH         LINE#         158
+  C:092BH         LINE#         159
+  C:094CH         LINE#         160
+  C:094CH         LINE#         161
+  C:0953H         LINE#         162
+  C:095FH         LINE#         163
+  C:0962H         LINE#         164
+  C:0962H         LINE#         165
+  C:0963H         LINE#         167
+  C:0963H         LINE#         168
+  C:0984H         LINE#         169
+  C:0984H         LINE#         170
+  C:098AH         LINE#         171
+  C:0996H         LINE#         172
+  C:0999H         LINE#         173
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 11
+
+
+  C:099CH         LINE#         174
+  C:099CH         LINE#         175
+  C:099CH         LINE#         176
+  C:099CH         LINE#         177
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_START
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_DEVIDCE_AND_WORD_ADDRESS
+  C:0026H         LINE#         179
+  C:0026H         LINE#         180
+  C:0026H         LINE#         181
+  C:0031H         LINE#         182
+  C:004AH         LINE#         183
+  C:004AH         LINE#         185
+  C:004AH         LINE#         186
+  C:006EH         LINE#         187
+  C:006EH         LINE#         188
+  C:0079H         LINE#         189
+  C:0086H         LINE#         190
+  C:0089H         LINE#         191
+  C:0094H         LINE#         192
+  C:009CH         LINE#         193
+  C:009FH         LINE#         194
+  C:009FH         LINE#         195
+  C:00A0H         LINE#         197
+  C:00A0H         LINE#         198
+  C:00C4H         LINE#         199
+  C:00C4H         LINE#         200
+  C:00C7H         LINE#         201
+  C:00D2H         LINE#         202
+  C:00DAH         LINE#         203
+  C:00DDH         LINE#         204
+  C:00DDH         LINE#         205
+  C:00DEH         LINE#         207
+  C:00DEH         LINE#         208
+  C:00FFH         LINE#         209
+  C:00FFH         LINE#         210
+  C:0105H         LINE#         211
+  C:0108H         LINE#         212
+  C:0108H         LINE#         213
+  C:0109H         LINE#         215
+  C:0109H         LINE#         216
+  C:010BH         LINE#         217
+  C:0110H         LINE#         218
+  C:0110H         LINE#         219
+  C:0113H         LINE#         220
+  C:011EH         LINE#         221
+  C:0126H         LINE#         222
+  C:0129H         LINE#         223
+  C:012CH         LINE#         224
+  C:012DH         LINE#         226
+  C:012DH         LINE#         227
+  C:0138H         LINE#         228
+  C:0140H         LINE#         229
+  C:0143H         LINE#         230
+  C:0143H         LINE#         231
+  C:0143H         LINE#         232
+  C:0143H         LINE#         233
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_DEVIDCE_AND_WORD_ADDRESS
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 12
+
+
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_ACK
+  C:0373H         LINE#         235
+  C:0373H         LINE#         236
+  C:0373H         LINE#         237
+  C:037EH         LINE#         238
+  C:0391H         LINE#         239
+  C:0391H         LINE#         241
+  C:0391H         LINE#         242
+  C:03B5H         LINE#         243
+  C:03B5H         LINE#         244
+  C:03B5H         LINE#         245
+  C:03C0H         LINE#         246
+  C:03C8H         LINE#         247
+  C:03CBH         LINE#         248
+  C:03CBH         LINE#         249
+  C:03CCH         LINE#         251
+  C:03CCH         LINE#         252
+  C:03F0H         LINE#         253
+  C:03F0H         LINE#         254
+  C:03F3H         LINE#         255
+  C:03FEH         LINE#         256
+  C:0406H         LINE#         257
+  C:0409H         LINE#         258
+  C:0409H         LINE#         259
+  C:040AH         LINE#         261
+  C:040AH         LINE#         262
+  C:042BH         LINE#         263
+  C:042BH         LINE#         264
+  C:042DH         LINE#         265
+  C:0430H         LINE#         266
+  C:0437H         LINE#         268
+  C:043DH         LINE#         269
+  C:0448H         LINE#         270
+  C:0450H         LINE#         272
+  C:0454H         LINE#         273
+  C:0454H         LINE#         274
+  C:045BH         LINE#         275
+  C:045BH         LINE#         276
+  C:0466H         LINE#         277
+  C:0469H         LINE#         278
+  C:046CH         LINE#         279
+  C:046DH         LINE#         281
+  C:046DH         LINE#         282
+  C:0470H         LINE#         283
+  C:0473H         LINE#         284
+  C:0476H         LINE#         285
+  C:0476H         LINE#         287
+  C:0477H         LINE#         289
+  C:0477H         LINE#         291
+  C:047AH         LINE#         292
+  C:047DH         LINE#         293
+  C:047DH         LINE#         294
+  C:047DH         LINE#         295
+  C:047DH         LINE#         296
+  C:047DH         LINE#         297
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_ACK
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_STOP
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 13
+
+
+  C:0748H         LINE#         299
+  C:0748H         LINE#         300
+  C:0748H         LINE#         301
+  C:0753H         LINE#         302
+  C:0766H         LINE#         303
+  C:0766H         LINE#         305
+  C:0766H         LINE#         306
+  C:078AH         LINE#         307
+  C:078AH         LINE#         308
+  C:0791H         LINE#         309
+  C:0796H         LINE#         310
+  C:07A1H         LINE#         311
+  C:07A9H         LINE#         312
+  C:07ACH         LINE#         313
+  C:07ACH         LINE#         314
+  C:07ADH         LINE#         316
+  C:07ADH         LINE#         317
+  C:07CEH         LINE#         318
+  C:07CEH         LINE#         319
+  C:07CEH         LINE#         320
+  C:07D9H         LINE#         321
+  C:07E1H         LINE#         322
+  C:07E4H         LINE#         323
+  C:07E4H         LINE#         324
+  C:07E5H         LINE#         326
+  C:07E5H         LINE#         327
+  C:0806H         LINE#         328
+  C:0806H         LINE#         329
+  C:0811H         LINE#         330
+  C:0819H         LINE#         331
+  C:081CH         LINE#         332
+  C:081FH         LINE#         333
+  C:081FH         LINE#         334
+  C:081FH         LINE#         335
+  C:081FH         LINE#         336
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_STOP
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_WAIT
+  C:0D07H         LINE#         338
+  C:0D07H         LINE#         339
+  C:0D07H         LINE#         340
+  C:0D12H         LINE#         341
+  C:0D18H         LINE#         342
+  C:0D18H         LINE#         343
+  C:0D18H         LINE#         344
+  C:0D3BH         LINE#         345
+  C:0D3BH         LINE#         346
+  C:0D3EH         LINE#         347
+  C:0D41H         LINE#         348
+  C:0D41H         LINE#         349
+  C:0D41H         LINE#         350
+  C:0D41H         LINE#         351
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_WAIT
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_RE_START
+  C:099DH         LINE#         353
+  C:099DH         LINE#         354
+  C:099DH         LINE#         355
+  C:09A8H         LINE#         356
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 14
+
+
+  C:09B8H         LINE#         357
+  C:09B8H         LINE#         359
+  C:09B8H         LINE#         360
+  C:09BFH         LINE#         361
+  C:09C3H         LINE#         362
+  C:09CFH         LINE#         363
+  C:09D2H         LINE#         364
+  C:09D3H         LINE#         366
+  C:09D3H         LINE#         367
+  C:09F4H         LINE#         368
+  C:09F4H         LINE#         369
+  C:09FBH         LINE#         370
+  C:0A07H         LINE#         371
+  C:0A0AH         LINE#         372
+  C:0A0AH         LINE#         373
+  C:0A0BH         LINE#         375
+  C:0A0BH         LINE#         376
+  C:0A2CH         LINE#         377
+  C:0A2CH         LINE#         378
+  C:0A32H         LINE#         379
+  C:0A3EH         LINE#         380
+  C:0A41H         LINE#         381
+  C:0A44H         LINE#         382
+  C:0A44H         LINE#         383
+  C:0A44H         LINE#         384
+  C:0A44H         LINE#         385
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_RE_START
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_RE_SEND_ADDRESS
+  C:0144H         LINE#         387
+  C:0144H         LINE#         388
+  C:0144H         LINE#         389
+  C:014FH         LINE#         390
+  C:0168H         LINE#         391
+  C:0168H         LINE#         393
+  C:0168H         LINE#         394
+  C:018CH         LINE#         395
+  C:018CH         LINE#         396
+  C:0197H         LINE#         397
+  C:01A4H         LINE#         398
+  C:01A7H         LINE#         399
+  C:01B2H         LINE#         400
+  C:01BAH         LINE#         401
+  C:01BDH         LINE#         402
+  C:01BDH         LINE#         403
+  C:01BEH         LINE#         405
+  C:01BEH         LINE#         406
+  C:01E2H         LINE#         407
+  C:01E2H         LINE#         408
+  C:01E5H         LINE#         409
+  C:01F0H         LINE#         410
+  C:01F8H         LINE#         411
+  C:01FBH         LINE#         412
+  C:01FBH         LINE#         413
+  C:01FCH         LINE#         415
+  C:01FCH         LINE#         416
+  C:021DH         LINE#         417
+  C:021DH         LINE#         418
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 15
+
+
+  C:0223H         LINE#         419
+  C:0226H         LINE#         420
+  C:0226H         LINE#         421
+  C:0227H         LINE#         423
+  C:0227H         LINE#         424
+  C:0229H         LINE#         425
+  C:022EH         LINE#         426
+  C:022EH         LINE#         427
+  C:0231H         LINE#         428
+  C:023CH         LINE#         429
+  C:0244H         LINE#         430
+  C:0247H         LINE#         431
+  C:024AH         LINE#         432
+  C:024BH         LINE#         434
+  C:024BH         LINE#         435
+  C:0256H         LINE#         436
+  C:025EH         LINE#         437
+  C:0261H         LINE#         438
+  C:0261H         LINE#         439
+  C:0261H         LINE#         440
+  C:0261H         LINE#         441
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_RE_SEND_ADDRESS
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_RE_RECEIVE_ACK
+  C:0580H         LINE#         443
+  C:0580H         LINE#         444
+  C:0580H         LINE#         445
+  C:058BH         LINE#         446
+  C:059EH         LINE#         447
+  C:059EH         LINE#         449
+  C:059EH         LINE#         450
+  C:05C2H         LINE#         451
+  C:05C2H         LINE#         452
+  C:05C2H         LINE#         453
+  C:05CDH         LINE#         454
+  C:05D5H         LINE#         455
+  C:05D8H         LINE#         456
+  C:05D8H         LINE#         457
+  C:05D9H         LINE#         459
+  C:05D9H         LINE#         460
+  C:05FAH         LINE#         461
+  C:05FAH         LINE#         462
+  C:05FDH         LINE#         463
+  C:0608H         LINE#         464
+  C:0610H         LINE#         465
+  C:0613H         LINE#         466
+  C:0613H         LINE#         467
+  C:0614H         LINE#         469
+  C:0614H         LINE#         470
+  C:0635H         LINE#         471
+  C:0635H         LINE#         472
+  C:063CH         LINE#         473
+  C:063FH         LINE#         474
+  C:0644H         LINE#         475
+  C:064FH         LINE#         476
+  C:0657H         LINE#         477
+  C:065BH         LINE#         478
+  C:065BH         LINE#         479
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 16
+
+
+  C:065EH         LINE#         480
+  C:0661H         LINE#         481
+  C:0662H         LINE#         483
+  C:0662H         LINE#         485
+  C:0665H         LINE#         486
+  C:0668H         LINE#         487
+  C:0668H         LINE#         488
+  C:0668H         LINE#         489
+  C:0668H         LINE#         490
+  C:0668H         LINE#         491
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_RE_RECEIVE_ACK
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_DATA
+  C:047EH         LINE#         494
+  C:047EH         LINE#         495
+  C:047EH         LINE#         496
+  C:0489H         LINE#         497
+  C:049FH         LINE#         498
+  C:049FH         LINE#         500
+  C:049FH         LINE#         501
+  C:04A2H         LINE#         502
+  C:04A4H         LINE#         503
+  C:04A4H         LINE#         504
+  C:04A7H         LINE#         506
+  C:04A7H         LINE#         507
+  C:04CBH         LINE#         508
+  C:04CBH         LINE#         509
+  C:04CBH         LINE#         510
+  C:04D6H         LINE#         511
+  C:04DEH         LINE#         512
+  C:04E1H         LINE#         513
+  C:04E1H         LINE#         514
+  C:04E2H         LINE#         516
+  C:04E2H         LINE#         517
+  C:0503H         LINE#         518
+  C:0503H         LINE#         519
+  C:0506H         LINE#         520
+  C:050CH         LINE#         521
+  C:0513H         LINE#         522
+  C:0515H         LINE#         523
+  C:0520H         LINE#         524
+  C:0528H         LINE#         525
+  C:052BH         LINE#         526
+  C:052BH         LINE#         527
+  C:052CH         LINE#         529
+  C:052CH         LINE#         530
+  C:054DH         LINE#         531
+  C:054DH         LINE#         532
+  C:0553H         LINE#         533
+  C:055EH         LINE#         534
+  C:0566H         LINE#         535
+  C:056BH         LINE#         536
+  C:056BH         LINE#         537
+  C:056EH         LINE#         538
+  C:0571H         LINE#         539
+  C:057CH         LINE#         540
+  C:057CH         LINE#         542
+  C:057CH         LINE#         543
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 17
+
+
+  C:057FH         LINE#         544
+  C:057FH         LINE#         545
+  C:057FH         LINE#         546
+  C:057FH         LINE#         547
+  C:057FH         LINE#         548
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_DATA
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_SEND_ACK
+  C:0262H         LINE#         550
+  C:0262H         LINE#         551
+  C:0262H         LINE#         552
+  C:026DH         LINE#         553
+  C:0283H         LINE#         554
+  C:0283H         LINE#         556
+  C:0283H         LINE#         557
+  C:028EH         LINE#         558
+  C:0296H         LINE#         559
+  C:0298H         LINE#         560
+  C:029DH         LINE#         561
+  C:029DH         LINE#         562
+  C:02A0H         LINE#         563
+  C:02A3H         LINE#         564
+  C:02A4H         LINE#         566
+  C:02A4H         LINE#         567
+  C:02A7H         LINE#         568
+  C:02A7H         LINE#         569
+  C:02A8H         LINE#         571
+  C:02A8H         LINE#         572
+  C:02CCH         LINE#         573
+  C:02CCH         LINE#         574
+  C:02CEH         LINE#         575
+  C:02D9H         LINE#         576
+  C:02E1H         LINE#         577
+  C:02E4H         LINE#         578
+  C:02E4H         LINE#         579
+  C:02E5H         LINE#         581
+  C:02E5H         LINE#         582
+  C:0306H         LINE#         583
+  C:0306H         LINE#         584
+  C:0309H         LINE#         585
+  C:0314H         LINE#         586
+  C:031CH         LINE#         587
+  C:031FH         LINE#         588
+  C:031FH         LINE#         589
+  C:0320H         LINE#         591
+  C:0320H         LINE#         592
+  C:0341H         LINE#         593
+  C:0341H         LINE#         594
+  C:0347H         LINE#         595
+  C:0352H         LINE#         596
+  C:035AH         LINE#         597
+  C:0361H         LINE#         598
+  C:0361H         LINE#         599
+  C:0364H         LINE#         600
+  C:0367H         LINE#         601
+  C:0372H         LINE#         602
+  C:0372H         LINE#         603
+  C:0372H         LINE#         604
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 18
+
+
+  C:0372H         LINE#         605
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_SEND_ACK
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_SEND_NACK
+  C:0820H         LINE#         607
+  C:0820H         LINE#         608
+  C:0820H         LINE#         609
+  C:082BH         LINE#         610
+  C:083EH         LINE#         611
+  C:083EH         LINE#         613
+  C:083EH         LINE#         614
+  C:0862H         LINE#         615
+  C:0862H         LINE#         616
+  C:0862H         LINE#         617
+  C:086DH         LINE#         618
+  C:0875H         LINE#         619
+  C:0878H         LINE#         620
+  C:0878H         LINE#         621
+  C:0879H         LINE#         623
+  C:0879H         LINE#         624
+  C:089AH         LINE#         625
+  C:089AH         LINE#         626
+  C:089DH         LINE#         627
+  C:08A8H         LINE#         628
+  C:08B0H         LINE#         629
+  C:08B3H         LINE#         630
+  C:08B3H         LINE#         631
+  C:08B4H         LINE#         633
+  C:08B4H         LINE#         634
+  C:08D5H         LINE#         635
+  C:08D5H         LINE#         636
+  C:08DBH         LINE#         637
+  C:08E6H         LINE#         638
+  C:08EEH         LINE#         639
+  C:08F1H         LINE#         640
+  C:08F4H         LINE#         641
+  C:08F4H         LINE#         642
+  C:08F4H         LINE#         643
+  C:08F4H         LINE#         644
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_SEND_NACK
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_RE_STOP
+  C:0669H         LINE#         646
+  C:0669H         LINE#         647
+  C:0669H         LINE#         648
+  C:0674H         LINE#         649
+  C:0687H         LINE#         650
+  C:0687H         LINE#         652
+  C:0687H         LINE#         653
+  C:06ABH         LINE#         654
+  C:06ABH         LINE#         655
+  C:06B2H         LINE#         656
+  C:06B7H         LINE#         657
+  C:06C2H         LINE#         658
+  C:06CAH         LINE#         659
+  C:06CDH         LINE#         660
+  C:06CDH         LINE#         661
+  C:06CEH         LINE#         663
+  C:06CEH         LINE#         664
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 19
+
+
+  C:06EFH         LINE#         665
+  C:06EFH         LINE#         666
+  C:06EFH         LINE#         667
+  C:06FAH         LINE#         668
+  C:0702H         LINE#         669
+  C:0705H         LINE#         670
+  C:0705H         LINE#         671
+  C:0706H         LINE#         673
+  C:0706H         LINE#         674
+  C:0727H         LINE#         675
+  C:0727H         LINE#         676
+  C:0732H         LINE#         677
+  C:073AH         LINE#         678
+  C:073DH         LINE#         679
+  C:073FH         LINE#         680
+  C:0741H         LINE#         681
+  C:0744H         LINE#         682
+  C:0747H         LINE#         683
+  C:0747H         LINE#         684
+  C:0747H         LINE#         685
+  C:0747H         LINE#         686
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_RE_STOP
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_TASK
+  C:0B53H         LINE#         691
+  C:0B53H         LINE#         692
+  C:0B53H         LINE#         693
+  C:0B90H         LINE#         694
+  C:0B90H         LINE#         695
+  C:0B90H         LINE#         697
+  C:0B90H         LINE#         699
+  C:0B90H         LINE#         700
+  C:0B93H         LINE#         701
+  C:0B93H         LINE#         703
+  C:0B93H         LINE#         704
+  C:0B96H         LINE#         705
+  C:0B96H         LINE#         707
+  C:0B96H         LINE#         708
+  C:0B99H         LINE#         709
+  C:0B99H         LINE#         711
+  C:0B99H         LINE#         712
+  C:0B9CH         LINE#         713
+  C:0B9CH         LINE#         715
+  C:0B9CH         LINE#         716
+  C:0B9FH         LINE#         717
+  C:0B9FH         LINE#         719
+  C:0B9FH         LINE#         720
+  C:0BA2H         LINE#         721
+  C:0BA2H         LINE#         723
+  C:0BA2H         LINE#         724
+  C:0BA5H         LINE#         725
+  C:0BA5H         LINE#         727
+  C:0BA5H         LINE#         728
+  C:0BA8H         LINE#         729
+  C:0BA8H         LINE#         731
+  C:0BA8H         LINE#         732
+  C:0BABH         LINE#         733
+  C:0BABH         LINE#         735
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 20
+
+
+  C:0BABH         LINE#         736
+  C:0BAEH         LINE#         737
+  C:0BAEH         LINE#         739
+  C:0BAEH         LINE#         740
+  C:0BB1H         LINE#         741
+  C:0BB1H         LINE#         743
+  C:0BB1H         LINE#         744
+  C:0BB4H         LINE#         745
+  C:0BB4H         LINE#         749
+  C:0BB4H         LINE#         750
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_TASK
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG
+  C:0E79H         LINE#         752
+  C:0E79H         LINE#         753
+  C:0E79H         LINE#         754
+  C:0E7BH         LINE#         755
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG
+  -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG_CLEAR
+  C:0E6DH         LINE#         757
+  C:0E6DH         LINE#         758
+  C:0E6DH         LINE#         759
+  C:0E70H         LINE#         760
+  C:0E72H         LINE#         761
+  -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG_CLEAR
+  -------         ENDMOD        PLATFORM
+
+  -------         MODULE        AHT20
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0018H         PUBLIC        Aht20
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0E7CH         PUBLIC        DRIVE_Aht20_Standard_IIC_Read_Task_Change
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:0E66H         PUBLIC        APPLICATION_Aht20_Standard_IIC_Read_Task
+  C:0BB5H         PUBLIC        _?DRIVE_Aht20_Standard_IIC_Read_Address_Change
+  D:00C8H         PUBLIC        T2CON
+  C:0C8FH         PUBLIC        _APPLICATION_Aht20_Standard_IIC_Read_Address
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _?DRIVE_AHT20_STANDARD_IIC_READ_ADDRESS_CHANGE
+  i:0000H         SYMBOL        adress
+  i:0003H         SYMBOL        re_adress
+  i:0006H         SYMBOL        dat
+  C:0BB5H         LINE#         3
+  C:0BC5H         LINE#         5
+  C:0BFEH         LINE#         6
+  -------         ENDPROC       _?DRIVE_AHT20_STANDARD_IIC_READ_ADDRESS_CHANGE
+  -------         PROC          DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANGE
+  C:0E7CH         LINE#         8
+  C:0E7CH         LINE#         9
+  C:0E7CH         LINE#         10
+  -------         ENDPROC       DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANGE
+  -------         PROC          _APPLICATION_AHT20_STANDARD_IIC_READ_ADDRESS
+  D:0048H         SYMBOL        adress
+  D:004BH         SYMBOL        re_adress
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 21
+
+
+  D:004EH         SYMBOL        dat
+  C:0C8FH         LINE#         15
+  C:0C95H         LINE#         16
+  C:0C95H         LINE#         17
+  -------         ENDPROC       _APPLICATION_AHT20_STANDARD_IIC_READ_ADDRESS
+  -------         PROC          APPLICATION_AHT20_STANDARD_IIC_READ_TASK
+  C:0E66H         LINE#         20
+  C:0E66H         LINE#         21
+  C:0E66H         LINE#         22
+  -------         ENDPROC       APPLICATION_AHT20_STANDARD_IIC_READ_TASK
+  -------         ENDMOD        AHT20
+
+  -------         MODULE        ?C?CLDPTR
+  C:0C4DH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:0C66H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?ULCMP
+  C:0C78H         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
+
+  -------         MODULE        ?C?ICALL
+  C:0C89H         PUBLIC        ?C?ICALL
+  C:0C8DH         PUBLIC        ?C?ICALL2
+  -------         ENDMOD        ?C?ICALL
+
+  -------         MODULE        ?C_IBP
+  D:001EH         PUBLIC        ?C_IBP
+  -------         ENDMOD        ?C_IBP
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?UART_RECEIVE?UART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?UART_CLEAR?UART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?PLATFORM
+
+Program Size: data=80.1 xdata=0 code=3708
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

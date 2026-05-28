@@ -1,0 +1,6 @@
+tool: KEIL_C51
+fileName: 'AHT20_Measure.map'
+elfName: 'AHT20_Measure'
+compilerName: 'C51 COMPILER'
+compilerFullName: 'C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC'
+compilerPath: 'E:\51\C51\BIN\C51.exe'

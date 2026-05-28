@@ -1,0 +1,742 @@
+[2026-05-15 10:27:48]	compilation failed at : "e:\51\project\platform.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\..\project\platform.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\__\project\platform.lst") OBJECT(".\build\Target 1\.obj\__\project\platform.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C141 IN LINE 22 OF .\..\project\platform.c: syntax error near 'At24c02_I2C_Write_State_Typedef', expected 'bit'
+*** ERROR C129 IN LINE 22 OF .\..\project\platform.c: missing ';' before 'Write_State'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+[2026-05-15 10:37:13]	compilation failed at : "e:\51\project\platform.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\..\project\platform.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\__\project\platform.lst") OBJECT(".\build\Target 1\.obj\__\project\platform.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C141 IN LINE 22 OF .\..\project\platform.c: syntax error near 'At24c02_I2C_Write_State_Typedef', expected 'bit'
+*** ERROR C129 IN LINE 22 OF .\..\project\platform.c: missing ';' before 'Write_State'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+[2026-05-15 10:38:17]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 10:48:21]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 10:48:27]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 10:50:25]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 10:58:05]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 10:58:38]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 11:00:21]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 13:07:16]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 13:12:00]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 13:14:44]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\STARTUP.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?C_START
+    MODULE:  .\build\Target 1\.obj\STARTUP.o (?C_STARTUP)
+    ADDRESS: 100000DH
+
+Program Size: data=9.0 xdata=0 const=0 code=15
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2026-05-15 13:16:20]	compilation failed at : "e:\51\AHT20\BEEP.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\BEEP.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\BEEP.lst") OBJECT(".\build\Target 1\.obj\BEEP.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C206 IN LINE 26 OF .\BEEP.c: 'delay_ms': missing function-prototype
+*** ERROR C267 IN LINE 26 OF .\BEEP.c: 'delay_ms': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)
+
+[2026-05-16 12:41:27]	compilation failed at : "e:\51\AHT20\BEEP.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\BEEP.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\BEEP.lst") OBJECT(".\build\Target 1\.obj\BEEP.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C231 IN LINE 75 OF platform.h: 'READ_I2C_IDLE': redefinition
+*** ERROR C231 IN LINE 93 OF platform.h: 'Aht20_I2C_Read_Event_Typedef': redefinition
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+[2026-05-16 12:42:18]	compilation failed at : "e:\51\AHT20\BEEP.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\BEEP.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\BEEP.lst") OBJECT(".\build\Target 1\.obj\BEEP.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C231 IN LINE 75 OF platform.h: 'READ_I2C_IDLE': redefinition
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-16 12:42:52]	compilation failed at : "e:\51\AHT20\BEEP.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\BEEP.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\BEEP.lst") OBJECT(".\build\Target 1\.obj\BEEP.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C206 IN LINE 26 OF .\BEEP.c: 'delay_ms': missing function-prototype
+*** ERROR C267 IN LINE 26 OF .\BEEP.c: 'delay_ms': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)
+
+[2026-05-16 13:00:51]	compilation failed at : "e:\51\AHT20\BEEP.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\BEEP.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\BEEP.lst") OBJECT(".\build\Target 1\.obj\BEEP.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C206 IN LINE 26 OF .\BEEP.c: 'delay_ms': missing function-prototype
+*** ERROR C267 IN LINE 26 OF .\BEEP.c: 'delay_ms': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 14:09:55]	compilation failed at : "e:\51\AHT20\BEEP.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\BEEP.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\BEEP.lst") OBJECT(".\build\Target 1\.obj\BEEP.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C206 IN LINE 26 OF .\BEEP.c: 'delay_ms': missing function-prototype
+*** ERROR C267 IN LINE 26 OF .\BEEP.c: 'delay_ms': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 14:11:01]	compilation failed at : "e:\51\AHT20\BEEP.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\BEEP.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\BEEP.lst") OBJECT(".\build\Target 1\.obj\BEEP.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C206 IN LINE 26 OF .\BEEP.c: 'delay_ms': missing function-prototype
+*** ERROR C267 IN LINE 26 OF .\BEEP.c: 'delay_ms': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 14:11:12]	compilation failed at : "e:\51\AHT20\PLATFORM.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\PLATFORM.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\PLATFORM.lst") OBJECT(".\build\Target 1\.obj\PLATFORM.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C141 IN LINE 528 OF .\PLATFORM.c: syntax error near 'void', expected '__asm'
+*** ERROR C141 IN LINE 589 OF .\PLATFORM.c: syntax error near 'void', expected '__asm'
+*** ERROR C172 IN LINE 596 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 598 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 600 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 602 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 604 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 606 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 608 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 610 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 612 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 614 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 616 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 618 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 620 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 622 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 624 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 626 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 628 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 630 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 632 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 634 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 636 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 638 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C172 IN LINE 640 OF .\PLATFORM.c: 'case': missing enclosing switch
+*** ERROR C171 IN LINE 642 OF .\PLATFORM.c: 'break': missing enclosing loop
+*** ERROR C141 IN LINE 647 OF .\PLATFORM.c: syntax error near '}', expected 'hdata'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  27 ERROR(S)
+
+[2026-05-17 14:12:39]	[done]
+	build successfully !
+
+[2026-05-17 14:12:48]	[done]
+	build successfully !
+
+[2026-05-17 14:26:34]	[done]
+	build successfully !
+
+[2026-05-17 15:09:02]	compilation failed at : "e:\51\AHT20\PLATFORM.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\PLATFORM.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\PLATFORM.lst") OBJECT(".\build\Target 1\.obj\PLATFORM.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C141 IN LINE 122 OF .\PLATFORM.c: syntax error near ',', expected '<id>'
+*** ERROR C236 IN LINE 123 OF .\PLATFORM.c: '_Platform_Aht20_Standard_IIC_Read_Address': different length of parameter lists
+*** ERROR C141 IN LINE 126 OF .\PLATFORM.c: syntax error near 'data', expected 'sizeof'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  3 ERROR(S)
+
+[2026-05-17 15:10:20]	compilation failed at : "e:\51\AHT20\PLATFORM.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\PLATFORM.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\PLATFORM.lst") OBJECT(".\build\Target 1\.obj\PLATFORM.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C141 IN LINE 122 OF .\PLATFORM.c: syntax error near ',', expected '<id>'
+*** ERROR C236 IN LINE 123 OF .\PLATFORM.c: '_Platform_Aht20_Standard_IIC_Read_Address': different length of parameter lists
+*** ERROR C141 IN LINE 126 OF .\PLATFORM.c: syntax error near 'data', expected 'sizeof'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  3 ERROR(S)
+
+[2026-05-17 15:11:05]	compilation failed at : "e:\51\AHT20\PLATFORM.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\PLATFORM.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\PLATFORM.lst") OBJECT(".\build\Target 1\.obj\PLATFORM.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C236 IN LINE 123 OF .\PLATFORM.c: '_Platform_Aht20_Standard_IIC_Read_Address': different length of parameter lists
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 15:12:15]	compilation failed at : "e:\51\AHT20\PLATFORM.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\PLATFORM.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\PLATFORM.lst") OBJECT(".\build\Target 1\.obj\PLATFORM.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C236 IN LINE 123 OF .\PLATFORM.c: '_Platform_Aht20_Standard_IIC_Read_Address': different length of parameter lists
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 15:14:13]	compilation failed at : "e:\51\AHT20\main.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\main.lst") OBJECT(".\build\Target 1\.obj\main.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C141 IN LINE 9 OF .\main.c: syntax error near 'void', expected 'sizeof'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 15:14:21]	[done]
+	build successfully !
+
+[2026-05-17 15:16:20]	[done]
+	build successfully !
+
+[2026-05-17 15:16:50]	[done]
+	build successfully !
+
+[2026-05-17 15:19:56]	[done]
+	build successfully !
+
+[2026-05-17 15:20:11]	[done]
+	build successfully !
+
+[2026-05-17 15:24:28]	compilation failed at : "e:\51\AHT20\main.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\main.lst") OBJECT(".\build\Target 1\.obj\main.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C206 IN LINE 9 OF .\main.c: 'Uart_Init': missing function-prototype
+*** WARNING C206 IN LINE 13 OF .\main.c: 'Uart_Send_Str': missing function-prototype
+*** ERROR C267 IN LINE 13 OF .\main.c: 'Uart_Send_Str': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 15:24:38]	[done]
+	build successfully !
+
+[2026-05-17 15:24:50]	[done]
+	build successfully !
+
+[2026-05-17 18:04:25]	compilation failed at : "e:\51\AHT20\main.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\main.lst") OBJECT(".\build\Target 1\.obj\main.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C200 IN LINE 17 OF .\main.c: left side of '.' requires struct/union
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 18:04:45]	compilation failed at : "e:\51\AHT20\main.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\main.lst") OBJECT(".\build\Target 1\.obj\main.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C200 IN LINE 17 OF .\main.c: left side of '.' requires struct/union
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 18:05:31]	compilation failed at : "e:\51\AHT20\main.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\main.lst") OBJECT(".\build\Target 1\.obj\main.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C200 IN LINE 17 OF .\main.c: left side of '.' requires struct/union
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-17 18:07:15]	[done]
+	build successfully !
+
+[2026-05-17 18:11:56]	[done]
+	build successfully !
+
+[2026-05-17 18:20:36]	[done]
+	build successfully !
+
+[2026-05-17 18:24:30]	[done]
+	build successfully !
+
+[2026-05-17 18:39:29]	[done]
+	build successfully !
+
+[2026-05-17 18:44:12]	[done]
+	build successfully !
+
+[2026-05-17 18:49:33]	[done]
+	build successfully !
+
+[2026-05-17 19:10:07]	[done]
+	build successfully !
+
+[2026-05-19 09:43:31]	[done]
+	build successfully !
+
+[2026-05-19 13:44:58]	[done]
+	build successfully !
+
+[2026-05-19 13:48:25]	[done]
+	build successfully !
+
+[2026-05-19 13:51:42]	[done]
+	build successfully !
+
+[2026-05-19 14:00:02]	[done]
+	build successfully !
+
+[2026-05-19 14:17:06]	compilation failed at : "e:\51\AHT20\PLATFORM.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\PLATFORM.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\PLATFORM.lst") OBJECT(".\build\Target 1\.obj\PLATFORM.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C236 IN LINE 121 OF .\PLATFORM.c: '_Platform_UART_SendByte': different length of parameter lists
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-19 14:17:13]	[done]
+	build successfully !
+
+[2026-05-19 14:21:03]	[done]
+	build successfully !
+
+[2026-05-19 14:21:14]	[done]
+	build successfully !
+
+[2026-05-19 14:33:45]	[done]
+	build successfully !
+
+[2026-05-19 14:37:50]	[done]
+	build successfully !
+
+[2026-05-19 14:39:36]	[done]
+	build successfully !
+
+[2026-05-19 14:45:57]	[done]
+	build successfully !
+
+[2026-05-19 14:49:14]	[done]
+	build successfully !
+
+[2026-05-19 14:49:38]	[done]
+	build successfully !
+
+[2026-05-19 14:51:08]	[done]
+	build successfully !
+
+[2026-05-24 16:10:57]	[done]
+	build successfully !
+
+[2026-05-24 16:22:50]	compilation failed at : "e:\51\AHT20\AHT20.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\AHT20.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\AHT20.lst") OBJECT(".\build\Target 1\.obj\AHT20.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C141 IN LINE 5 OF AHT20.h: syntax error near 'reentrant', expected 'bit'
+*** ERROR C141 IN LINE 5 OF AHT20.h: syntax error near 'reentrant', expected 'hdata'
+*** ERROR C141 IN LINE 7 OF AHT20.h: syntax error near '}', expected 'hdata'
+*** ERROR C129 IN LINE 13 OF .\AHT20.c: missing ';' before 'Aht20'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  4 ERROR(S)
+
+[2026-05-24 16:23:41]	compilation failed at : "e:\51\AHT20\AHT20.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\AHT20.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\AHT20.lst") OBJECT(".\build\Target 1\.obj\AHT20.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C141 IN LINE 5 OF AHT20.h: syntax error near 'reentrant', expected 'bit'
+*** ERROR C141 IN LINE 5 OF AHT20.h: syntax error near 'reentrant', expected 'hdata'
+*** ERROR C141 IN LINE 7 OF AHT20.h: syntax error near '}', expected 'hdata'
+*** ERROR C129 IN LINE 13 OF .\AHT20.c: missing ';' before 'Aht20'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  4 ERROR(S)
+
+[2026-05-24 16:25:09]	compilation failed at : "e:\51\AHT20\AHT20.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\AHT20.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\AHT20.lst") OBJECT(".\build\Target 1\.obj\AHT20.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C182 IN LINE 13 OF .\AHT20.c: pointer to different objects
+*** ERROR C141 IN LINE 16 OF .\AHT20.c: syntax error near '{', expected 'hdata'
+*** ERROR C129 IN LINE 17 OF .\AHT20.c: missing ';' before '.'
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  2 ERROR(S)
+
+[2026-05-24 16:26:03]	compilation failed at : "e:\51\AHT20\AHT20.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\AHT20.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\AHT20.lst") OBJECT(".\build\Target 1\.obj\AHT20.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C141 IN LINE 16 OF .\AHT20.c: syntax error near '{', expected 'hdata'
+*** ERROR C129 IN LINE 17 OF .\AHT20.c: missing ';' before '.'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+[2026-05-24 16:26:20]	compilation failed at : "e:\51\AHT20\AHT20.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\AHT20.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\AHT20.lst") OBJECT(".\build\Target 1\.obj\AHT20.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C204 IN LINE 17 OF .\AHT20.c: 'DRIVE_Aht20_Standard_IIC_Read_Address_Change': undefined member
+*** ERROR C204 IN LINE 22 OF .\AHT20.c: 'DRIVE_Aht20_Standard_IIC_Read_Task_Change': undefined member
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+[2026-05-24 16:29:10]	compilation failed at : "e:\51\AHT20\AHT20.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\AHT20.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\AHT20.lst") OBJECT(".\build\Target 1\.obj\AHT20.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C212 IN LINE 17 OF .\AHT20.c: indirect call: parameters do not fit within registers
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-24 16:33:38]	compilation failed at : "e:\51\AHT20\AHT20.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\AHT20.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\AHT20.lst") OBJECT(".\build\Target 1\.obj\AHT20.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C182 IN LINE 13 OF .\AHT20.c: pointer to different objects
+*** ERROR C231 IN LINE 16 OF .\AHT20.c: '_?APPLICATION_Aht20_Standard_IIC_Read_Address': redefinition
+*** ERROR C231 IN LINE 18 OF .\AHT20.c: '_?APPLICATION_Aht20_Standard_IIC_Read_Address': redefinition
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  2 ERROR(S)
+
+[2026-05-24 16:33:57]	[done]
+	build successfully !
+
+[2026-05-24 16:34:14]	[done]
+	build successfully !
+
+[2026-05-26 09:59:00]	[done]
+	build successfully !
+
+[2026-05-26 10:02:50]	[done]
+	build successfully !
+
+[2026-05-26 10:05:01]	[done]
+	build successfully !
+
+[2026-05-26 10:06:18]	compilation failed at : "e:\51\AHT20\main.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\main.lst") OBJECT(".\build\Target 1\.obj\main.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** ERROR C200 IN LINE 21 OF .\main.c: left side of '.' requires struct/union
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2026-05-26 10:07:19]	[done]
+	build successfully !
+
+[2026-05-26 10:09:39]	[done]
+	build successfully !
+
+[2026-05-26 10:11:37]	compilation failed at : "e:\51\AHT20\main.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\main.lst") OBJECT(".\build\Target 1\.obj\main.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C206 IN LINE 14 OF .\main.c: 'APPLICATION_Aht20_Standard_IIC_Read_Address': missing function-prototype
+*** ERROR C267 IN LINE 14 OF .\main.c: 'APPLICATION_Aht20_Standard_IIC_Read_Address': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)
+
+[2026-05-26 10:12:03]	[done]
+	build successfully !
+
+[2026-05-26 10:12:10]	[done]
+	build successfully !
+
+[2026-05-26 10:15:07]	[done]
+	build successfully !
+
+[2026-05-26 10:19:37]	[done]
+	build successfully !
+
+[2026-05-26 10:19:51]	[done]
+	build successfully !
+
+[2026-05-26 10:35:37]	[done]
+	build successfully !
+
+[2026-05-26 10:35:58]	[done]
+	build successfully !
+
+[2026-05-26 10:45:50]	[done]
+	build successfully !
+
+[2026-05-26 10:51:57]	[done]
+	build successfully !
+
