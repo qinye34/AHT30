@@ -740,3 +740,256 @@ C51 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)
 [2026-05-26 10:51:57]	[done]
 	build successfully !
 
+[2026-05-28 10:52:01]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\PLATFORM.o",".\build\Target 1\.obj\STARTUP.o",".\build\Target 1\.obj\UART.o",".\build\Target 1\.obj\main.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  APPLICATION_Aht20_Standard_IIC_Read_Task
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _APPLICATION_Aht20_Standard_IIC_Read_Address
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000B9H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000BCH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000BFH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000C2H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000C5H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000C8H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _APPLICATION_Aht20_Standard_IIC_Read_Address
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000D1H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  APPLICATION_Aht20_Standard_IIC_Read_Task
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000D4H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 100010DH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000110H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000113H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000116H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000119H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 100011CH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _APPLICATION_Aht20_Standard_IIC_Read_Address
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000125H
+
+Program Size: data=67.1 xdata=0 const=0 code=666
+LX51 RUN COMPLETE.  0 WARNING(S),  18 ERROR(S)
+
+
+[2026-05-28 10:52:38]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.100.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 1995-2021, Arm Limited or its Affiliates. All rights reserved.
+"@e:\51\AHT20\build\Target 1\AHT20_Measure.lnp" ".\build\Target 1\.obj\PLATFORM.o",".\build\Target 1\.obj\STARTUP.o",".\build\Target 1\.obj\UART.o",".\build\Target 1\.obj\main.o" TO ".\build\Target 1\AHT20_Measure"
+PRINT(".\build\Target 1\AHT20_Measure.map") REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  APPLICATION_Aht20_Standard_IIC_Read_Task
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _APPLICATION_Aht20_Standard_IIC_Read_Address
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000B9H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000BCH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000BFH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000C2H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000C5H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000C8H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _APPLICATION_Aht20_Standard_IIC_Read_Address
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000D1H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  APPLICATION_Aht20_Standard_IIC_Read_Task
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 10000D4H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 100010DH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000110H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000113H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000116H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000119H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_APPLICATION_Aht20_Standard_IIC_Read_Address?BYTE
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 100011CH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _APPLICATION_Aht20_Standard_IIC_Read_Address
+    MODULE:  .\build\Target 1\.obj\main.o (MAIN)
+    ADDRESS: 1000125H
+
+Program Size: data=67.1 xdata=0 const=0 code=666
+LX51 RUN COMPLETE.  0 WARNING(S),  18 ERROR(S)
+
+
+[2026-05-28 10:53:27]	compilation failed at : "e:\51\AHT20\AHT20.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\AHT20.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\AHT20.lst") OBJECT(".\build\Target 1\.obj\AHT20.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C318 IN LINE 1 OF .\AHT20.c: can't open file 'AHT30.h'
+*** WARNING C206 IN LINE 5 OF .\AHT20.c: 'Platform_Aht20_Standard_IIC_Read_Address': missing function-prototype
+*** ERROR C267 IN LINE 5 OF .\AHT20.c: 'Platform_Aht20_Standard_IIC_Read_Address': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  1 ERROR(S)
+
+[2026-05-28 10:53:44]	compilation failed at : "e:\51\AHT20\AHT20.c", exit code: 2
+command: 
+  "E:\51\C51\BIN\C51.exe" .\AHT20.c OMF2 TABS(4) CODE NOCOND SYMBOLS INCDIR(../C51/INC/Atmel;../C51/INC) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) PRINT(".\build\Target 1\.obj\AHT20.lst") OBJECT(".\build\Target 1\.obj\AHT20.o")
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.60.7.0 - SN: K1DZC-LRWPJC
+COPYRIGHT Copyright (C) 2012 - 2022 ARM Limited or its Affiliates. All rights reserved.
+*** WARNING C318 IN LINE 1 OF .\AHT20.c: can't open file 'AHT30.h'
+*** WARNING C206 IN LINE 5 OF .\AHT20.c: 'Platform_Aht20_Standard_IIC_Read_Address': missing function-prototype
+*** ERROR C267 IN LINE 5 OF .\AHT20.c: 'Platform_Aht20_Standard_IIC_Read_Address': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  1 ERROR(S)
+
+[2026-05-28 10:54:12]	[done]
+	build successfully !
+
+[2026-05-28 10:54:24]	[done]
+	build successfully !
+
+[2026-05-28 13:58:50]	[done]
+	build successfully !
+
+[2026-05-28 14:11:02]	[done]
+	build successfully !
+
+[2026-05-28 14:12:25]	[done]
+	build successfully !
+
+[2026-05-28 14:13:03]	[done]
+	build successfully !
+
+[2026-05-28 14:15:24]	[done]
+	build successfully !
+
+[2026-05-28 14:17:04]	[done]
+	build successfully !
+
+[2026-05-28 14:18:52]	[done]
+	build successfully !
+

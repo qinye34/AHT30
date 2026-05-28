@@ -20,7 +20,7 @@ void main(void)
         UART_Send_Str(dat, 7);
         Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear();
         }
-        if((time_get_us() - last_time) >= 2000000) 
+        if((time_get_us() - last_time) >= 100000) 
         {
             APPLICATION_Aht20_Standard_IIC_Read_Address(adress,re_adress,dat);
             last_time = time_get_us();

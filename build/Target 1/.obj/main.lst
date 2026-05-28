@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   MAIN                                                              05/26/2026 10:51:57 PAGE 1   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/28/2026 14:18:52 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
@@ -31,7 +31,7 @@ line level    source
   20   3              UART_Send_Str(dat, 7);
   21   3              Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear();
   22   3              }
-  23   2              if((time_get_us() - last_time) >= 2000000) 
+  23   2              if((time_get_us() - last_time) >= 100000) 
   24   2              {
   25   3                  APPLICATION_Aht20_Standard_IIC_Read_Address(adress,re_adress,dat);
   26   3                  last_time = time_get_us();
@@ -40,7 +40,7 @@ line level    source
   29   2          }
   30   1        
   31   1      }
-C51 COMPILER V9.60.7.0   MAIN                                                              05/26/2026 10:51:57 PAGE 2   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/28/2026 14:18:52 PAGE 2   
 
 ASSEMBLY LISTING OF GENERATED OBJECT CODE
 
@@ -98,13 +98,13 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0048 EC                MOV     A,R4
 0049 9500        R     SUBB    A,last_time
 004B FC                MOV     R4,A
-004C 7B80              MOV     R3,#080H
-004E 7A84              MOV     R2,#084H
-0050 791E              MOV     R1,#01EH
+004C 7BA0              MOV     R3,#0A0H
+004E 7A86              MOV     R2,#086H
+0050 7901              MOV     R1,#01H
 0052 7800              MOV     R0,#00H
 0054 D3                SETB    C
 0055 120000      E     LCALL   ?C?ULCMP
-C51 COMPILER V9.60.7.0   MAIN                                                              05/26/2026 10:51:57 PAGE 3   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/28/2026 14:18:52 PAGE 3   
 
 0058 50C7              JNC     ?C0001
                                            ; SOURCE LINE # 24
@@ -130,7 +130,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0080 809F              SJMP    ?C0001
              ; FUNCTION main (END)
 
-C51 COMPILER V9.60.7.0   MAIN                                                              05/26/2026 10:51:57 PAGE 4   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/28/2026 14:18:52 PAGE 4   
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -193,7 +193,7 @@ main . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
 C_T2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
 WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
 PIN_SCL. . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
-C51 COMPILER V9.60.7.0   MAIN                                                              05/26/2026 10:51:57 PAGE 5   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/28/2026 14:18:52 PAGE 5   
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -256,7 +256,7 @@ TH2. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CDH  1
 P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
 SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
 TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
-C51 COMPILER V9.60.7.0   MAIN                                                              05/26/2026 10:51:57 PAGE 6   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/28/2026 14:18:52 PAGE 6   
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -320,7 +320,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     16    ----
-C51 COMPILER V9.60.7.0   MAIN                                                              05/26/2026 10:51:57 PAGE 7   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/28/2026 14:18:52 PAGE 7   
 
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----

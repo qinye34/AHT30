@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    05/26/2026  10:56:25  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    05/28/2026  14:18:55  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
             CODE    0580H     00E9H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_RECEIVE_ACK?PLATFORM
             CODE    0669H     00DFH     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_RE_STOP?PLATFORM
             CODE    0748H     00D8H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_STOP?PLATFORM
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 2
 
 
             CODE    0820H     00D5H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_SEND_NACK?PLATFORM
@@ -73,24 +73,24 @@ LINK MAP OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
             CODE    0C4DH     0042H     UNIT         ?C?LIB_CODE
             CODE    0C8FH     003DH     UNIT         ?PR?_APPLICATION_AHT20_STANDARD_IIC_READ_ADDRESS?AHT20
             CODE    0CCCH     003BH     UNIT         ?PR?TIMER0_ISR?PLATFORM
-            CODE    0D07H     003BH     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_WAIT?PLATFORM
-            CODE    0D42H     002CH     UNIT         ?PR?UART_ISR?UART
-            CODE    0D6EH     0027H     UNIT         ?PR?_PLATFORM_UART_SEND_STR?PLATFORM
-            CODE    0D95H     0026H     UNIT         ?PR?_PLATFORM_AHT20_STANDARD_IIC_READ_ADDRESS?PLATFORM
-            CODE    0DBBH     0021H     UNIT         ?PR?_GPIO_SET?PLATFORM
-            CODE    0DDCH     0020H     UNIT         ?PR?_DELAY_MS?PLATFORM
-            CODE    0DFCH     001BH     UNIT         ?PR?_GPIO_GET?PLATFORM
-            CODE    0E17H     0017H     UNIT         ?PR?UART_RECEIVE?UART
-            CODE    0E2EH     0010H     UNIT         ?PR?TIMER0_SYSTICK_INIT?PLATFORM
-            CODE    0E3EH     0010H     UNIT         ?PR?TIME_GET_US?PLATFORM
-            CODE    0E4EH     000FH     UNIT         ?PR?UART_CLEAR?UART
-            CODE    0E5DH     0009H     UNIT         ?PR?_UART_SEND_STR?UART
-            CODE    0E66H     0007H     UNIT         ?PR?APPLICATION_AHT20_STANDARD_IIC_READ_TASK?AHT20
-            CODE    0E6DH     0006H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG_CLEAR?PLATFORM
-            CODE    0E73H     0003H     UNIT         ?PR?_UART_SEND_STR_CHANGE?UART
-            CODE    0E76H     0003H     UNIT         ?PR?UART_INIT_CHANGE?UART
-            CODE    0E79H     0003H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG?PLATFORM
-            CODE    0E7CH     0003H     UNIT         ?PR?DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANGE?AHT20
+            CODE    0D07H     003AH     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_WAIT?PLATFORM
+            CODE    0D41H     002CH     UNIT         ?PR?UART_ISR?UART
+            CODE    0D6DH     0027H     UNIT         ?PR?_PLATFORM_UART_SEND_STR?PLATFORM
+            CODE    0D94H     0026H     UNIT         ?PR?_PLATFORM_AHT20_STANDARD_IIC_READ_ADDRESS?PLATFORM
+            CODE    0DBAH     0021H     UNIT         ?PR?_GPIO_SET?PLATFORM
+            CODE    0DDBH     0020H     UNIT         ?PR?_DELAY_MS?PLATFORM
+            CODE    0DFBH     001BH     UNIT         ?PR?_GPIO_GET?PLATFORM
+            CODE    0E16H     0017H     UNIT         ?PR?UART_RECEIVE?UART
+            CODE    0E2DH     0010H     UNIT         ?PR?TIMER0_SYSTICK_INIT?PLATFORM
+            CODE    0E3DH     0010H     UNIT         ?PR?TIME_GET_US?PLATFORM
+            CODE    0E4DH     000FH     UNIT         ?PR?UART_CLEAR?UART
+            CODE    0E5CH     0009H     UNIT         ?PR?_UART_SEND_STR?UART
+            CODE    0E65H     0007H     UNIT         ?PR?APPLICATION_AHT20_STANDARD_IIC_READ_TASK?AHT20
+            CODE    0E6CH     0006H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG_CLEAR?PLATFORM
+            CODE    0E72H     0003H     UNIT         ?PR?_UART_SEND_STR_CHANGE?UART
+            CODE    0E75H     0003H     UNIT         ?PR?UART_INIT_CHANGE?UART
+            CODE    0E78H     0003H     UNIT         ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG?PLATFORM
+            CODE    0E7BH     0003H     UNIT         ?PR?DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANGE?AHT20
 
 
 
@@ -119,7 +119,7 @@ SEGMENT                                            DATA_GROUP
 ?PR?TIME_GET_US?PLATFORM                         -----    -----
   +--> ?PR?_GPIO_SET?PLATFORM
 
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 3
 
 
 ?C_INITSEG                                       -----    -----
@@ -179,7 +179,7 @@ SEGMENT                                            DATA_GROUP
   +--> ?PR?TIME_GET_US?PLATFORM
 
 ?PR?PLATFORM_AHT20_STANDARD_IIC_READ_...         -----    -----
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 4
 
 
   +--> ?PR?TIME_GET_US?PLATFORM
@@ -239,7 +239,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
   C:0A45H         SYMBOL        STARTUP1
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 5
 
 
   N:0000H         SYMBOL        XBPSTACK
@@ -298,8 +298,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
   D:003DH         SYMBOL        Uart_Rx_Buffer
-  C:0E4EH         PUBLIC        UART_Clear
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 6
+  C:0E4DH         PUBLIC        UART_Clear
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 6
 
 
   D:00A8H         PUBLIC        IE
@@ -312,24 +312,24 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   D:0047H         SYMBOL        Uart_Rx_Count
-  C:0E5DH         PUBLIC        _UART_Send_Str
-  C:0D42H         PUBLIC        UART_Isr
-  C:0E76H         SYMBOL        UART_Init_Change
-  C:0E17H         PUBLIC        UART_Receive
+  C:0E5CH         PUBLIC        _UART_Send_Str
+  C:0D41H         PUBLIC        UART_Isr
+  C:0E75H         SYMBOL        UART_Init_Change
+  C:0E16H         PUBLIC        UART_Receive
   D:00C8H         PUBLIC        T2CON
-  C:0E73H         SYMBOL        _UART_Send_Str_Change
+  C:0E72H         SYMBOL        _UART_Send_Str_Change
   D:00D0H         PUBLIC        PSW
   -------         PROC          _UART_SEND_STR_CHANGE
   D:0001H         SYMBOL        str
   D:0005H         SYMBOL        len
-  C:0E73H         LINE#         8
-  C:0E73H         LINE#         9
-  C:0E73H         LINE#         10
+  C:0E72H         LINE#         8
+  C:0E72H         LINE#         9
+  C:0E72H         LINE#         10
   -------         ENDPROC       _UART_SEND_STR_CHANGE
   -------         PROC          UART_INIT_CHANGE
-  C:0E76H         LINE#         13
-  C:0E76H         LINE#         14
-  C:0E76H         LINE#         15
+  C:0E75H         LINE#         13
+  C:0E75H         LINE#         14
+  C:0E75H         LINE#         15
   -------         ENDPROC       UART_INIT_CHANGE
   -------         PROC          UART_INIT
   C:0003H         LINE#         20
@@ -339,50 +339,50 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   -------         PROC          _UART_SEND_STR
   D:0001H         SYMBOL        str
   D:0005H         SYMBOL        len
-  C:0E5DH         LINE#         26
-  C:0E5DH         LINE#         27
-  C:0E5DH         LINE#         28
+  C:0E5CH         LINE#         26
+  C:0E5CH         LINE#         27
+  C:0E5CH         LINE#         28
   -------         ENDPROC       _UART_SEND_STR
   -------         PROC          UART_ISR
-  C:0D42H         LINE#         31
-  C:0D4DH         LINE#         33
-  C:0D50H         LINE#         34
-  C:0D50H         LINE#         35
-  C:0D52H         LINE#         36
-  C:0D59H         LINE#         37
-  C:0D59H         LINE#         38
-  C:0D63H         LINE#         39
-  C:0D63H         LINE#         40
-  C:0D65H         LINE#         41
-  C:0D65H         LINE#         43
+  C:0D41H         LINE#         31
+  C:0D4CH         LINE#         33
+  C:0D4FH         LINE#         34
+  C:0D4FH         LINE#         35
+  C:0D51H         LINE#         36
+  C:0D58H         LINE#         37
+  C:0D58H         LINE#         38
+  C:0D62H         LINE#         39
+  C:0D62H         LINE#         40
+  C:0D64H         LINE#         41
+  C:0D64H         LINE#         43
   -------         ENDPROC       UART_ISR
   -------         PROC          UART_RECEIVE
-  C:0E17H         LINE#         46
-  C:0E17H         LINE#         47
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 7
+  C:0E16H         LINE#         46
+  C:0E16H         LINE#         47
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 7
 
 
-  C:0E17H         LINE#         48
-  C:0E1AH         LINE#         49
-  C:0E1AH         LINE#         50
-  C:0E21H         LINE#         51
-  C:0E27H         LINE#         52
-  C:0E27H         LINE#         53
-  C:0E2DH         LINE#         54
+  C:0E16H         LINE#         48
+  C:0E19H         LINE#         49
+  C:0E19H         LINE#         50
+  C:0E20H         LINE#         51
+  C:0E26H         LINE#         52
+  C:0E26H         LINE#         53
+  C:0E2CH         LINE#         54
   -------         ENDPROC       UART_RECEIVE
   -------         PROC          UART_CLEAR
   -------         DO            
   D:0007H         SYMBOL        i
   -------         ENDDO         
-  C:0E4EH         LINE#         56
-  C:0E4EH         LINE#         57
-  C:0E4EH         LINE#         59
-  C:0E50H         LINE#         60
-  C:0E53H         LINE#         61
-  C:0E53H         LINE#         62
-  C:0E53H         LINE#         63
-  C:0E5CH         LINE#         64
-  C:0E5CH         LINE#         65
+  C:0E4DH         LINE#         56
+  C:0E4DH         LINE#         57
+  C:0E4DH         LINE#         59
+  C:0E4FH         LINE#         60
+  C:0E52H         LINE#         61
+  C:0E52H         LINE#         62
+  C:0E52H         LINE#         63
+  C:0E5BH         LINE#         64
+  C:0E5BH         LINE#         65
   -------         ENDPROC       UART_CLEAR
   -------         ENDMOD        UART
 
@@ -391,7 +391,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
   C:0CCCH         PUBLIC        Timer0_ISR
-  C:0D95H         PUBLIC        _Platform_Aht20_Standard_IIC_Read_Address
+  C:0D94H         PUBLIC        _Platform_Aht20_Standard_IIC_Read_Address
   B:00A8H.7       PUBLIC        EA
   C:0144H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Re_Send_Address
   C:0580H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Re_Receive_Ack
@@ -400,18 +400,18 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   B:0090H.5       PUBLIC        IO_BEEP
   B:00A8H.4       PUBLIC        ES
   D:00B8H         PUBLIC        IP
-  C:0E45H         PUBLIC        time_get_us
+  C:0E44H         PUBLIC        time_get_us
   B:0098H.1       PUBLIC        TI
-  C:0E6DH         PUBLIC        Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear
+  C:0E6CH         PUBLIC        Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear
   C:0820H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Send_Nack
   D:0099H         PUBLIC        SBUF
-  C:0DFCH         PUBLIC        _GPIO_Get
+  C:0DFBH         PUBLIC        _GPIO_Get
   D:0098H         PUBLIC        SCON
   D:0089H         PUBLIC        TMOD
   D:0088H         PUBLIC        TCON
   C:0262H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Send_Ack
   D:0021H         SYMBOL        AHT20_READ
-  C:0DBFH         PUBLIC        _GPIO_Set
+  C:0DBEH         PUBLIC        _GPIO_Set
   B:00A8H.1       PUBLIC        ET0
   C:08F5H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Start
   D:008CH         PUBLIC        TH0
@@ -419,83 +419,83 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0B53H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Task
   C:0D07H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Wait
   D:008AH         PUBLIC        TL0
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 8
 
 
   B:0090H.1       PUBLIC        IO_SDA
   D:008BH         PUBLIC        TL1
-  C:0DDCH         PUBLIC        _delay_ms
-  C:0E79H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Complete_Flag
+  C:0DDBH         PUBLIC        _delay_ms
+  C:0E78H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Complete_Flag
   D:0035H         PUBLIC        now
   B:0088H.4       PUBLIC        TR0
   B:0088H.6       PUBLIC        TR1
-  C:0E2EH         PUBLIC        Timer0_SysTick_Init
+  C:0E2DH         PUBLIC        Timer0_SysTick_Init
   B:0090H.0       PUBLIC        IO_SCL
   C:047EH         PUBLIC        Platform_Aht20_Standard_IIC_Read_Receive_Data
   C:000EH         PUBLIC        Platform_UART_Init
   C:0748H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Stop
   C:099DH         PUBLIC        Platform_Aht20_Standard_IIC_Read_Re_Start
   D:00C8H         PUBLIC        T2CON
-  C:0D6EH         PUBLIC        _Platform_UART_Send_Str
+  C:0D6DH         PUBLIC        _Platform_UART_Send_Str
   C:0373H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Receive_Ack
   D:0039H         PUBLIC        System_Tick
   C:0669H         PUBLIC        Platform_Aht20_Standard_IIC_Read_Re_Stop
   D:00D0H         PUBLIC        PSW
-  C:0DBBH         SYMBOL        L?0172
+  C:0DBAH         SYMBOL        L?0172
   -------         PROC          L?0171
   -------         ENDPROC       L?0171
-  C:0DBBH         SYMBOL        L?0172
+  C:0DBAH         SYMBOL        L?0172
   -------         PROC          _GPIO_SET
   D:0007H         SYMBOL        pin
   D:0005H         SYMBOL        state
-  C:0DBFH         LINE#         37
-  C:0DBFH         LINE#         38
-  C:0DBFH         LINE#         39
-  C:0DCAH         LINE#         40
-  C:0DCAH         LINE#         41
-  C:0DCAH         LINE#         42
-  C:0DCFH         LINE#         43
-  C:0DD0H         LINE#         44
-  C:0DD0H         LINE#         45
-  C:0DD5H         LINE#         46
-  C:0DD6H         LINE#         47
-  C:0DD6H         LINE#         48
-  C:0DDBH         LINE#         49
-  C:0DDBH         LINE#         50
-  C:0DDBH         LINE#         51
-  C:0DDBH         LINE#         52
-  C:0DDBH         LINE#         53
+  C:0DBEH         LINE#         37
+  C:0DBEH         LINE#         38
+  C:0DBEH         LINE#         39
+  C:0DC9H         LINE#         40
+  C:0DC9H         LINE#         41
+  C:0DC9H         LINE#         42
+  C:0DCEH         LINE#         43
+  C:0DCFH         LINE#         44
+  C:0DCFH         LINE#         45
+  C:0DD4H         LINE#         46
+  C:0DD5H         LINE#         47
+  C:0DD5H         LINE#         48
+  C:0DDAH         LINE#         49
+  C:0DDAH         LINE#         50
+  C:0DDAH         LINE#         51
+  C:0DDAH         LINE#         52
+  C:0DDAH         LINE#         53
   -------         ENDPROC       _GPIO_SET
   -------         PROC          _GPIO_GET
   D:0007H         SYMBOL        pin
-  C:0DFCH         LINE#         55
-  C:0DFCH         LINE#         56
-  C:0DFCH         LINE#         57
-  C:0E06H         LINE#         58
-  C:0E06H         LINE#         59
-  C:0E06H         LINE#         60
-  C:0E0AH         LINE#         61
-  C:0E0AH         LINE#         62
-  C:0E0EH         LINE#         63
-  C:0E0EH         LINE#         64
-  C:0E14H         LINE#         65
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 9
+  C:0DFBH         LINE#         55
+  C:0DFBH         LINE#         56
+  C:0DFBH         LINE#         57
+  C:0E05H         LINE#         58
+  C:0E05H         LINE#         59
+  C:0E05H         LINE#         60
+  C:0E09H         LINE#         61
+  C:0E09H         LINE#         62
+  C:0E0DH         LINE#         63
+  C:0E0DH         LINE#         64
+  C:0E13H         LINE#         65
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 9
 
 
-  C:0E14H         LINE#         66
-  C:0E16H         LINE#         67
-  C:0E16H         LINE#         68
+  C:0E13H         LINE#         66
+  C:0E15H         LINE#         67
+  C:0E15H         LINE#         68
   -------         ENDPROC       _GPIO_GET
   -------         PROC          TIMER0_SYSTICK_INIT
-  C:0E2EH         LINE#         70
-  C:0E2EH         LINE#         71
-  C:0E2EH         LINE#         72
-  C:0E31H         LINE#         74
-  C:0E34H         LINE#         75
-  C:0E37H         LINE#         77
-  C:0E39H         LINE#         78
-  C:0E3BH         LINE#         79
-  C:0E3DH         LINE#         80
+  C:0E2DH         LINE#         70
+  C:0E2DH         LINE#         71
+  C:0E2DH         LINE#         72
+  C:0E30H         LINE#         74
+  C:0E33H         LINE#         75
+  C:0E36H         LINE#         77
+  C:0E38H         LINE#         78
+  C:0E3AH         LINE#         79
+  C:0E3CH         LINE#         80
   -------         ENDPROC       TIMER0_SYSTICK_INIT
   -------         PROC          TIMER0_ISR
   C:0CCCH         LINE#         82
@@ -504,17 +504,17 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0CE1H         LINE#         87
   C:0CFAH         LINE#         88
   -------         ENDPROC       TIMER0_ISR
-  C:0E3EH         SYMBOL        L?0169
-  C:0E40H         SYMBOL        L?0170
+  C:0E3DH         SYMBOL        L?0169
+  C:0E3FH         SYMBOL        L?0170
   -------         PROC          L?0168
   -------         ENDPROC       L?0168
-  C:0E3EH         SYMBOL        L?0169
-  C:0E40H         SYMBOL        L?0170
+  C:0E3DH         SYMBOL        L?0169
+  C:0E3FH         SYMBOL        L?0170
   -------         PROC          TIME_GET_US
-  C:0E45H         LINE#         90
-  C:0E45H         LINE#         91
-  C:0E45H         LINE#         92
-  C:0E4DH         LINE#         93
+  C:0E44H         LINE#         90
+  C:0E44H         LINE#         91
+  C:0E44H         LINE#         92
+  C:0E4CH         LINE#         93
   -------         ENDPROC       TIME_GET_US
   -------         PROC          _DELAY_MS
   D:0006H         SYMBOL        ms
@@ -522,11 +522,11 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   D:0004H         SYMBOL        i
   D:0002H         SYMBOL        j
   -------         ENDDO         
-  C:0DDCH         LINE#         96
-  C:0DDCH         LINE#         97
-  C:0DDCH         LINE#         99
-  C:0DE6H         LINE#         100
-  C:0DFBH         LINE#         101
+  C:0DDBH         LINE#         96
+  C:0DDBH         LINE#         97
+  C:0DDBH         LINE#         99
+  C:0DE5H         LINE#         100
+  C:0DFAH         LINE#         101
   -------         ENDPROC       _DELAY_MS
   -------         PROC          PLATFORM_UART_INIT
   C:000EH         LINE#         107
@@ -539,38 +539,38 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:001CH         LINE#         116
   C:001EH         LINE#         117
   C:0020H         LINE#         118
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 10
 
 
   -------         ENDPROC       PLATFORM_UART_INIT
   -------         PROC          _PLATFORM_UART_SEND_STR
   D:0048H         SYMBOL        str
   D:0005H         SYMBOL        len
-  C:0D6EH         LINE#         120
-  C:0D74H         LINE#         121
-  C:0D74H         LINE#         122
-  C:0D7AH         LINE#         123
-  C:0D7AH         LINE#         124
-  C:0D8DH         LINE#         125
-  C:0D90H         LINE#         126
-  C:0D92H         LINE#         127
-  C:0D94H         LINE#         128
+  C:0D6DH         LINE#         120
+  C:0D73H         LINE#         121
+  C:0D73H         LINE#         122
+  C:0D79H         LINE#         123
+  C:0D79H         LINE#         124
+  C:0D8CH         LINE#         125
+  C:0D8FH         LINE#         126
+  C:0D91H         LINE#         127
+  C:0D93H         LINE#         128
   -------         ENDPROC       _PLATFORM_UART_SEND_STR
   -------         PROC          _PLATFORM_AHT20_STANDARD_IIC_READ_ADDRESS
   D:0001H         SYMBOL        adress
   D:004BH         SYMBOL        re_adress
   D:004EH         SYMBOL        dat
-  C:0D95H         LINE#         130
-  C:0D95H         LINE#         131
-  C:0D95H         LINE#         132
-  C:0D9BH         LINE#         133
-  C:0DA4H         LINE#         134
-  C:0DADH         LINE#         135
-  C:0DB0H         LINE#         136
-  C:0DB3H         LINE#         137
-  C:0DB6H         LINE#         138
-  C:0DB8H         LINE#         139
-  C:0DBAH         LINE#         140
+  C:0D94H         LINE#         130
+  C:0D94H         LINE#         131
+  C:0D94H         LINE#         132
+  C:0D9AH         LINE#         133
+  C:0DA3H         LINE#         134
+  C:0DACH         LINE#         135
+  C:0DAFH         LINE#         136
+  C:0DB2H         LINE#         137
+  C:0DB5H         LINE#         138
+  C:0DB7H         LINE#         139
+  C:0DB9H         LINE#         140
   -------         ENDPROC       _PLATFORM_AHT20_STANDARD_IIC_READ_ADDRESS
   -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_START
   C:08F5H         LINE#         145
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:098AH         LINE#         171
   C:0996H         LINE#         172
   C:0999H         LINE#         173
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 11
 
 
   C:099CH         LINE#         174
@@ -659,7 +659,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0143H         LINE#         232
   C:0143H         LINE#         233
   -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_DEVIDCE_AND_WORD_ADDRESS
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 12
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 12
 
 
   -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_ACK
@@ -719,7 +719,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:047DH         LINE#         297
   -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_RECEIVE_ACK
   -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_STOP
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 13
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 13
 
 
   C:0748H         LINE#         299
@@ -766,20 +766,20 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0D18H         LINE#         342
   C:0D18H         LINE#         343
   C:0D18H         LINE#         344
-  C:0D3BH         LINE#         345
-  C:0D3BH         LINE#         346
-  C:0D3EH         LINE#         347
-  C:0D41H         LINE#         348
-  C:0D41H         LINE#         349
-  C:0D41H         LINE#         350
-  C:0D41H         LINE#         351
+  C:0D3AH         LINE#         345
+  C:0D3AH         LINE#         346
+  C:0D3DH         LINE#         347
+  C:0D40H         LINE#         348
+  C:0D40H         LINE#         349
+  C:0D40H         LINE#         350
+  C:0D40H         LINE#         351
   -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_WAIT
   -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_RE_START
   C:099DH         LINE#         353
   C:099DH         LINE#         354
   C:099DH         LINE#         355
   C:09A8H         LINE#         356
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 14
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 14
 
 
   C:09B8H         LINE#         357
@@ -839,7 +839,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:01FCH         LINE#         416
   C:021DH         LINE#         417
   C:021DH         LINE#         418
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 15
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 15
 
 
   C:0223H         LINE#         419
@@ -899,7 +899,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0657H         LINE#         477
   C:065BH         LINE#         478
   C:065BH         LINE#         479
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 16
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 16
 
 
   C:065EH         LINE#         480
@@ -959,7 +959,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:057CH         LINE#         540
   C:057CH         LINE#         542
   C:057CH         LINE#         543
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 17
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 17
 
 
   C:057FH         LINE#         544
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0372H         LINE#         602
   C:0372H         LINE#         603
   C:0372H         LINE#         604
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 18
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 18
 
 
   C:0372H         LINE#         605
@@ -1079,7 +1079,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:06CDH         LINE#         661
   C:06CEH         LINE#         663
   C:06CEH         LINE#         664
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 19
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 19
 
 
   C:06EFH         LINE#         665
@@ -1139,7 +1139,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0BA8H         LINE#         732
   C:0BABH         LINE#         733
   C:0BABH         LINE#         735
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 20
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 20
 
 
   C:0BABH         LINE#         736
@@ -1154,17 +1154,17 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0BB4H         LINE#         750
   -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_TASK
   -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG
-  C:0E79H         LINE#         752
-  C:0E79H         LINE#         753
-  C:0E79H         LINE#         754
-  C:0E7BH         LINE#         755
+  C:0E78H         LINE#         752
+  C:0E78H         LINE#         753
+  C:0E78H         LINE#         754
+  C:0E7AH         LINE#         755
   -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG
   -------         PROC          PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG_CLEAR
-  C:0E6DH         LINE#         757
-  C:0E6DH         LINE#         758
-  C:0E6DH         LINE#         759
-  C:0E70H         LINE#         760
-  C:0E72H         LINE#         761
+  C:0E6CH         LINE#         757
+  C:0E6CH         LINE#         758
+  C:0E6CH         LINE#         759
+  C:0E6FH         LINE#         760
+  C:0E71H         LINE#         761
   -------         ENDPROC       PLATFORM_AHT20_STANDARD_IIC_READ_COMPLETE_FLAG_CLEAR
   -------         ENDMOD        PLATFORM
 
@@ -1175,10 +1175,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-  C:0E7CH         PUBLIC        DRIVE_Aht20_Standard_IIC_Read_Task_Change
+  C:0E7BH         PUBLIC        DRIVE_Aht20_Standard_IIC_Read_Task_Change
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:0E66H         PUBLIC        APPLICATION_Aht20_Standard_IIC_Read_Task
+  C:0E65H         PUBLIC        APPLICATION_Aht20_Standard_IIC_Read_Task
   C:0BB5H         PUBLIC        _?DRIVE_Aht20_Standard_IIC_Read_Address_Change
   D:00C8H         PUBLIC        T2CON
   C:0C8FH         PUBLIC        _APPLICATION_Aht20_Standard_IIC_Read_Address
@@ -1192,14 +1192,14 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0BFEH         LINE#         6
   -------         ENDPROC       _?DRIVE_AHT20_STANDARD_IIC_READ_ADDRESS_CHANGE
   -------         PROC          DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANGE
-  C:0E7CH         LINE#         8
-  C:0E7CH         LINE#         9
-  C:0E7CH         LINE#         10
+  C:0E7BH         LINE#         8
+  C:0E7BH         LINE#         9
+  C:0E7BH         LINE#         10
   -------         ENDPROC       DRIVE_AHT20_STANDARD_IIC_READ_TASK_CHANGE
   -------         PROC          _APPLICATION_AHT20_STANDARD_IIC_READ_ADDRESS
   D:0048H         SYMBOL        adress
   D:004BH         SYMBOL        re_adress
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/26/2026  10:56:25  PAGE 21
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/28/2026  14:18:55  PAGE 21
 
 
   D:004EH         SYMBOL        dat
@@ -1208,9 +1208,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
   C:0C95H         LINE#         17
   -------         ENDPROC       _APPLICATION_AHT20_STANDARD_IIC_READ_ADDRESS
   -------         PROC          APPLICATION_AHT20_STANDARD_IIC_READ_TASK
-  C:0E66H         LINE#         20
-  C:0E66H         LINE#         21
-  C:0E66H         LINE#         22
+  C:0E65H         LINE#         20
+  C:0E65H         LINE#         21
+  C:0E65H         LINE#         22
   -------         ENDPROC       APPLICATION_AHT20_STANDARD_IIC_READ_TASK
   -------         ENDMOD        AHT20
 
@@ -1244,5 +1244,5 @@ SYMBOL TABLE OF MODULE:  .\Objects\AHT20_Measure (?C_STARTUP)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_DELAY_MS?PLATFORM
 
-Program Size: data=80.1 xdata=0 code=3708
+Program Size: data=80.1 xdata=0 code=3707
 LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 1   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE PLATFORM
@@ -37,8 +37,8 @@ line level    source
   26          
   27          //=================================================================
   28          
-  29          #define IIC_DELAY_5US 5
-  30          #define IIC_DELAY_3US 3
+  29          #define IIC_DELAY_5US 1
+  30          #define IIC_DELAY_3US 1
   31          
   32          sbit IO_SCL = P1^0;
   33          sbit IO_SDA = P1^1;
@@ -62,7 +62,7 @@ line level    source
   51   2                  break;
   52   2          }
   53   1      }
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 2   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 2   
 
   54          
   55          unsigned char GPIO_Get(Pin_ID_TypeDef pin)
@@ -85,7 +85,7 @@ line level    source
   72   1          TMOD |= 0x01;   // Timer0 模式1 16位
   73   1          // 1us 重装初值
   74   1          TH0 = 0xFF;
-  75   1          TL0 = 0xFF;
+  75   1          TL0 = 0xA4;   // 100us 重装值
   76   1      
   77   1          ET0 = 1;    // 使能定时器0中断
   78   1          TR0 = 1;    // 启动定时器
@@ -96,7 +96,7 @@ line level    source
   83          {
   84   1          // 重装1us初值
   85   1          TH0 = 0xFF;
-  86   1          TL0 = 0xFF;
+  86   1          TL0 = 0xA4;   // 100us 重装值
   87   1          System_Tick++;  // 全局时间+1
   88   1      }
   89          
@@ -126,7 +126,7 @@ line level    source
  113   1          
  114   1          TR1 = 1;
  115   1              
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 3   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 3   
 
  116   1          ES = 1;
  117   1          EA = 1;
@@ -190,7 +190,7 @@ line level    source
  174   3          }
  175   2          break;
  176   2      }
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 4   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 4   
 
  177   1      }
  178          
@@ -254,7 +254,7 @@ line level    source
  235          void Platform_Aht20_Standard_IIC_Read_Receive_Ack(void)
  236          {
  237   1          now = time_get_us();
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 5   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 5   
 
  238   1          switch(AHT20_READ.Read_State)
  239   1          {
@@ -318,7 +318,7 @@ line level    source
  297   1      }
  298          
  299          void Platform_Aht20_Standard_IIC_Read_Stop(void)
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 6   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 6   
 
  300          {
  301   1          now = time_get_us();
@@ -364,8 +364,8 @@ line level    source
  341   1          switch(AHT20_READ.Read_State)
  342   1          {
  343   2          case READ_I2C_WAIT_STEP1 :
- 344   2          if((now - AHT20_READ.IIC_Wait_Tick) >=80000) // 80ms，确保AHT20有足够时间完成测量并准备
-             -好数据
+ 344   2          if((now - AHT20_READ.IIC_Wait_Tick) >=800) // 80ms，确保AHT20有足够时间完成测量并准备�
+             -�数据
  345   2          {
  346   3              AHT20_READ.Read_Event = READ_I2C_EVENT_RE_START; // 返回空闲状态
  347   3              AHT20_READ.Read_State = READ_I2C_RE_START_STEP1; // 等待下一次通信的触发
@@ -382,7 +382,7 @@ line level    source
  358   2              //重复起始条件：SCL和SDA都为高电平
  359   2             case READ_I2C_RE_START_STEP1 :
  360   2          GPIO_Set(PIN_SDA, 1);
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 7   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 7   
 
  361   2          GPIO_Set(PIN_SCL, 1);
  362   2           AHT20_READ.IIC_Wait_Tick =now ;
@@ -446,7 +446,7 @@ line level    source
  420   3          }
  421   2          break;
  422   2              
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 8   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 8   
 
  423   2          case READ_I2C_RE_SEND_ADDRESS_STEP4 :
  424   2          AHT20_READ.IIC_Bit_Cnt++;
@@ -510,7 +510,7 @@ line level    source
  481   4              }
  482   3              else
  483   3              {
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 9   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 9   
 
  484   4                  // ACK接收失败，可以选择重试或停止通信
  485   4                  AHT20_READ.Read_Event = READ_I2C_EVENT_RE_STOP; // 停止通信
@@ -574,7 +574,7 @@ line level    source
  542   3              {
  543   4                  AHT20_READ.Read_State = READ_I2C_RECEIVE_DATA_STEP1; // 继续接收下一位数据
  544   4              }
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 10  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 10  
 
  545   3              break;
  546   3       }
@@ -638,7 +638,7 @@ line level    source
  604   2      }
  605   1      }
  606          
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 11  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 11  
 
  607          void Platform_Aht20_Standard_IIC_Read_Send_Nack(void)
  608          {
@@ -702,7 +702,7 @@ line level    source
  666   3              GPIO_Set(PIN_SDA, 1); // 在SCL高电平期间将SDA线拉高，发送停止条件
  667   3              now = time_get_us();
  668   3              AHT20_READ.IIC_Wait_Tick =now ;
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 12  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 12  
 
  669   3              AHT20_READ.Read_State = READ_I2C_RE_STOP_STEP3;
  670   3          }
@@ -766,7 +766,7 @@ line level    source
  728   2              Platform_Aht20_Standard_IIC_Read_Re_Receive_Ack();
  729   2              break;
  730   2      
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 13  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 13  
 
  731   2              case READ_I2C_EVENT_RECEIVE_DATA:
  732   2               Platform_Aht20_Standard_IIC_Read_Receive_Data();
@@ -799,7 +799,7 @@ line level    source
  759   1          AHT20_READ.IIC_Read_Complete = 0;
  760   1          return AHT20_READ.IIC_Read_Complete;
  761   1      }
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 14  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 14  
 
 ASSEMBLY LISTING OF GENERATED OBJECT CODE
 
@@ -863,7 +863,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0001 600F              JZ      ?C0011
 0003 24FE              ADD     A,#0FEH
 0005 6007              JZ      ?C0010
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 15  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 15  
 
 0007 04                INC     A
 0008 700E              JNZ     ?C0012
@@ -906,7 +906,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 74
 0003 758CFF            MOV     TH0,#0FFH
                                            ; SOURCE LINE # 75
-0006 758AFF            MOV     TL0,#0FFH
+0006 758AA4            MOV     TL0,#0A4H
                                            ; SOURCE LINE # 77
 0009 D2A9              SETB    ET0
                                            ; SOURCE LINE # 78
@@ -927,11 +927,11 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 000D C007              PUSH    AR7
                                            ; SOURCE LINE # 82
                                            ; SOURCE LINE # 85
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 16  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 16  
 
 000F 758CFF            MOV     TH0,#0FFH
                                            ; SOURCE LINE # 86
-0012 758AFF            MOV     TL0,#0FFH
+0012 758AA4            MOV     TL0,#0A4H
                                            ; SOURCE LINE # 87
 0015 AF00        R     MOV     R7,System_Tick+03H
 0017 AE00        R     MOV     R6,System_Tick+02H
@@ -991,7 +991,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0004 ED                MOV     A,R5
 0005 9F                SUBB    A,R7
 0006 EC                MOV     A,R4
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 17  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 17  
 
 0007 9E                SUBB    A,R6
 0008 5015              JNC     ?C0022
@@ -1055,7 +1055,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0009 EF                MOV     A,R7
 000A 601A              JZ      ?C0028
                                            ; SOURCE LINE # 123
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 18  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 18  
 
                                            ; SOURCE LINE # 124
 000C AB00        R     MOV     R3,str
@@ -1119,7 +1119,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0000 120000      R     LCALL   time_get_us
 0003 8F00        R     MOV     now+03H,R7
 0005 8E00        R     MOV     now+02H,R6
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 19  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 19  
 
 0007 8D00        R     MOV     now+01H,R5
 0009 8C00        R     MOV     now,R4
@@ -1168,7 +1168,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0048 9500        R     SUBB    A,AHT20_READ
 004A FC                MOV     R4,A
 004B E4                CLR     A
-004C 7B05              MOV     R3,#05H
+004C 7B01              MOV     R3,#01H
 004E FA                MOV     R2,A
 004F F9                MOV     R1,A
 0050 F8                MOV     R0,A
@@ -1183,7 +1183,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 005B 120000      R     LCALL   _GPIO_Set
                                            ; SOURCE LINE # 162
 005E 850000      R     MOV     AHT20_READ+03H,now+03H
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 20  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 20  
 
 0061 850000      R     MOV     AHT20_READ+02H,now+02H
 0064 850000      R     MOV     AHT20_READ+01H,now+01H
@@ -1210,7 +1210,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0080 9500        R     SUBB    A,AHT20_READ
 0082 FC                MOV     R4,A
 0083 E4                CLR     A
-0084 7B05              MOV     R3,#05H
+0084 7B01              MOV     R3,#01H
 0086 FA                MOV     R2,A
 0087 F9                MOV     R1,A
 0088 F8                MOV     R0,A
@@ -1247,7 +1247,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0000 120000      R     LCALL   time_get_us
 0003 8F00        R     MOV     now+03H,R7
 0005 8E00        R     MOV     now+02H,R6
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 21  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 21  
 
 0007 8D00        R     MOV     now+01H,R5
 0009 8C00        R     MOV     now,R4
@@ -1282,7 +1282,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0036 9500        R     SUBB    A,AHT20_READ
 0038 FC                MOV     R4,A
 0039 E4                CLR     A
-003A 7B05              MOV     R3,#05H
+003A 7B01              MOV     R3,#01H
 003C FA                MOV     R2,A
 003D F9                MOV     R1,A
 003E F8                MOV     R0,A
@@ -1311,7 +1311,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 190
 0060 5480              ANL     A,#080H
 0062 FD                MOV     R5,A
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 22  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 22  
 
                                            ; SOURCE LINE # 191
 0063 120000      R     LCALL   L?0170
@@ -1346,7 +1346,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 008C 9500        R     SUBB    A,AHT20_READ
 008E FC                MOV     R4,A
 008F E4                CLR     A
-0090 7B03              MOV     R3,#03H
+0090 7B01              MOV     R3,#01H
 0092 FA                MOV     R2,A
 0093 F9                MOV     R1,A
 0094 F8                MOV     R0,A
@@ -1375,7 +1375,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00B7 22                RET     
                                            ; SOURCE LINE # 207
 00B8         ?C0042:
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 23  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 23  
 
                                            ; SOURCE LINE # 208
 00B8 C3                CLR     C
@@ -1392,7 +1392,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00CA 9500        R     SUBB    A,AHT20_READ
 00CC FC                MOV     R4,A
 00CD E4                CLR     A
-00CE 7B05              MOV     R3,#05H
+00CE 7B01              MOV     R3,#01H
 00D0 FA                MOV     R2,A
 00D1 F9                MOV     R1,A
 00D2 F8                MOV     R0,A
@@ -1439,7 +1439,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 224
 0106 22                RET     
 0107         ?C0045:
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 24  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 24  
 
                                            ; SOURCE LINE # 226
                                            ; SOURCE LINE # 227
@@ -1500,10 +1500,10 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0030 9500        R     SUBB    A,AHT20_READ
 0032 FC                MOV     R4,A
 0033 E4                CLR     A
-0034 7B03              MOV     R3,#03H
+0034 7B01              MOV     R3,#01H
 0036 FA                MOV     R2,A
 0037 F9                MOV     R1,A
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 25  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 25  
 
 0038 F8                MOV     R0,A
 0039 D3                SETB    C
@@ -1545,7 +1545,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 006B 9500        R     SUBB    A,AHT20_READ
 006D FC                MOV     R4,A
 006E E4                CLR     A
-006F 7B03              MOV     R3,#03H
+006F 7B01              MOV     R3,#01H
 0071 FA                MOV     R2,A
 0072 F9                MOV     R1,A
 0073 F8                MOV     R0,A
@@ -1567,7 +1567,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 008D 8E00        R     MOV     AHT20_READ+02H,R6
 008F 8D00        R     MOV     AHT20_READ+01H,R5
 0091 8C00        R     MOV     AHT20_READ,R4
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 26  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 26  
 
                                            ; SOURCE LINE # 257
 0093 75000A      R     MOV     AHT20_READ+012H,#0AH
@@ -1591,7 +1591,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00A9 9500        R     SUBB    A,AHT20_READ
 00AB FC                MOV     R4,A
 00AC E4                CLR     A
-00AD 7B05              MOV     R3,#05H
+00AD 7B01              MOV     R3,#01H
 00AF FA                MOV     R2,A
 00B0 F9                MOV     R1,A
 00B1 F8                MOV     R0,A
@@ -1631,7 +1631,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 274
 00E1 E500        R     MOV     A,AHT20_READ+0EH
 00E3 C3                CLR     C
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 27  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 27  
 
 00E4 9404              SUBB    A,#04H
 00E6 5012              JNC     ?C0056
@@ -1695,7 +1695,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0017 2402              ADD     A,#02H
 0019 6003              JZ      $ + 5H
 001B 020000      R     LJMP    ?C0067
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 28  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 28  
 
                                            ; SOURCE LINE # 303
                                            ; SOURCE LINE # 305
@@ -1715,7 +1715,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0030 9500        R     SUBB    A,AHT20_READ
 0032 FC                MOV     R4,A
 0033 E4                CLR     A
-0034 7B05              MOV     R3,#05H
+0034 7B01              MOV     R3,#01H
 0036 FA                MOV     R2,A
 0037 F9                MOV     R1,A
 0038 F8                MOV     R0,A
@@ -1759,7 +1759,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 006B E500        R     MOV     A,now+02H
 006D 9500        R     SUBB    A,AHT20_READ+02H
 006F FE                MOV     R6,A
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 29  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 29  
 
 0070 E500        R     MOV     A,now+01H
 0072 9500        R     SUBB    A,AHT20_READ+01H
@@ -1768,7 +1768,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0077 9500        R     SUBB    A,AHT20_READ
 0079 FC                MOV     R4,A
 007A E4                CLR     A
-007B 7B03              MOV     R3,#03H
+007B 7B01              MOV     R3,#01H
 007D FA                MOV     R2,A
 007E F9                MOV     R1,A
 007F F8                MOV     R0,A
@@ -1810,7 +1810,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00AF 9500        R     SUBB    A,AHT20_READ
 00B1 FC                MOV     R4,A
 00B2 E4                CLR     A
-00B3 7B05              MOV     R3,#05H
+00B3 7B01              MOV     R3,#01H
 00B5 FA                MOV     R2,A
 00B6 F9                MOV     R1,A
 00B7 F8                MOV     R0,A
@@ -1823,7 +1823,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00C1 8F00        R     MOV     now+03H,R7
 00C3 8E00        R     MOV     now+02H,R6
 00C5 8D00        R     MOV     now+01H,R5
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 30  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 30  
 
 00C7 8C00        R     MOV     now,R4
                                            ; SOURCE LINE # 330
@@ -1855,7 +1855,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 341
 000B E500        R     MOV     A,AHT20_READ+012H
 000D 24F5              ADD     A,#0F5H
-000F 7029              JNZ     ?C0071
+000F 7028              JNZ     ?C0071
                                            ; SOURCE LINE # 342
                                            ; SOURCE LINE # 343
 0011         ?C0069:
@@ -1873,26 +1873,27 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0021 E500        R     MOV     A,now
 0023 9500        R     SUBB    A,AHT20_READ
 0025 FC                MOV     R4,A
-0026 7B80              MOV     R3,#080H
-0028 7A38              MOV     R2,#038H
-002A 7901              MOV     R1,#01H
-002C 7800              MOV     R0,#00H
-002E D3                SETB    C
-002F 120000      E     LCALL   ?C?ULCMP
-0032 5006              JNC     ?C0071
+0026 E4                CLR     A
+0027 7B20              MOV     R3,#020H
+0029 7A03              MOV     R2,#03H
+002B F9                MOV     R1,A
+002C F8                MOV     R0,A
+002D D3                SETB    C
+002E 120000      E     LCALL   ?C?ULCMP
+0031 5006              JNC     ?C0071
                                            ; SOURCE LINE # 345
                                            ; SOURCE LINE # 346
-0034 750006      R     MOV     AHT20_READ+013H,#06H
+0033 750006      R     MOV     AHT20_READ+013H,#06H
                                            ; SOURCE LINE # 347
-0037 75000C      R     MOV     AHT20_READ+012H,#0CH
+0036 75000C      R     MOV     AHT20_READ+012H,#0CH
                                            ; SOURCE LINE # 348
-                                           ; SOURCE LINE # 349
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 31  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 31  
 
+                                           ; SOURCE LINE # 349
                                            ; SOURCE LINE # 350
                                            ; SOURCE LINE # 351
-003A         ?C0071:
-003A 22                RET     
+0039         ?C0071:
+0039 22                RET     
              ; FUNCTION Platform_Aht20_Standard_IIC_Read_Wait (END)
 
              ; FUNCTION Platform_Aht20_Standard_IIC_Read_Re_Start (BEGIN)
@@ -1949,10 +1950,10 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0048 9500        R     SUBB    A,AHT20_READ
 004A FC                MOV     R4,A
 004B E4                CLR     A
-004C 7B05              MOV     R3,#05H
-004E FA                MOV     R2,A
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 32  
+004C 7B01              MOV     R3,#01H
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 32  
 
+004E FA                MOV     R2,A
 004F F9                MOV     R1,A
 0050 F8                MOV     R0,A
 0051 D3                SETB    C
@@ -1991,7 +1992,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0080 9500        R     SUBB    A,AHT20_READ
 0082 FC                MOV     R4,A
 0083 E4                CLR     A
-0084 7B05              MOV     R3,#05H
+0084 7B01              MOV     R3,#01H
 0086 FA                MOV     R2,A
 0087 F9                MOV     R1,A
 0088 F8                MOV     R0,A
@@ -2014,9 +2015,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 381
 00A4 750011      R     MOV     AHT20_READ+012H,#011H
                                            ; SOURCE LINE # 382
-                                           ; SOURCE LINE # 383
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 33  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 33  
 
+                                           ; SOURCE LINE # 383
                                            ; SOURCE LINE # 384
                                            ; SOURCE LINE # 385
 00A7         ?C0078:
@@ -2063,7 +2064,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0036 9500        R     SUBB    A,AHT20_READ
 0038 FC                MOV     R4,A
 0039 E4                CLR     A
-003A 7B03              MOV     R3,#03H
+003A 7B01              MOV     R3,#01H
 003C FA                MOV     R2,A
 003D F9                MOV     R1,A
 003E F8                MOV     R0,A
@@ -2078,9 +2079,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 004C A900        R     MOV     R1,AHT20_READ+0AH
 004E 120000      E     LCALL   ?C?CLDPTR
 0051 F500        R     MOV     AHT20_READ+04H,A
-                                           ; SOURCE LINE # 397
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 34  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 34  
 
+                                           ; SOURCE LINE # 397
 0053 AF00        R     MOV     R7,AHT20_READ+0FH
 0055 A807              MOV     R0,AR7
 0057 08                INC     R0
@@ -2127,7 +2128,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 008C 9500        R     SUBB    A,AHT20_READ
 008E FC                MOV     R4,A
 008F E4                CLR     A
-0090 7B03              MOV     R3,#03H
+0090 7B01              MOV     R3,#01H
 0092 FA                MOV     R2,A
 0093 F9                MOV     R1,A
 0094 F8                MOV     R0,A
@@ -2142,9 +2143,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00A1 120000      R     LCALL   time_get_us
 00A4 8F00        R     MOV     now+03H,R7
 00A6 8E00        R     MOV     now+02H,R6
-00A8 8D00        R     MOV     now+01H,R5
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 35  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 35  
 
+00A8 8D00        R     MOV     now+01H,R5
 00AA 8C00        R     MOV     now,R4
                                            ; SOURCE LINE # 410
 00AC 8F00        R     MOV     AHT20_READ+03H,R7
@@ -2173,7 +2174,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00CA 9500        R     SUBB    A,AHT20_READ
 00CC FC                MOV     R4,A
 00CD E4                CLR     A
-00CE 7B05              MOV     R3,#05H
+00CE 7B01              MOV     R3,#01H
 00D0 FA                MOV     R2,A
 00D1 F9                MOV     R1,A
 00D2 F8                MOV     R0,A
@@ -2206,9 +2207,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00ED 120000      R     LCALL   time_get_us
 00F0 8F00        R     MOV     now+03H,R7
 00F2 8E00        R     MOV     now+02H,R6
-00F4 8D00        R     MOV     now+01H,R5
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 36  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 36  
 
+00F4 8D00        R     MOV     now+01H,R5
 00F6 8C00        R     MOV     now,R4
                                            ; SOURCE LINE # 429
 00F8 8F00        R     MOV     AHT20_READ+03H,R7
@@ -2270,9 +2271,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 001E C3                CLR     C
 001F E500        R     MOV     A,now+03H
 0021 9500        R     SUBB    A,AHT20_READ+03H
-0023 FF                MOV     R7,A
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 37  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 37  
 
+0023 FF                MOV     R7,A
 0024 E500        R     MOV     A,now+02H
 0026 9500        R     SUBB    A,AHT20_READ+02H
 0028 FE                MOV     R6,A
@@ -2283,7 +2284,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0030 9500        R     SUBB    A,AHT20_READ
 0032 FC                MOV     R4,A
 0033 E4                CLR     A
-0034 7B03              MOV     R3,#03H
+0034 7B01              MOV     R3,#01H
 0036 FA                MOV     R2,A
 0037 F9                MOV     R1,A
 0038 F8                MOV     R0,A
@@ -2326,7 +2327,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 006B 9500        R     SUBB    A,AHT20_READ
 006D FC                MOV     R4,A
 006E E4                CLR     A
-006F 7B03              MOV     R3,#03H
+006F 7B01              MOV     R3,#01H
 0071 FA                MOV     R2,A
 0072 F9                MOV     R1,A
 0073 F8                MOV     R0,A
@@ -2334,9 +2335,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0075 120000      E     LCALL   ?C?ULCMP
 0078 506E              JNC     ?C0099
                                            ; SOURCE LINE # 461
-                                           ; SOURCE LINE # 462
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 38  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 38  
 
+                                           ; SOURCE LINE # 462
 007A 120000      R     LCALL   L?0172
                                            ; SOURCE LINE # 463
 007D 120000      R     LCALL   time_get_us
@@ -2371,7 +2372,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00A6 9500        R     SUBB    A,AHT20_READ
 00A8 FC                MOV     R4,A
 00A9 E4                CLR     A
-00AA 7B05              MOV     R3,#05H
+00AA 7B01              MOV     R3,#01H
 00AC FA                MOV     R2,A
 00AD F9                MOV     R1,A
 00AE F8                MOV     R0,A
@@ -2398,9 +2399,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00CD 8C00        R     MOV     now,R4
                                            ; SOURCE LINE # 476
 00CF 8F00        R     MOV     AHT20_READ+03H,R7
-00D1 8E00        R     MOV     AHT20_READ+02H,R6
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 39  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 39  
 
+00D1 8E00        R     MOV     AHT20_READ+02H,R6
 00D3 8D00        R     MOV     AHT20_READ+01H,R5
 00D5 8C00        R     MOV     AHT20_READ,R4
                                            ; SOURCE LINE # 477
@@ -2462,9 +2463,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0026 020000      R     LJMP    ?C0167
                                            ; SOURCE LINE # 506
 0029         ?C0102:
-                                           ; SOURCE LINE # 507
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 40  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 40  
 
+                                           ; SOURCE LINE # 507
 0029 C3                CLR     C
 002A E500        R     MOV     A,now+03H
 002C 9500        R     SUBB    A,AHT20_READ+03H
@@ -2479,7 +2480,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 003B 9500        R     SUBB    A,AHT20_READ
 003D FC                MOV     R4,A
 003E E4                CLR     A
-003F 7B03              MOV     R3,#03H
+003F 7B01              MOV     R3,#01H
 0041 FA                MOV     R2,A
 0042 F9                MOV     R1,A
 0043 F8                MOV     R0,A
@@ -2522,13 +2523,13 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0076 9500        R     SUBB    A,AHT20_READ
 0078 FC                MOV     R4,A
 0079 E4                CLR     A
-007A 7B03              MOV     R3,#03H
+007A 7B01              MOV     R3,#01H
 007C FA                MOV     R2,A
 007D F9                MOV     R1,A
 007E F8                MOV     R0,A
-007F D3                SETB    C
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 41  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 41  
 
+007F D3                SETB    C
 0080 120000      E     LCALL   ?C?ULCMP
 0083 507C              JNC     ?C0110
                                            ; SOURCE LINE # 518
@@ -2578,7 +2579,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00C0 9500        R     SUBB    A,AHT20_READ
 00C2 FC                MOV     R4,A
 00C3 E4                CLR     A
-00C4 7B05              MOV     R3,#05H
+00C4 7B01              MOV     R3,#01H
 00C6 FA                MOV     R2,A
 00C7 F9                MOV     R1,A
 00C8 F8                MOV     R0,A
@@ -2590,9 +2591,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00CF E4                CLR     A
 00D0 FD                MOV     R5,A
 00D1 FF                MOV     R7,A
-00D2 120000      R     LCALL   _GPIO_Set
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 42  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 42  
 
+00D2 120000      R     LCALL   _GPIO_Set
                                            ; SOURCE LINE # 533
 00D5 120000      R     LCALL   time_get_us
 00D8 8F00        R     MOV     now+03H,R7
@@ -2654,9 +2655,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 001A 2403              ADD     A,#03H
 001C 6003              JZ      $ + 5H
 001E 020000      R     LJMP    ?C0122
-                                           ; SOURCE LINE # 554
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 43  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 43  
 
+                                           ; SOURCE LINE # 554
                                            ; SOURCE LINE # 556
 0021         ?C0112:
                                            ; SOURCE LINE # 557
@@ -2706,7 +2707,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0058 9500        R     SUBB    A,AHT20_READ
 005A FC                MOV     R4,A
 005B E4                CLR     A
-005C 7B03              MOV     R3,#03H
+005C 7B01              MOV     R3,#01H
 005E FA                MOV     R2,A
 005F F9                MOV     R1,A
 0060 F8                MOV     R0,A
@@ -2718,9 +2719,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 574
 006A E4                CLR     A
 006B FD                MOV     R5,A
-                                           ; SOURCE LINE # 575
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 44  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 44  
 
+                                           ; SOURCE LINE # 575
 006C 120000      R     LCALL   L?0170
 006F 8F00        R     MOV     now+03H,R7
 0071 8E00        R     MOV     now+02H,R6
@@ -2753,7 +2754,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0095 9500        R     SUBB    A,AHT20_READ
 0097 FC                MOV     R4,A
 0098 E4                CLR     A
-0099 7B03              MOV     R3,#03H
+0099 7B01              MOV     R3,#01H
 009B FA                MOV     R2,A
 009C F9                MOV     R1,A
 009D F8                MOV     R0,A
@@ -2782,9 +2783,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 591
 00BE         ?C0119:
                                            ; SOURCE LINE # 592
-00BE C3                CLR     C
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 45  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 45  
 
+00BE C3                CLR     C
 00BF E500        R     MOV     A,now+03H
 00C1 9500        R     SUBB    A,AHT20_READ+03H
 00C3 FF                MOV     R7,A
@@ -2798,7 +2799,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00D0 9500        R     SUBB    A,AHT20_READ
 00D2 FC                MOV     R4,A
 00D3 E4                CLR     A
-00D4 7B05              MOV     R3,#05H
+00D4 7B01              MOV     R3,#01H
 00D6 FA                MOV     R2,A
 00D7 F9                MOV     R1,A
 00D8 F8                MOV     R0,A
@@ -2846,8 +2847,8 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0110         ?C0122:
 0110 22                RET     
              ; FUNCTION Platform_Aht20_Standard_IIC_Read_Send_Ack (END)
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 46  
 
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 46  
 
              ; FUNCTION Platform_Aht20_Standard_IIC_Read_Send_Nack (BEGIN)
                                            ; SOURCE LINE # 607
@@ -2886,7 +2887,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0030 9500        R     SUBB    A,AHT20_READ
 0032 FC                MOV     R4,A
 0033 E4                CLR     A
-0034 7B03              MOV     R3,#03H
+0034 7B01              MOV     R3,#01H
 0036 FA                MOV     R2,A
 0037 F9                MOV     R1,A
 0038 F8                MOV     R0,A
@@ -2910,9 +2911,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 619
 0055 750024      R     MOV     AHT20_READ+012H,#024H
                                            ; SOURCE LINE # 620
-                                           ; SOURCE LINE # 621
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 47  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 47  
 
+                                           ; SOURCE LINE # 621
 0058 22                RET     
                                            ; SOURCE LINE # 623
 0059         ?C0126:
@@ -2931,7 +2932,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 006B 9500        R     SUBB    A,AHT20_READ
 006D FC                MOV     R4,A
 006E E4                CLR     A
-006F 7B03              MOV     R3,#03H
+006F 7B01              MOV     R3,#01H
 0071 FA                MOV     R2,A
 0072 F9                MOV     R1,A
 0073 F8                MOV     R0,A
@@ -2974,9 +2975,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00A6 9500        R     SUBB    A,AHT20_READ
 00A8 FC                MOV     R4,A
 00A9 E4                CLR     A
-00AA 7B05              MOV     R3,#05H
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 48  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 48  
 
+00AA 7B01              MOV     R3,#01H
 00AC FA                MOV     R2,A
 00AD F9                MOV     R1,A
 00AE F8                MOV     R0,A
@@ -3038,9 +3039,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 001E C3                CLR     C
 001F E500        R     MOV     A,now+03H
 0021 9500        R     SUBB    A,AHT20_READ+03H
-0023 FF                MOV     R7,A
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 49  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 49  
 
+0023 FF                MOV     R7,A
 0024 E500        R     MOV     A,now+02H
 0026 9500        R     SUBB    A,AHT20_READ+02H
 0028 FE                MOV     R6,A
@@ -3051,7 +3052,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0030 9500        R     SUBB    A,AHT20_READ
 0032 FC                MOV     R4,A
 0033 E4                CLR     A
-0034 7B05              MOV     R3,#05H
+0034 7B01              MOV     R3,#01H
 0036 FA                MOV     R2,A
 0037 F9                MOV     R1,A
 0038 F8                MOV     R0,A
@@ -3102,9 +3103,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0077 9500        R     SUBB    A,AHT20_READ
 0079 FC                MOV     R4,A
 007A E4                CLR     A
-007B 7B03              MOV     R3,#03H
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 50  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 50  
 
+007B 7B01              MOV     R3,#01H
 007D FA                MOV     R2,A
 007E F9                MOV     R1,A
 007F F8                MOV     R0,A
@@ -3146,7 +3147,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00AF 9500        R     SUBB    A,AHT20_READ
 00B1 FC                MOV     R4,A
 00B2 E4                CLR     A
-00B3 7B05              MOV     R3,#05H
+00B3 7B01              MOV     R3,#01H
 00B5 FA                MOV     R2,A
 00B6 F9                MOV     R1,A
 00B7 F8                MOV     R0,A
@@ -3166,9 +3167,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00CD 8D00        R     MOV     AHT20_READ+01H,R5
 00CF 8C00        R     MOV     AHT20_READ,R4
                                            ; SOURCE LINE # 678
-00D1 E4                CLR     A
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 51  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 51  
 
+00D1 E4                CLR     A
 00D2 F500        R     MOV     AHT20_READ+0EH,A
                                            ; SOURCE LINE # 679
 00D4 F500        R     MOV     AHT20_READ+0FH,A
@@ -3230,9 +3231,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0040 020000      R     LJMP    Platform_Aht20_Standard_IIC_Read_Devidce_And_Word_Address
                                            ; SOURCE LINE # 705
                                            ; SOURCE LINE # 707
-0043         ?C0144:
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 52  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 52  
 
+0043         ?C0144:
                                            ; SOURCE LINE # 708
 0043 020000      R     LJMP    Platform_Aht20_Standard_IIC_Read_Receive_Ack
                                            ; SOURCE LINE # 709
@@ -3294,9 +3295,9 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0000 AF00        R     MOV     R7,AHT20_READ+011H
                                            ; SOURCE LINE # 755
 0002 22                RET     
-             ; FUNCTION Platform_Aht20_Standard_IIC_Read_Complete_Flag (END)
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 53  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 53  
 
+             ; FUNCTION Platform_Aht20_Standard_IIC_Read_Complete_Flag (END)
 
              ; FUNCTION Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear (BEGIN)
                                            ; SOURCE LINE # 757
@@ -3310,7 +3311,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0005 22                RET     
              ; FUNCTION Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear (END)
 
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 54  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 54  
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -3373,7 +3374,7 @@ READ_I2C_RECEIVE_ACK_STEP1 . . . . . .  E_CONST  -----  U_CHAR   -----  1
 PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
 SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
 READ_I2C_RECEIVE_ACK_STEP2 . . . . . .  E_CONST  -----  U_CHAR   -----  1
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 55  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 55  
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -3436,7 +3437,7 @@ READ_I2C_SEND_ACK_STEP5. . . . . . . .  E_CONST  -----  U_CHAR   -----  1
 TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
 RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
 TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 56  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 56  
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -3499,7 +3500,7 @@ Platform_Aht20_Standard_IIC_Read_Re_St  PUBLIC   CODE   PROC     0000H  -----
 EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
 PIN_BEEP . . . . . . . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
 REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:51:57 PAGE 57  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:52 PAGE 57  
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -3535,7 +3536,7 @@ READ_I2C_START_STEP2 . . . . . . . . .  E_CONST  -----  U_CHAR   -----  1
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   3039    ----
+   CODE SIZE        =   3038    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

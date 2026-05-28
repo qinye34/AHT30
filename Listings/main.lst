@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   MAIN                                                              05/26/2026 10:56:25 PAGE 1   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/28/2026 14:18:55 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
@@ -30,7 +30,7 @@ line level    source
   20   3              UART_Send_Str(dat, 7);
   21   3              Platform_Aht20_Standard_IIC_Read_Complete_Flag_Clear();
   22   3              }
-  23   2              if((time_get_us() - last_time) >= 2000000) 
+  23   2              if((time_get_us() - last_time) >= 100000) 
   24   2              {
   25   3                  APPLICATION_Aht20_Standard_IIC_Read_Address(adress,re_adress,dat);
   26   3                  last_time = time_get_us();

@@ -26,8 +26,8 @@ static AHT20_TypeDef AHT20_READ = {
 
 //=================================================================
 
-#define IIC_DELAY_5US 5
-#define IIC_DELAY_3US 3
+#define IIC_DELAY_5US 1
+#define IIC_DELAY_3US 1
 
 sbit IO_SCL = P1^0;
 sbit IO_SDA = P1^1;
@@ -72,7 +72,7 @@ void Timer0_SysTick_Init(void)
     TMOD |= 0x01;   // Timer0 模式1 16位
     // 1us 重装初值
     TH0 = 0xFF;
-    TL0 = 0xFF;
+    TL0 = 0xA4;   // 100us 重装值
 
     ET0 = 1;    // 使能定时器0中断
     TR0 = 1;    // 启动定时器
@@ -83,7 +83,7 @@ void Timer0_ISR(void) interrupt 1
 {
     // 重装1us初值
     TH0 = 0xFF;
-    TL0 = 0xFF;
+    TL0 = 0xA4;   // 100us 重装值
     System_Tick++;  // 全局时间+1
 }
 
@@ -341,7 +341,7 @@ void Platform_Aht20_Standard_IIC_Read_Wait(void)
     switch(AHT20_READ.Read_State)
     {
     case READ_I2C_WAIT_STEP1 :
-    if((now - AHT20_READ.IIC_Wait_Tick) >=80000) // 80ms，确保AHT20有足够时间完成测量并准备好数据
+    if((now - AHT20_READ.IIC_Wait_Tick) >=800) // 80ms，确保AHT20有足够时间完成测量并准备好数据
     {
         AHT20_READ.Read_Event = READ_I2C_EVENT_RE_START; // 返回空闲状态
         AHT20_READ.Read_State = READ_I2C_RE_START_STEP1; // 等待下一次通信的触发

@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 1   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE PLATFORM
@@ -36,8 +36,8 @@ line level    source
   26          
   27          //=================================================================
   28          
-  29          #define IIC_DELAY_5US 5
-  30          #define IIC_DELAY_3US 3
+  29          #define IIC_DELAY_5US 1
+  30          #define IIC_DELAY_3US 1
   31          
   32          sbit IO_SCL = P1^0;
   33          sbit IO_SDA = P1^1;
@@ -62,7 +62,7 @@ line level    source
   52   2          }
   53   1      }
   54          
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 2   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 2   
 
   55          unsigned char GPIO_Get(Pin_ID_TypeDef pin)
   56          {
@@ -84,7 +84,7 @@ line level    source
   72   1          TMOD |= 0x01;   // Timer0 模式1 16位
   73   1          // 1us 重装初值
   74   1          TH0 = 0xFF;
-  75   1          TL0 = 0xFF;
+  75   1          TL0 = 0xA4;   // 100us 重装值
   76   1      
   77   1          ET0 = 1;    // 使能定时器0中断
   78   1          TR0 = 1;    // 启动定时器
@@ -95,7 +95,7 @@ line level    source
   83          {
   84   1          // 重装1us初值
   85   1          TH0 = 0xFF;
-  86   1          TL0 = 0xFF;
+  86   1          TL0 = 0xA4;   // 100us 重装值
   87   1          System_Tick++;  // 全局时间+1
   88   1      }
   89          
@@ -126,7 +126,7 @@ line level    source
  114   1              TR1 = 1;
  115   1                      
  116   1          ES = 1;
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 3   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 3   
 
  117   1          EA = 1;
  118   1      }
@@ -190,7 +190,7 @@ line level    source
  175   2          break;
  176   2      }
  177   1      }
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 4   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 4   
 
  178          
  179          void Platform_Aht20_Standard_IIC_Read_Devidce_And_Word_Address(void)
@@ -254,7 +254,7 @@ line level    source
  236          {
  237   1          now = time_get_us();
  238   1          switch(AHT20_READ.Read_State)
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 5   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 5   
 
  239   1          {
  240   2              //等待3us，释放sda（输入）
@@ -318,7 +318,7 @@ line level    source
  298          
  299          void Platform_Aht20_Standard_IIC_Read_Stop(void)
  300          {
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 6   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 6   
 
  301   1          now = time_get_us();
  302   1          switch(AHT20_READ.Read_State)
@@ -363,8 +363,8 @@ line level    source
  341   1          switch(AHT20_READ.Read_State)
  342   1          {
  343   2          case READ_I2C_WAIT_STEP1 :
- 344   2          if((now - AHT20_READ.IIC_Wait_Tick) >=80000) // 80ms，确保AHT20有足够时间完成测量并准备
-             -好数据
+ 344   2          if((now - AHT20_READ.IIC_Wait_Tick) >=800) // 80ms，确保AHT20有足够时间完成测量并准备�
+             -�数据
  345   2          {
  346   3              AHT20_READ.Read_Event = READ_I2C_EVENT_RE_START; // 返回空闲状态
  347   3              AHT20_READ.Read_State = READ_I2C_RE_START_STEP1; // 等待下一次通信的触发
@@ -382,7 +382,7 @@ line level    source
  359   2             case READ_I2C_RE_START_STEP1 :
  360   2          GPIO_Set(PIN_SDA, 1);
  361   2          GPIO_Set(PIN_SCL, 1);
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 7   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 7   
 
  362   2           AHT20_READ.IIC_Wait_Tick =now ;
  363   2           AHT20_READ.Read_State = READ_I2C_RE_START_STEP2;
@@ -446,7 +446,7 @@ line level    source
  421   2          break;
  422   2              
  423   2          case READ_I2C_RE_SEND_ADDRESS_STEP4 :
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 8   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 8   
 
  424   2          AHT20_READ.IIC_Bit_Cnt++;
  425   2          if(AHT20_READ.IIC_Bit_Cnt == 8)
@@ -510,7 +510,7 @@ line level    source
  482   3              else
  483   3              {
  484   4                  // ACK接收失败，可以选择重试或停止通信
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 9   
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 9   
 
  485   4                  AHT20_READ.Read_Event = READ_I2C_EVENT_RE_STOP; // 停止通信
  486   4                  AHT20_READ.Read_State = READ_I2C_RE_STOP_STEP1; //
@@ -574,7 +574,7 @@ line level    source
  543   4                  AHT20_READ.Read_State = READ_I2C_RECEIVE_DATA_STEP1; // 继续接收下一位数据
  544   4              }
  545   3              break;
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 10  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 10  
 
  546   3       }
  547   2      }
@@ -638,7 +638,7 @@ line level    source
  605   1      }
  606          
  607          void Platform_Aht20_Standard_IIC_Read_Send_Nack(void)
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 11  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 11  
 
  608          {
  609   1          now = time_get_us();
@@ -702,7 +702,7 @@ line level    source
  667   3              now = time_get_us();
  668   3              AHT20_READ.IIC_Wait_Tick =now ;
  669   3              AHT20_READ.Read_State = READ_I2C_RE_STOP_STEP3;
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 12  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 12  
 
  670   3          }
  671   2          break;
@@ -766,7 +766,7 @@ line level    source
  729   2              break;
  730   2      
  731   2              case READ_I2C_EVENT_RECEIVE_DATA:
-C51 COMPILER V9.60.7.0   PLATFORM                                                          05/26/2026 10:56:25 PAGE 13  
+C51 COMPILER V9.60.7.0   PLATFORM                                                          05/28/2026 14:18:55 PAGE 13  
 
  732   2               Platform_Aht20_Standard_IIC_Read_Receive_Data();
  733   2              break;
@@ -801,7 +801,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   3036    ----
+   CODE SIZE        =   3035    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
